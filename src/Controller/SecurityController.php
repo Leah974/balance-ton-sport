@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+// SecurityController s'occupe de l'inscription, la connexion et la déconnexion
 class SecurityController extends Controller
 {
     /**
@@ -68,6 +69,7 @@ class SecurityController extends Controller
 
 
     /**
+     * méthode pour la connexion
      * la route est définie dans le fichier security.yaml -> vérifier que le chemin soit le même qu'ici
      * @Route("/connexion", name="connexion")
      */
