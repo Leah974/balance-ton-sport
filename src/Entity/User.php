@@ -7,9 +7,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+// Entity User.php est le modèle qui s'occupe des requêtes avec la base de données pour les infor utilisateur
+// Les annotations commençant par @ORM sont importantes car elles permettent de spéficier des informations sur les propriétés et méthodes en bdd
+// Les annotations en @Assert sont des contrôles sur les informations voulues dans le formulaire (champ obligatoire, longueur, etc,.)
+
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * Unique Entiy permet de spécifier que l'email et le pseudo doivent être uniques
  * @UniqueEntity("email", message="Cet e-mail existe déjà")
  * @UniqueEntity("username", message="Ce pseudo est déjà existant")
  */
@@ -57,7 +62,7 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
-     * Permet de rendre un compte active ou désactivé le compte
+     * Permet de rendre un compte est accessible ou inaccessible à son utilisateur (on peut bannir)
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -77,8 +82,8 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * salt permet d'hacher le mot de passe
-     * Ici retourne null car nous n'utilisons pas le hachage mais l'encoadage
+     * salt permet de hacher le mot de passe
+     * Ici retourne null car nous n'utilisons pas le hachage mais l'encodage
      * La méthode est tout de même obligatoire
      * @return null|string
      */
