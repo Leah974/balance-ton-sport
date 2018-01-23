@@ -11,6 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
+// les Types servent à créer des formulaires
+// Ici le UserType sert à créer les formulaires pour l'inscription et la connexion
+
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
