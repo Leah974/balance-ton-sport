@@ -13,7 +13,7 @@ security:
         ROLE_ADMIN:       [ROLE_USER]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
-    # pour lié avec l'entity user que l'on vient de créer
+    # pour lier avec l'entity user que l'on vient de créer
     providers:
         main:
             entity: { class: App\Entity\User, property: username }
@@ -29,6 +29,7 @@ security:
                 login_path: connexion
                 check_path: login_check
             anonymous: true
+            # par défaut l'utilisateur sans se déconnecter reste connecter pendant une semaine, pour lui donner le choix, il faut programmer une case à cocher
             remember_me:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds

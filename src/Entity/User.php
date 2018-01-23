@@ -73,7 +73,7 @@ class User implements UserInterface, \Serializable
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
 
-        $this->setRoles(array ('ROLE_USER'));
+        $this->setRoles(array ('ROLE_SUPER_ADMIN'));
     }
 
     /**
