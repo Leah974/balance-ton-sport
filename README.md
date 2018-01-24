@@ -3,6 +3,9 @@
 Télécharger le fichier zip
 
 Clic-droit sur le dossier et ouvrir avec Git Bash
+Pour lancer le server : 
+php bin/console server:run
+
 Pour récupérer le dossier vendors indispensable :
 - Ecrire en ligne de commande
 composer update 
