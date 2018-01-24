@@ -22,9 +22,15 @@ Le dossier vendors est importé.
 
 Pour créer la base de données associée :
 
+Voir le fichier .env et changer la ligne commençant par DATABASE en 
+
+DATABASE_URL=mysql://'root':''@127.0.0.1:3306/balance-ton-sport
+
 1 - Créer la bdd en ligne de commande
 php bin/console doctrine:database:create
 -> le nom de la bdd sera balance-ton-sport
+
+Vérifier dans phpmyadmin
 
 2 - Commande pour comparer nos données et voir les éléments et tables à créer
 php bin/console doctrine:migrations:diff
@@ -42,5 +48,4 @@ Vous aurez le rôle de SUPER ADMIN
 Puis pensez à changer ce rôle dans le fichier src/Entity/User.php
 
 Modifier à la ligne 76 ROLE_SUPER_ADMIN en ROLE_USER
-
 
