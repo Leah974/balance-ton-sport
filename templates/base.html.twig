@@ -43,8 +43,8 @@
 
         <div class="collapse navbar-collapse" id="main-nav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav_item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li>
-                <li class="nav_item"><a class="nav-link" href="">Photos</a></li>
+                {# <li class="nav_item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li> #}
+                <li class="nav_item"><a class="nav-link btn btn-primary btn-rounded btn-sm" href="">Proposer un événement &nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
                 {# accès limité aux utilisateurs connectés, on affiche mon compte et deconnexion #}
                 {% if is_granted('ROLE_USER') %}
                     <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}">Mon compte</a></li>
@@ -55,6 +55,7 @@
                     <li class="nav_item"><a class="nav-link" href="{{ path('connexion') }}">Connexion</a></li>
                 {% endif %}
             </ul>
+
         </div>
     </div>
 </nav>
