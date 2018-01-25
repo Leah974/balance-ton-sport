@@ -14,7 +14,7 @@ main {
 /*------------------------ BLOCK NAV --------------------------*/
 
 	/* MENU HAMBUGER */
-	.navbar-collapse {
+	#main-nav .collapse {
 		/* ajout d'un marge en haut pour espacer entre le logo et le reste du menu */
 		margin-top : 20px;
 	}

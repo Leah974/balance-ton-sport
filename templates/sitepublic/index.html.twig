@@ -3,15 +3,18 @@
 {# Correspond à l'accueil du site #}
 
 {% block main %}
-<div class="row">
-	<div class=" col-md-6 offset-md-3">
-		<div class="card">
-		        <img src="{{ asset('img/basketball.jpg') }}" class="img-fluid" alt="Un groupe de personne qui joue au basketball sur un terrain public">
-		    <div class="card-body">
-		        <p class="card-text">Rejoignez la communauté des passionnés de leurs animaux et partagez vos meilleurs photos. C'est ici que votre compagnon devra une star !</p>
-		        <a href="" class="btn btn-primary">Poster mes photos</a>
-		    </div>
+
+<section class="container">
+	<div class="row">
+		<div class=" col-md-6 offset-md-3">
+			<div class="card">
+			        <img src="{{ asset('img/basketball.jpg') }}" class="img-fluid" alt="Un groupe de personne qui joue au basketball sur un terrain public">
+			    <div class="card-body">
+			        <p class="card-text">Rejoignez la communauté des passionnés de leurs animaux et partagez vos meilleurs photos. C'est ici que votre compagnon devra une star !</p>
+			        <a href="" class="btn btn-primary">Poster mes photos</a>
+			    </div>
+			</div>
 		</div>
 	</div>
-</div>
+</section>
 {% endblock %}
