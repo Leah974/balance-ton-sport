@@ -27,7 +27,7 @@
 <header class="header">
 
 {# Navigation en colonne dans la page pofil #}
-{% block navprofil %} {% endblock %}
+{% block navprofil %}{% endblock %}
 
 {# Navigation principale #}
 <nav class="navbar navbar-expand-lg navbar-light white fixed-top scrolling-navbar">
@@ -75,7 +75,6 @@
     Copyright Balance ton sport
 </footer>
 
-{% block javascripts %}
     <!-- JQuery -->
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <!-- Bootstrap tooltips -->
@@ -84,7 +83,10 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
-{% endblock %}
+
+{# ajout de jQuery en fonction des pages #}
+{% block javascripts %}{% endblock %}
+
 </body>
 </html>
 

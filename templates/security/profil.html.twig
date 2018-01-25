@@ -2,6 +2,8 @@
 
 {% block navprofil %}
 
+    
+
 {% endblock %}
 
 {% block main %}
@@ -9,7 +11,21 @@
 
 		{# pour récupérer les informations sur l'utilisateur (ne fonctionne qu'avec l'utilisateur) app.user.information voulue #}
 		<p>Bonjour, {{ app.user.username }}</p>
+
+		{# bouton pour ouvrir le menu vertical #}
+		<button type="bouton" class="btn btn-default button-collapse">Ouvrir le menu</button>
+
+		{# Sidebar navigation #}
+		    <div id="slide-out" class="side-nav sn-bg-4 fixed col-sm-4">
+		        Menu à faire slider
+		    </div>
+		{# Sidebar navigation  #}
 	</section>
+{% endblock %}
+
+{% block javascripts %}
+    {# Custom JavaScript  #}
+    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 {% endblock %}
 
 
