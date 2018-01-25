@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block main %}
-	
-{# pour récupérer les informations sur l'utilisateur (ne fonctionne qu'avec l'utilisateur) app.user.information voulue #}
-<p>Bonjour {{ app.user.username }}</p>
-
+{% block navprofil %}
 
 {% endblock %}
+
+{% block main %}
+	<section class="container">
+
+		{# pour récupérer les informations sur l'utilisateur (ne fonctionne qu'avec l'utilisateur) app.user.information voulue #}
+		<p>Bonjour, {{ app.user.username }}</p>
+	</section>
+{% endblock %}
+
+

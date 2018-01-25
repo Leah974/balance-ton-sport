@@ -1,6 +1,27 @@
-/* Your custom styles */
+/*------------------------ BLOCK MAIN --------------------------*/
 
-header {
-	margin-top: 100px;
-	margin-bottom: 20px;
+main {
+	margin-top: 150px;
 }
+
+/*------------------------ BLOCK MAIN --------------------------*/
+
+
+
+
+
+
+/*------------------------ BLOCK NAV --------------------------*/
+
+	/* MENU HAMBUGER */
+	#main-nav .collapse {
+		/* ajout d'un marge en haut pour espacer entre le logo et le reste du menu */
+		margin-top : 20px;
+	}
+
+	/* BOUTON PROPOSER UN EVENEMENT */
+	#btn-proposer_evenement {
+		margin-right : 20px;
+	}
+
+/*------------------------ BLOCK NAV --------------------------*/

@@ -25,12 +25,11 @@
 <body>
 
 <header class="header">
-    <div class="container">
-        <h1 class="text-center"></h1>
-        <h2 class="text-center"></h2>
-    </div>
-</header>
 
+{# Navigation en colonne dans la page pofil #}
+{% block navprofil %} {% endblock %}
+
+{# Navigation principale #}
 <nav class="navbar navbar-expand-lg navbar-light white fixed-top scrolling-navbar">
 
     <div class="container">
@@ -44,25 +43,31 @@
             aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse" id="main-nav">
-            <ul class="navbar-nav mr-auto">
-                {# <li class="nav_item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li> #}
-                <li class="nav_item"><a class="nav-link btn btn-primary btn-rounded btn-sm" href="">Proposer un événement &nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+
+            {# bouton action "proposer un événement" qui conduit au form de création d'événement #}
+            <a id="btn-proposer_evenement" class="nav-link btn btn-default btn-rounded ml-auto" href="">Proposer un événement &nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                
+            <ul class="navbar-nav">
+                    <li class="nav_item"><a class="nav-link" href="">Les événements</a></li>
                 {# accès limité aux utilisateurs connectés, on affiche mon compte et deconnexion #}
                 {% if is_granted('ROLE_USER') %}
-                    <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}">Mon compte</a></li>
-                    <li class="nav_item"><a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}"><i class="fa fa-user"></i> Mon compte</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</span></a></li>
                 {# si l'utilisateur n'est pas connecté, on affiche inscription / connexion #}
                 {% else %}
                     <li class="nav_item"><a class="nav-link" href="{{ path('inscription') }}">Inscription</a></li>
-                    <li class="nav_item"><a class="nav-link" href="{{ path('connexion') }}">Connexion</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('connexion') }}"><i class="fa fa-user"></i> Connexion</a></li>
                 {% endif %}
+
             </ul>
 
         </div>
     </div>
 </nav>
 
-<main class="container">
+</header>
+
+<main>
     {% block main %}{% endblock %}
 </main>
 
