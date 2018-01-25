@@ -54,11 +54,7 @@ class EvenementType extends AbstractType
                 'choices' => range(1,50),
                 'label' => ' ',   
             ))
-            ->add('code_postal', IntegerType::class, array(
-                'min' => 5,
-                'max' => 5 
-            ))
-        ;
+            ->add('code_postal', IntegerType::class,)
     }
 
     public function configureOptions(OptionsResolver $resolver)
