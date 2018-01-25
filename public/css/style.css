@@ -30,12 +30,10 @@ main {
 
 
 	/* MENU SLIDE */
-	#slide-out {
-		height: 400px;
-
-		position : relative;
-
-		background: grey;
+	#profil-nav {
+		position : absolute;
+		left : 0;
+		z-index: 1;
 	}
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/

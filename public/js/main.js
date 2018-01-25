@@ -2,15 +2,31 @@ $(document).ready(function(){
 
 
    // SideNav Initialization
-	$(".button-collapse").click(function() {
+	// $("#btn-nav-profil").click(function() {
 
-		// var largeur = $("#slide-out").width();
-		// var largeurfoisdeux = largeur * 2;
+	// 	$('#profil-nav').animate({ 
+	// 		right : "toggle"
+	// 	}, "slow");
+			
+	// });
+	
+	$('#profil-nav').hide();
 
-		$('#slide-out').animate({
-			width: 'toggle'
+	// SideNav Initialization
+	$("#btn-nav-profil").click(function() {
 
-		})
+		// var largeur = $('#profil-nav').width();
+
+		$('#profil-nav').show();
+			
+	});
+
+	$("#profil-content").click(function() {
+
+		// var largeur = $('#profil-nav').width();
+
+		$('#profil-nav').hide();
+			
 	});
 
 });

@@ -26,9 +26,6 @@
 
 <header class="header">
 
-{# Navigation en colonne dans la page pofil #}
-{% block navprofil %}{% endblock %}
-
 {# Navigation principale #}
 <nav class="navbar navbar-expand-lg navbar-light white fixed-top scrolling-navbar">
 
@@ -51,12 +48,12 @@
                     <li class="nav_item"><a class="nav-link" href="">Les événements</a></li>
                 {# accès limité aux utilisateurs connectés, on affiche mon compte et deconnexion #}
                 {% if is_granted('ROLE_USER') %}
-                    <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}"><i class="fa fa-user"></i> Mon compte</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}">Mon compte</a></li>
                     <li class="nav_item"><a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</span></a></li>
                 {# si l'utilisateur n'est pas connecté, on affiche inscription / connexion #}
                 {% else %}
                     <li class="nav_item"><a class="nav-link" href="{{ path('inscription') }}">Inscription</a></li>
-                    <li class="nav_item"><a class="nav-link" href="{{ path('connexion') }}"><i class="fa fa-user"></i> Connexion</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('connexion') }}"Connexion</a></li>
                 {% endif %}
 
             </ul>
