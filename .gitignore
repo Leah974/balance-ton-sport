@@ -9,3 +9,13 @@
 ###> symfony/web-server-bundle ###
 .web-server-pid
 ###< symfony/web-server-bundle ###
+
+src/Migrations/Version20180120150010.php
+
+src/Migrations/Version20180124162527.php
+
+src/Migrations/Version20180119144739.php
+
+src/Migrations/Version20180124162702.php
+
+src/Migrations/Version20180120150010.php
