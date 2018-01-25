@@ -32,6 +32,9 @@ class EvenementType extends AbstractType
             ->add('date_evenement', DateType::class, array(
                     'widget' => 'single_text',
                 ))
+            ->add('date_limite', DateType::class, array(
+                    'widget' => 'single_text',
+                ))
             ->add('heure_debut', TimeType::class, array(
                 'input'  => 'datetime',
                 'widget' => 'choice'
@@ -54,7 +57,16 @@ class EvenementType extends AbstractType
                 'choices' => range(1,50),
                 'label' => ' ',   
             ))
-            ->add('code_postal', IntegerType::class,)
+            ->add('code_postal', IntegerType::class)
+            ->add('ville', TextType::class)
+            ->add('quartier', TextType::class)
+            ->add('statut_prix', CheckboxType::class, array(
+                    'label' => ' ',
+                    'required' => false
+                ))
+            ->add('prix', IntegerType::class)
+            ->add('sport', TextType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

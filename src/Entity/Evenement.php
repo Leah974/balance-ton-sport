@@ -18,21 +18,21 @@ class Evenement
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank()
      * @var string $titre Titre de l'événement
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank()
      * @var string $description Description de l'événement
      */
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      * @var boolean $statut Evenement privé (true) ou public (false)
      */
     private $statut;
@@ -45,36 +45,36 @@ class Evenement
     private $organisateur;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      * @var date $date Date de l'événement
      */
     private $date_evenement;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=true)
      * @var time $heuredebut Heure de début de l'événement
      */
     private $heure_debut;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=true)
      * @var time $heurefin Heure de fin de l'événement
      */
     private $heure_fin;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      * @var boolean $inscription Besoin de s'inscrire (true) ou non (false)
      */
     private $inscription;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int $participantmin Nombre minimum de participats requis
      */
     private $participant_min;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int $participantmax Nombre maximum de participats attendu
      */
     private $participant_max;
@@ -86,16 +86,22 @@ class Evenement
     private $sport;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string $niveau Niveau attendu des participants
      */
     private $niveau;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      * @var date $datelimite Date limite d'inscription à l'événement
      */
     private $date_limite;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @var statut $statut_prix Gratuit (false) ou Payant (true)
+     */
+    private $statut_prix;
 
     /**
      * @ORM\Column(type="integer")
@@ -104,25 +110,25 @@ class Evenement
     private $prix;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var int $codepostal Code postal du lieu de l'événement
      */
     private $code_postal;
 
     /**
-     * @ORM\Column(type="integer", length=5)
+     * @ORM\Column(type="integer", length=5, nullable=true)
      * @var string $ville Ville dans laquelle se déroule l'événement
      */
     private $ville;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string $adresse Quartier où à lieu l'événement
      */
     private $quartier;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @var string $photo Photo associée à l'événement
      */
     private $photo;
@@ -536,6 +542,28 @@ class Evenement
     public function setInscription($inscription)
     {
         $this->inscription = $inscription;
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return statut $statut_prix Gratuit (false) ou Payant (true)
+     */
+    public function getStatutPrix()
+    {
+        return $this->statut_prix;
+    }
+
+    /**
+     * @param statut $statut_prix Gratuit (false) ou Payant (true) $statut_prix
+     *
+     * @return self
+     */
+    public function setStatutPrix($statut_prix)
+    {
+        $this->statut_prix = $statut_prix;
 
         return $this;
     }
