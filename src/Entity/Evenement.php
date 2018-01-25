@@ -32,9 +32,8 @@ class Evenement
     private $description;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     * @var string $statut Evenement privé ou public
+     * @ORM\Column(type="boolean")
+     * @var boolean $statut Evenement privé (true) ou public (false)
      */
     private $statut;
 
@@ -49,31 +48,36 @@ class Evenement
      * @ORM\Column(type="date")
      * @var date $date Date de l'événement
      */
-    private $date;
+    private $date_evenement;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="time")
      * @var time $heuredebut Heure de début de l'événement
      */
-    private $heuredebut;
+    private $heure_debut;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="time")
      * @var time $heurefin Heure de fin de l'événement
      */
-    private $heurefin;
+    private $heure_fin;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @var boolean $inscription Besoin de s'inscrire (true) ou non (false)
+     */
+    private $inscription;
     /**
      * @ORM\Column(type="integer")
      * @var int $participantmin Nombre minimum de participats requis
      */
-    private $participantmin;
+    private $participant_min;
 
     /**
      * @ORM\Column(type="integer")
      * @var int $participantmax Nombre maximum de participats attendu
      */
-    private $participantmax;
+    private $participant_max;
 
     /**
      * @ORM\Column(type="string")
@@ -91,7 +95,7 @@ class Evenement
      * @ORM\Column(type="date")
      * @var date $datelimite Date limite d'inscription à l'événement
      */
-    private $datelimite;
+    private $date_limite;
 
     /**
      * @ORM\Column(type="integer")
@@ -103,10 +107,10 @@ class Evenement
      * @ORM\Column(type="integer")
      * @var int $codepostal Code postal du lieu de l'événement
      */
-    private $codepostal;
+    private $code_postal;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer", length=5)
      * @var string $ville Ville dans laquelle se déroule l'événement
      */
     private $ville;
@@ -129,6 +133,12 @@ class Evenement
      * @var array $participant Liste des participants à l'événement
      */
     private $participant;
+
+    public function __construct()
+    {
+            // par défaut un evenement est public
+        $this->setStatut(false);
+    }
 
     /**
      * @return mixed
@@ -191,7 +201,7 @@ class Evenement
     }
 
     /**
-     * @return string $statut Evenement privé ou public
+     * @return boolean $statut Evenement privé (true) ou public (false)
      */
     public function getStatut()
     {
@@ -199,7 +209,7 @@ class Evenement
     }
 
     /**
-     * @param string $statut Evenement privé ou public $statut
+     * @param boolean $statut Evenement privé (true) ou public (false) $statut
      *
      * @return self
      */
@@ -233,19 +243,19 @@ class Evenement
     /**
      * @return date $date Date de l'événement
      */
-    public function getDate()
+    public function getDateEvenement()
     {
-        return $this->date;
+        return $this->date_evenement;
     }
 
     /**
-     * @param date $date Date de l'événement $date
+     * @param date $date Date de l'événement $date_evenement
      *
      * @return self
      */
-    public function setDate($date)
+    public function setDateEvenement($date_evenement)
     {
-        $this->date = $date;
+        $this->date_evenement = $date_evenement;
 
         return $this;
     }
@@ -253,19 +263,19 @@ class Evenement
     /**
      * @return time $heuredebut Heure de début de l'événement
      */
-    public function getHeuredebut()
+    public function getHeureDebut()
     {
-        return $this->heuredebut;
+        return $this->heure_debut;
     }
 
     /**
-     * @param time $heuredebut Heure de début de l'événement $heuredebut
+     * @param time $heuredebut Heure de début de l'événement $heure_debut
      *
      * @return self
      */
-    public function setHeuredebut($heuredebut)
+    public function setHeureDebut($heure_debut)
     {
-        $this->heuredebut = $heuredebut;
+        $this->heure_debut = $heure_debut;
 
         return $this;
     }
@@ -273,19 +283,19 @@ class Evenement
     /**
      * @return time $heurefin Heure de fin de l'événement
      */
-    public function getHeurefin()
+    public function getHeureFin()
     {
-        return $this->heurefin;
+        return $this->heure_fin;
     }
 
     /**
-     * @param time $heurefin Heure de fin de l'événement $heurefin
+     * @param time $heurefin Heure de fin de l'événement $heure_fin
      *
      * @return self
      */
-    public function setHeurefin($heurefin)
+    public function setHeureFin($heure_fin)
     {
-        $this->heurefin = $heurefin;
+        $this->heure_fin = $heure_fin;
 
         return $this;
     }
@@ -293,19 +303,19 @@ class Evenement
     /**
      * @return int $participantmin Nombre minimum de participats requis
      */
-    public function getParticipantmin()
+    public function getParticipantMin()
     {
-        return $this->participantmin;
+        return $this->participant_min;
     }
 
     /**
-     * @param int $participantmin Nombre minimum de participats requis $participantmin
+     * @param int $participantmin Nombre minimum de participats requis $participant_min
      *
      * @return self
      */
-    public function setParticipantmin($participantmin)
+    public function setParticipantMin($participant_min)
     {
-        $this->participantmin = $participantmin;
+        $this->participant_min = $participant_min;
 
         return $this;
     }
@@ -313,19 +323,19 @@ class Evenement
     /**
      * @return int $participantmax Nombre maximum de participats attendu
      */
-    public function getParticipantmax()
+    public function getParticipantMax()
     {
-        return $this->participantmax;
+        return $this->participant_max;
     }
 
     /**
-     * @param int $participantmax Nombre maximum de participats attendu $participantmax
+     * @param int $participantmax Nombre maximum de participats attendu $participant_max
      *
      * @return self
      */
-    public function setParticipantmax($participantmax)
+    public function setParticipantMax($participant_max)
     {
-        $this->participantmax = $participantmax;
+        $this->participant_max = $participant_max;
 
         return $this;
     }
@@ -373,19 +383,19 @@ class Evenement
     /**
      * @return date $datelimite Date limite d'inscription à l'événement
      */
-    public function getDatelimite()
+    public function getDateLimite()
     {
-        return $this->datelimite;
+        return $this->date_limite;
     }
 
     /**
-     * @param date $datelimite Date limite d'inscription à l'événement $datelimite
+     * @param date $datelimite Date limite d'inscription à l'événement $date_limite
      *
      * @return self
      */
-    public function setDatelimite($datelimite)
+    public function setDateLimite($date_limite)
     {
-        $this->datelimite = $datelimite;
+        $this->date_limite = $date_limite;
 
         return $this;
     }
@@ -413,19 +423,19 @@ class Evenement
     /**
      * @return int $codepostal Code postal du lieu de l'événement
      */
-    public function getCodepostal()
+    public function getCodePostal()
     {
-        return $this->codepostal;
+        return $this->code_postal;
     }
 
     /**
-     * @param int $codepostal Code postal du lieu de l'événement $codepostal
+     * @param int $codepostal Code postal du lieu de l'événement $code_postal
      *
      * @return self
      */
-    public function setCodepostal($codepostal)
+    public function setCodePostal($code_postal)
     {
-        $this->codepostal = $codepostal;
+        $this->code_postal = $code_postal;
 
         return $this;
     }
@@ -491,7 +501,7 @@ class Evenement
     }
 
     /**
-     * @return objects $participant Liste des participants à l'événement
+     * @return array $participant Liste des participants à l'événement
      */
     public function getParticipant()
     {
@@ -499,7 +509,7 @@ class Evenement
     }
 
     /**
-     * @param objects $participant Liste des participants à l'événement $participant
+     * @param array $participant Liste des participants à l'événement $participant
      *
      * @return self
      */
@@ -509,4 +519,25 @@ class Evenement
 
         return $this;
     }
+
+    /**
+     * @return boolean $inscription Besoin de s'inscrire (true) ou non (false)
+     */
+    public function getInscription()
+    {
+        return $this->inscription;
+    }
+
+    /**
+     * @param boolean $inscription Besoin de s'inscrire (true) ou non (false) $inscription
+     *
+     * @return self
+     */
+    public function setInscription($inscription)
+    {
+        $this->inscription = $inscription;
+
+        return $this;
+    }
 }
+ 
