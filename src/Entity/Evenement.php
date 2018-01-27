@@ -46,21 +46,21 @@ class Evenement
 
     /**
      * @ORM\Column(type="date", nullable=true)
-     * @var date $date Date de l'événement
+     * @var date $dateEvenement Date de l'événement
      */
-    private $date_evenement;
+    private $dateEvenement;
 
     /**
      * @ORM\Column(type="time", nullable=true)
-     * @var time $heuredebut Heure de début de l'événement
+     * @var time $heureDebut Heure de début de l'événement
      */
-    private $heure_debut;
+    private $heureDebut;
 
     /**
      * @ORM\Column(type="time", nullable=true)
-     * @var time $heurefin Heure de fin de l'événement
+     * @var time $heureFin Heure de fin de l'événement
      */
-    private $heure_fin;
+    private $heureFin;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -69,33 +69,34 @@ class Evenement
     private $inscription;
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @var int $participantmin Nombre minimum de participats requis
+     * @var int $participantMin Nombre minimum de participats requis
      */
-    private $participant_min;
+    private $participantMin;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @var int $participantmax Nombre maximum de participats attendu
+     * @var int $participantMax Nombre maximum de participats attendu
      */
-    private $participant_max;
+    private $participantMax;
 
     /**
-     * @ORM\Column(type="string")
-     * @var string $sport Type de sport de l'événement
-     */
-    private $sport;
+      * @ORM\ManyToOne(targetEntity="App\Entity\Sport", inversedBy="evenement")
+      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
+      */
+     private $sport; 
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Niveau", inversedBy="evenement")
+     * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
      * @var string $niveau Niveau attendu des participants
      */
     private $niveau;
 
     /**
      * @ORM\Column(type="date", nullable=true)
-     * @var date $datelimite Date limite d'inscription à l'événement
+     * @var date $dateLimite Date limite d'inscription à l'événement
      */
-    private $date_limite;
+    private $dateLimite;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -111,9 +112,9 @@ class Evenement
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @var int $codepostal Code postal du lieu de l'événement
+     * @var int $codePostal Code postal du lieu de l'événement
      */
-    private $code_postal;
+    private $codePostal;
 
     /**
      * @ORM\Column(type="integer", length=5, nullable=true)
@@ -146,426 +147,8 @@ class Evenement
         $this->setStatut(false);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+  
 
-    /**
-     * @param mixed $id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @return string $titre Titre de l'événement
-     */
-    public function getTitre()
-    {
-        return $this->titre;
-    }
-
-    /**
-     * @param string $titre Titre de l'événement $titre
-     *
-     * @return self
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    /**
-     * @return string $description Description de l'événement
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description Description de l'événement $description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean $statut Evenement privé (true) ou public (false)
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
-     * @param boolean $statut Evenement privé (true) ou public (false) $statut
-     *
-     * @return self
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * @return string $organisateur Pseudo de l'organisateur
-     */
-    public function getOrganisateur()
-    {
-        return $this->organisateur;
-    }
-
-    /**
-     * @param string $organisateur Pseudo de l'organisateur $organisateur
-     *
-     * @return self
-     */
-    public function setOrganisateur($organisateur)
-    {
-        $this->organisateur = $organisateur;
-
-        return $this;
-    }
-
-    /**
-     * @return date $date Date de l'événement
-     */
-    public function getDateEvenement()
-    {
-        return $this->date_evenement;
-    }
-
-    /**
-     * @param date $date Date de l'événement $date_evenement
-     *
-     * @return self
-     */
-    public function setDateEvenement($date_evenement)
-    {
-        $this->date_evenement = $date_evenement;
-
-        return $this;
-    }
-
-    /**
-     * @return time $heuredebut Heure de début de l'événement
-     */
-    public function getHeureDebut()
-    {
-        return $this->heure_debut;
-    }
-
-    /**
-     * @param time $heuredebut Heure de début de l'événement $heure_debut
-     *
-     * @return self
-     */
-    public function setHeureDebut($heure_debut)
-    {
-        $this->heure_debut = $heure_debut;
-
-        return $this;
-    }
-
-    /**
-     * @return time $heurefin Heure de fin de l'événement
-     */
-    public function getHeureFin()
-    {
-        return $this->heure_fin;
-    }
-
-    /**
-     * @param time $heurefin Heure de fin de l'événement $heure_fin
-     *
-     * @return self
-     */
-    public function setHeureFin($heure_fin)
-    {
-        $this->heure_fin = $heure_fin;
-
-        return $this;
-    }
-
-    /**
-     * @return int $participantmin Nombre minimum de participats requis
-     */
-    public function getParticipantMin()
-    {
-        return $this->participant_min;
-    }
-
-    /**
-     * @param int $participantmin Nombre minimum de participats requis $participant_min
-     *
-     * @return self
-     */
-    public function setParticipantMin($participant_min)
-    {
-        $this->participant_min = $participant_min;
-
-        return $this;
-    }
-
-    /**
-     * @return int $participantmax Nombre maximum de participats attendu
-     */
-    public function getParticipantMax()
-    {
-        return $this->participant_max;
-    }
-
-    /**
-     * @param int $participantmax Nombre maximum de participats attendu $participant_max
-     *
-     * @return self
-     */
-    public function setParticipantMax($participant_max)
-    {
-        $this->participant_max = $participant_max;
-
-        return $this;
-    }
-
-    /**
-     * @return string $sport Type de sport de l'événement
-     */
-    public function getSport()
-    {
-        return $this->sport;
-    }
-
-    /**
-     * @param string $sport Type de sport de l'événement $sport
-     *
-     * @return self
-     */
-    public function setSport($sport)
-    {
-        $this->sport = $sport;
-
-        return $this;
-    }
-
-    /**
-     * @return string $niveau Niveau attendu des participants
-     */
-    public function getNiveau()
-    {
-        return $this->niveau;
-    }
-
-    /**
-     * @param string $niveau Niveau attendu des participants $niveau
-     *
-     * @return self
-     */
-    public function setNiveau($niveau)
-    {
-        $this->niveau = $niveau;
-
-        return $this;
-    }
-
-    /**
-     * @return date $datelimite Date limite d'inscription à l'événement
-     */
-    public function getDateLimite()
-    {
-        return $this->date_limite;
-    }
-
-    /**
-     * @param date $datelimite Date limite d'inscription à l'événement $date_limite
-     *
-     * @return self
-     */
-    public function setDateLimite($date_limite)
-    {
-        $this->date_limite = $date_limite;
-
-        return $this;
-    }
-
-    /**
-     * @return int $prix Participation financière des participants
-     */
-    public function getPrix()
-    {
-        return $this->prix;
-    }
-
-    /**
-     * @param int $prix Participation financière des participants $prix
-     *
-     * @return self
-     */
-    public function setPrix($prix)
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    /**
-     * @return int $codepostal Code postal du lieu de l'événement
-     */
-    public function getCodePostal()
-    {
-        return $this->code_postal;
-    }
-
-    /**
-     * @param int $codepostal Code postal du lieu de l'événement $code_postal
-     *
-     * @return self
-     */
-    public function setCodePostal($code_postal)
-    {
-        $this->code_postal = $code_postal;
-
-        return $this;
-    }
-
-    /**
-     * @return string $ville Ville dans laquelle se déroule l'événement
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
-     * @param string $ville Ville dans laquelle se déroule l'événement $ville
-     *
-     * @return self
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * @return string $adresse Quartier où à lieu l'événement
-     */
-    public function getQuartier()
-    {
-        return $this->quartier;
-    }
-
-    /**
-     * @param string $adresse Quartier où à lieu l'événement $quartier
-     *
-     * @return self
-     */
-    public function setQuartier($quartier)
-    {
-        $this->quartier = $quartier;
-
-        return $this;
-    }
-
-    /**
-     * @return string $photo Photo associée à l'événement
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
-     * @param string $photo Photo associée à l'événement $photo
-     *
-     * @return self
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * @return array $participant Liste des participants à l'événement
-     */
-    public function getParticipant()
-    {
-        return $this->participant;
-    }
-
-    /**
-     * @param array $participant Liste des participants à l'événement $participant
-     *
-     * @return self
-     */
-    public function setParticipant($participant)
-    {
-        $this->participant = $participant;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean $inscription Besoin de s'inscrire (true) ou non (false)
-     */
-    public function getInscription()
-    {
-        return $this->inscription;
-    }
-
-    /**
-     * @param boolean $inscription Besoin de s'inscrire (true) ou non (false) $inscription
-     *
-     * @return self
-     */
-    public function setInscription($inscription)
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-
-
-    /**
-     * @return statut $statut_prix Gratuit (false) ou Payant (true)
-     */
-    public function getStatutPrix()
-    {
-        return $this->statut_prix;
-    }
-
-    /**
-     * @param statut $statut_prix Gratuit (false) ou Payant (true) $statut_prix
-     *
-     * @return self
-     */
-    public function setStatutPrix($statut_prix)
-    {
-        $this->statut_prix = $statut_prix;
-
-        return $this;
-    }
+    
 }
  

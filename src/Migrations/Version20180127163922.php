@@ -8,14 +8,16 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180125161129 extends AbstractMigration
+class Version20180127163922 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE evenement ADD statut_prix TINYINT(1) DEFAULT NULL, CHANGE organisateur organisateur VARCHAR(255) NOT NULL, CHANGE sport sport VARCHAR(255) NOT NULL, CHANGE prix prix INT NOT NULL, CHANGE participant participant LONGTEXT NOT NULL COMMENT \'(DC2Type:object)\'');
+        $this->addSql('ALTER TABLE evenement CHANGE dateevenement date_evenement DATE DEFAULT NULL');
+        $this->addSql('ALTER TABLE evenement ADD CONSTRAINT FK_B26681EB3E9C81 FOREIGN KEY (niveau_id) REFERENCES niveau (id)');
+        $this->addSql('CREATE INDEX IDX_B26681EB3E9C81 ON evenement (niveau_id)');
     }
 
     public function down(Schema $schema)
@@ -23,6 +25,8 @@ class Version20180125161129 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE evenement DROP statut_prix, CHANGE organisateur organisateur VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci, CHANGE sport sport VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci, CHANGE prix prix INT DEFAULT NULL, CHANGE participant participant LONGTEXT DEFAULT NULL COLLATE utf8_unicode_ci COMMENT \'(DC2Type:object)\'');
+        $this->addSql('ALTER TABLE evenement DROP FOREIGN KEY FK_B26681EB3E9C81');
+        $this->addSql('DROP INDEX IDX_B26681EB3E9C81 ON evenement');
+        $this->addSql('ALTER TABLE evenement CHANGE date_evenement dateEvenement DATE DEFAULT NULL');
     }
 }

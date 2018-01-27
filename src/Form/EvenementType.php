@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Evenement;
+use App\Entity\Sport;
+use App\Entity\Niveau;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 
@@ -29,7 +32,11 @@ class EvenementType extends AbstractType
                     'label' => ' ',
                     'required' => false
                 ))
-            ->add('date_evenement', DateType::class, array(
+            ->add('niveau', EntityType::class, array(
+                    'class' => Niveau::class,
+                    'choice_label' => 'nom',
+                ))
+            ->add('dateEvenement', DateType::class, array(
                     'widget' => 'single_text',
                 ))
             ->add('date_limite', DateType::class, array(
@@ -65,7 +72,11 @@ class EvenementType extends AbstractType
                     'required' => false
                 ))
             ->add('prix', IntegerType::class)
-            ->add('sport', TextType::class)
+
+            ->add('sport', EntityType::class, array(
+                    'class' => Sport::class,
+                    'choice_label' => 'nom',
+                ))
         ;
     }
 

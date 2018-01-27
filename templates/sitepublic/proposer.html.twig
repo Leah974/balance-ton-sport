@@ -1,19 +1,24 @@
-form.organisateur
-form.titre
-form.description
-form.date_evenement
-form.heure_debut
-form.heure_fin
-form.inscription 
-form.participant_min
-form.participant_nmax
-form.sport          
-form.niveau          {# niveau requis #}
-form.date_limite     {# date limite d'inscription à l'événement #}
-form.statut_prix 
-form.prix
-form.code_postal
-form.ville
-form.quartier
-form.photo
-    
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+
+    {# Form without header #}
+    <div class="card">
+
+        <div class="card-body mx-4">
+
+		    {{ form_start(form, {'method': 'POST'}) }}
+
+		    	<div class="text-center">
+		        	<button class="btn btn-primary" type="submit">S'inscrire ! <i class="fa fa-paper-plane-o ml-1"></i></button>
+		        </div>
+
+		    {{ form_end(form) }}
+		</div>
+
+	</div>
+
+</section>
+
+{% endblock %}
