@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	Titre : {{ evenement.titre }}<br>
+	Organisé par : {{ evenement.organisateur }}<br>
+	Description : {{ evenement.description }}<br>
+	Le {{ evenement.dateEvenement|date("d/m/Y") }} de {{ evenement.heureDebut|date('H:i') }} à {{ evenement.heureFin|date('H:i') }}<br>
+	Niveau demandé : {{ evenement.niveau.nom }}<br>
+	{{ evenement.sport.nom }}<br>
+	<img src="{{ asset('img/uploads/')}}{{ evenement.photo }}" class="img-fluid">
+
+</section>
+
+{% endblock %}

@@ -130,7 +130,7 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @var string $photo Photo associée à l'événement
+     * @var string $photo Lien de la photo associée à l'événement
      */
     private $photo;
 
