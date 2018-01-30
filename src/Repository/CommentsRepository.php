@@ -2,15 +2,15 @@
 
 namespace App\Repository;
 
-use App\Entity\Categorie;
+use App\Entity\Comments;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class CategorieRepository extends ServiceEntityRepository
+class CommentsRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Categorie::class);
+        parent::__construct($registry, Comments::class);
     }
 
     /*

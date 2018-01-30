@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Form\EvenementType;
 use App\Entity\Evenement;
+<<<<<<< HEAD
+use App\Entity\Comments;
+=======
 use App\Entity\Sport;
-use App\Entity\Participant;
 use App\Entity\User;
 use App\Entity\Niveau;
+>>>>>>> 544324ed0f0ed72ce0855b541e5150ac3226ebfc
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -63,7 +66,7 @@ class EvenementController extends Controller
                 // redirection vers la page profil
             return $this->redirectToRoute('profil');
         }
-
+        //création commentaire à lier avec form cc lien dans comments
         return $this->render(
             'sitepublic/proposer.html.twig',
             array('form' => $form->createView())
@@ -102,36 +105,6 @@ class EvenementController extends Controller
                     ['statut' => false],
                     ['dateEvenement' => 'ASC']
                 );
-
         return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements]);
-        }
-
-    /**
-     * Inscription à un événement
-     * @Route("/evenements/inscription/{id}", name="inscriptionEvenement")
-     */
-        public function participerEvenement($id)
-        {
-            $evenement = $this->getDoctrine()
-            ->getRepository(Evenement::class)
-            ->find($id);
-
-            $user = $this->getUser();
-            if(!$user)
-            {
-                return $this->render('security/login.html.twig');
-            }
-            $userId = $user->getId();
-
-            $participant = new Participant();
-            $participant->setNom($evenement->getTitre());
-            $participant->setUser($userId);
-            $participant->setEvenement($id);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($participant);
-            $em->flush();
-
-            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['evenement' => $evenement, 'user' => $user, 'participant' => $participant]);
         }
 }
