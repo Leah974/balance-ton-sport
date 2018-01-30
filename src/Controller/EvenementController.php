@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\EvenementType;
 use App\Entity\Evenement;
+use App\Entity\Comments;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,7 +31,7 @@ class EvenementController extends Controller
 
             return $this->redirectToRoute('profil');
         }
-
+        //création commentaire à lier avec form cc lien dans comments
         return $this->render(
             'sitepublic/proposer.html.twig',
             array('form' => $form->createView())
