@@ -20,3 +20,9 @@ src/Migrations/Version20180124162702.php
 
 src/Migrations/Version20180120150010.php
 src/Entity/User.php
+
+src/Migrations/Version20180129193744.php
+
+src/.DS_Store
+
+src/Migrations/Version20180128222611.php

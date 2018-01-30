@@ -87,7 +87,15 @@ class EvenementController extends Controller
             return $this->render('sitepublic/erreurEvenements.html.twig');
         }
 
-        return $this->render('sitepublic/details.html.twig', ['evenement' => $evenement]);
+        $participant = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(
+                ['evenement' => $id]
+            );
+
+        $nombre = count($participant);
+
+        return $this->render('sitepublic/details.html.twig', ['evenement' => $evenement, 'participant' => $participant, 'nombre' => $nombre]);
     }
 
     /**
