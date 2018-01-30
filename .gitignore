@@ -20,6 +20,3 @@ src/Migrations/Version20180124162702.php
 
 src/Migrations/Version20180120150010.php
 src/Entity/User.php
-src/Repository/CommentsRepository.php
-src/Migrations/Version20180127163215.php
-src/Repository/CommentsRepository.php

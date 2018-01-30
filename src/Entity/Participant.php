@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SportRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ParticipantRepository")
  */
-class Sport
+class Participant
 {
     /**
      * @ORM\Id
@@ -18,19 +19,23 @@ class Sport
 
     /**
      * @ORM\Column(type="string")
-     * @var string $nom Nom du sport
+     * @var string $nom Nom de l'événement auquel les participants sont inscrits
      */
-    private $nom;
+ 	private $nom; 
 
-	/**
-   * @ORM\OneToMany(targetEntity="App\Entity\Evenement", mappedBy="sport")
-   */
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @var string $evenement Id de l'événement concerné
+     */
  	private $evenement; 
 
     /**
-   * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="sport")
-   */
-    private $categorie; 
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @var string $user Id de l'utilisateur inscrit à l'événement
+     */
+    private $user; 
 
     /**
      * @return mixed
@@ -53,7 +58,7 @@ class Sport
     }
 
     /**
-     * @return string $nom Nom du sport
+     * @return string $nom Nom de l'événement auquel les participants sont inscrits
      */
     public function getNom()
     {
@@ -61,7 +66,7 @@ class Sport
     }
 
     /**
-     * @param string $nom Nom du sport $nom
+     * @param string $nom Nom de l'événement auquel les participants sont inscrits $nom
      *
      * @return self
      */
@@ -73,7 +78,7 @@ class Sport
     }
 
     /**
-     * @return mixed
+     * @return string $evenement Id de l'événement concerné
      */
     public function getEvenement()
     {
@@ -81,7 +86,7 @@ class Sport
     }
 
     /**
-     * @param mixed $evenement
+     * @param string $evenement Id de l'événement concerné $evenement
      *
      * @return self
      */
@@ -93,21 +98,21 @@ class Sport
     }
 
     /**
-     * @return mixed
+     * @return string $user Id de l'utilisateur inscrit à l'événement
      */
-    public function getCategorie()
+    public function getUser()
     {
-        return $this->categorie;
+        return $this->user;
     }
 
     /**
-     * @param mixed $categorie
+     * @param string $user Id de l'utilisateur inscrit à l'événement $user
      *
      * @return self
      */
-    public function setCategorie($categorie)
+    public function setUser($user)
     {
-        $this->categorie = $categorie;
+        $this->user = $user;
 
         return $this;
     }

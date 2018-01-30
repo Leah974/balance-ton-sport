@@ -9,10 +9,48 @@
         <div class="card-body mx-4">
 
 		    {{ form_start(form, {'method': 'POST'}) }}
-
+		    	{{ form_errors(form) }}
+		    	<div class="md-form">
+		        	{# {{ form_row(form.titre) }} #}
+		        	{{ form_errors(form.titre) }}
+					{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.titre, "Titre de l'événement") }}
+		    	</div>
+		    	<div class="md-form">
+		        	{# {{ form_row(form.description) }} #}
+		        	{{ form_errors(form.description) }}
+					{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.description, "Description de l'événement") }}
+		    	</div>
+		    	<div class="md-form">
+		        	{# {{ form_row(form.statut) }} #}
+		        	{{ form_errors(form.statut) }}
+					{{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.statut, "Cet événement est privé") }}
+		    	</div>
+		    	<div class="md-form">
+		        	{{ form_errors(form.dateEvenement) }}
+					{{ form_widget(form.dateEvenement, {'attr': {'class': 'form-control'}}) }}
+		    	</div>
+		    	<div class="md-form">
+					{{ form_widget(form.inscription, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.inscription, "Evénement sur inscription ?") }}
+		    	</div>
+		    	<div class="md-form">
+					{{ form_widget(form.participantMin, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.participantMin, "Nombre de participants minimum") }}
+		    	</div>
+		    	<div class="md-form">
+					{{ form_widget(form.participantMax, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.participantMax, "Nombre de participants maximum") }}
+		    	</div>
 		    	<div class="text-center">
 		        	<button class="btn btn-primary" type="submit">S'inscrire ! <i class="fa fa-paper-plane-o ml-1"></i></button>
 		        </div>
+		    	<div class="md-form">
+		        	{{ form_errors(form.niveau) }}
+					{{ form_label(form.niveau, "Niveau requis") }}
+		    	</div>
 
 		    {{ form_end(form) }}
 		</div>

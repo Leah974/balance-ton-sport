@@ -35,7 +35,7 @@ class User implements UserInterface, \Serializable
      *      minMessage = "Votre pseudo doit avoir au minimum {{ limit }} caractères",
      *      maxMessage = "Votre pseudo doit avoir au maximum {{ limit }} caractères"
      * )
-     * @Assert\NotBlank()p
+     * @Assert\NotBlank()
      */
     private $username;
 
