@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\EvenementType;
 use App\Entity\Evenement;
 use App\Entity\Sport;
+use App\Entity\Participant;
 use App\Entity\User;
 use App\Entity\Niveau;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,6 +102,36 @@ class EvenementController extends Controller
                     ['statut' => false],
                     ['dateEvenement' => 'ASC']
                 );
+
         return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements]);
+        }
+
+    /**
+     * Inscription à un événement
+     * @Route("/evenements/inscription/{id}", name="inscriptionEvenement")
+     */
+        public function participerEvenement($id)
+        {
+            $evenement = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->find($id);
+
+            $user = $this->getUser();
+            if(!$user)
+            {
+                return $this->render('security/login.html.twig');
+            }
+            $userId = $user->getId();
+
+            $participant = new Participant();
+            $participant->setNom($evenement->getTitre());
+            $participant->setUser($userId);
+            $participant->setEvenement($id);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($participant);
+            $em->flush();
+
+            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['evenement' => $evenement, 'user' => $user, 'participant' => $participant]);
         }
 }

@@ -18,6 +18,9 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 
 
@@ -37,48 +40,34 @@ class EvenementType extends AbstractType
                     'class' => Niveau::class,
                     'choice_label' => 'nom',
                 ))
-            ->add('dateEvenement', DateType::class, array(
-                    'widget' => 'single_text',
+            ->add('dateEvenement', DateTimeType::class, array(
+                    'date_widget' => 'single_text',
+                    'time_widget' => 'choice',
+                    'minutes' => array(00, 15, 30, 45)
                 ))
-            ->add('date_limite', DateType::class, array(
-                    'widget' => 'single_text',
-                ))
-            ->add('heure_debut', TimeType::class, array(
-                'input'  => 'datetime',
-                'widget' => 'choice'
-                ))
-            ->add('heure_fin', TimeType::class, array(
-                'input'  => 'datetime',
-                'widget' => 'choice'
-                ))
+
             ->add('inscription', CheckboxType::class, array(
-                    'label' => ' ',
+                    'label' => ' Inscription requise',
                     'required' => false
                 ))
-            ->add('participant_min', ChoiceType::class,
-                array(
-                'choices' => range(1,50),
-                'label' => ' ',   
-            ))
-            ->add('participant_max', ChoiceType::class,
-                array(
-                'choices' => range(1,50),
-                'label' => ' ',   
-            ))
-            ->add('code_postal', IntegerType::class)
+            ->add('participantMin', ChoiceType::class,
+                    array(
+                    'choices' => range(1,50),
+                    'label' => ' ',
+                ))
+            ->add('participantMax', ChoiceType::class,
+                    array(
+                    'choices' => range(1,50),
+                    'label' => ' ',
+                ))
+            ->add('codePostal', IntegerType::class)
             ->add('ville', TextType::class)
             ->add('quartier', TextType::class)
-            ->add('statut_prix', CheckboxType::class, array(
-                    'label' => ' ',
-                    'required' => false
-                ))
-            ->add('prix', IntegerType::class)
-
             ->add('sport', EntityType::class, array(
                     'class' => Sport::class,
                     'choice_label' => 'nom',
                 ))
-            ->add('photo', FileType::class);
+            ->add('photo', FileType::class)
         ;
     }
 
