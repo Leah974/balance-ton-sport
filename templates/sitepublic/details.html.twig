@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	Titre : {{ evenement.titre }}<br>
+	Organisé par : {{ evenement.organisateur }}<br>
+	Description : {{ evenement.description }}<br>
+	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
+	Niveau demandé : {{ evenement.niveau.nom }}<br>
+	{{ evenement.sport.nom }}<br>
+	<img src="{{ asset('img/uploads/')}}{{ evenement.photo }}" class="img-fluid">
+
+	<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/inscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Je participe</a></i></button>
+
+</section>
+
+{% endblock %}

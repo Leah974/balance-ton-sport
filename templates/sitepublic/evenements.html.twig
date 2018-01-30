@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	{% for evenement in evenements %}
+	Titre : {{ evenement.titre }}<br>
+	Organisé par : {{ evenement.organisateur }}<br>
+	Description : {{ evenement.description }}<br>
+	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
+	Niveau demandé : {{ evenement.niveau.nom }}<br>
+	{{ evenement.sport.nom }}
+	{% endfor %}
+
+</section>
+
+{% endblock %}
