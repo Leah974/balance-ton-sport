@@ -28,11 +28,6 @@ class Sport
  	private $evenement; 
 
     /**
-   * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="sport")
-   */
-    private $categorie; 
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -88,26 +83,6 @@ class Sport
     public function setEvenement($evenement)
     {
         $this->evenement = $evenement;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategorie()
-    {
-        return $this->categorie;
-    }
-
-    /**
-     * @param mixed $categorie
-     *
-     * @return self
-     */
-    public function setCategorie($categorie)
-    {
-        $this->categorie = $categorie;
 
         return $this;
     }

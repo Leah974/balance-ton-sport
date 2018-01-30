@@ -8,7 +8,6 @@ use App\Entity\Evenement;
 use App\Entity\Comments;
 =======
 use App\Entity\Sport;
-use App\Entity\Participant;
 use App\Entity\User;
 use App\Entity\Niveau;
 >>>>>>> 544324ed0f0ed72ce0855b541e5150ac3226ebfc
@@ -106,36 +105,6 @@ class EvenementController extends Controller
                     ['statut' => false],
                     ['dateEvenement' => 'ASC']
                 );
-
         return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements]);
-        }
-
-    /**
-     * Inscription à un événement
-     * @Route("/evenements/inscription/{id}", name="inscriptionEvenement")
-     */
-        public function participerEvenement($id)
-        {
-            $evenement = $this->getDoctrine()
-            ->getRepository(Evenement::class)
-            ->find($id);
-
-            $user = $this->getUser();
-            if(!$user)
-            {
-                return $this->render('security/login.html.twig');
-            }
-            $userId = $user->getId();
-
-            $participant = new Participant();
-            $participant->setNom($evenement->getTitre());
-            $participant->setUser($userId);
-            $participant->setEvenement($id);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($participant);
-            $em->flush();
-
-            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['evenement' => $evenement, 'user' => $user, 'participant' => $participant]);
         }
 }
