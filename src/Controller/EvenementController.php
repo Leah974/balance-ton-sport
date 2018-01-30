@@ -4,13 +4,10 @@ namespace App\Controller;
 
 use App\Form\EvenementType;
 use App\Entity\Evenement;
-<<<<<<< HEAD
 use App\Entity\Comments;
-=======
 use App\Entity\Sport;
 use App\Entity\User;
 use App\Entity\Niveau;
->>>>>>> 544324ed0f0ed72ce0855b541e5150ac3226ebfc
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
