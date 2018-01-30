@@ -30,9 +30,29 @@ main {
 
 
 	/* MENU SLIDE */
+
+	/* Header du menu */
 	#profil-nav .modal-header {
 		background-color : #22B573;
 	}
+
+	/* Body du menu */
+	#profil-nav .modal-body {
+		padding : 0px; /* Annuler le padding */
+	}
+
+	/* Item du menu */
+	#profil-nav .list-group-item {
+		/* Annuler les bordures colorés */
+		border : none;
+	}
+
+	#profil-nav .list-group-item.active {
+		/* Couleur du background quand lien actif */
+		background-color : #22B573;
+		border-color: #22B573;
+	}
+
 
 		/* BOUTON MENU SLIDE */
 		.btn-rond {
