@@ -34,6 +34,23 @@ main {
 		background-color : #22B573;
 	}
 
+	#profil-nav .modal-body {
+		/* annulation des paddings */
+		padding : 0px;
+	}
+
+	#profil-nav .list-group-item {
+		/* annulation des borders colorés */
+		border : none;
+	}
+
+		#profil-nav .list-group-item.active {
+			/* background color vert */
+			background-color: #22B573;
+			border-color : #22B573;
+		}
+
+
 		/* BOUTON MENU SLIDE */
 		.btn-rond {
 			-webkit-border-radius: 100%;
