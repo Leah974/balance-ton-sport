@@ -1,3 +1,11 @@
+.plusun-color {
+	color : #22B573;
+}
+
+.plusun-bg {
+	background-color: #22B573;
+}
+
 /*------------------------ BLOCK MAIN --------------------------*/
 
 main {
@@ -27,16 +35,49 @@ main {
 
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/
-
+	
 
 	/* MENU SLIDE */
+
 	#profil-nav .modal-header {
-		background-color : #22B573;
+		/*background-color : #22B573;*/
+		background-image: url(../img/logo/plus-un-pattern.png);
+		background-repeat: repeat;
+
+		height : 120px;
+
+		box-shadow : none;
+
+		overflow: hidden;
 	}
+
+		/* AVATAR Photo de profil */
+		.avatar {
+			height : 120px;
+			width : 120px;
+
+			overflow: hidden;
+
+			border : 5px solid #FFFFFF;
+			background-color: #FFFFFF;
+
+			border-radius: 50%;
+
+			position : relative;
+			bottom : 65px;
+		}
 
 	#profil-nav .modal-body {
 		/* annulation des paddings */
 		padding : 0px;
+
+		/* Remonter le bloc pour qu'il soit plus près de l'avatar */
+		bottom: 45px;
+	}
+
+	#profil-nav-item {
+		/* padding entre item du menu et nom utilisateur */
+		padding-top : 20px;
 	}
 
 	#profil-nav .list-group-item {
@@ -45,9 +86,17 @@ main {
 	}
 
 		#profil-nav .list-group-item.active {
-			/* background color vert */
-			background-color: #22B573;
-			border-color : #22B573;
+			/* background color blanc */
+			background-color: #FFF;
+			border-color : #FFF;
+
+			/* apparence en actif */
+			-webkit-box-shadow:inset 0 5px 5px 1px #E6E6E6;
+			box-shadow:inset 0 5px 5px 1px #E6E6E6;
+
+			color : #333;
+
+			font-weight: bold;
 		}
 
 

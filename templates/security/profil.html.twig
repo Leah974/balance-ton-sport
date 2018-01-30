@@ -8,28 +8,48 @@
 		<aside>
 
 			<!-- Modal -->
-			<div class="modal fade left show" id="profil-nav" tabindex="-1" role="dialog" aria-labelledby="profil-navLabel" aria-hidden="true">
+			<div id="profil-nav" class="modal fade left show" tabindex="-1" role="dialog" aria-labelledby="profil-user" aria-hidden="true">
 			    <div class="modal-dialog modal-full-height modal-left modal-notify modal-info" role="document">
 			        <div class="modal-content">
-			            <div class="modal-header">
-			                <h5 class="modal-title heading lead" id="profil-navLabel">Mon compte</h5>
+			            <div class="modal-header amber">
 			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			                    <span class="white-text" aria-hidden="true">&times;</span>
 			                </button>
 			            </div>
+
+			            {# Avatar #}
+			            <div class="avatar mx-auto d-block">
+			            	<img class="img-fluid" src="http://static1.purepeople.com/articles/8/26/71/48/@/3774028-emma-watson-a-la-warner-bros-pictures-a-950x0-2.jpg" alt="votre image de profil">
+			            </div>
+
 			            <div class="modal-body">
+
+			            	{# Pseudo utilisateur #}
+			            	<h3 class="text-center" id="profil-user">{{ app.user.username }}</h3>
+			            	{# Note de l'utilisateur #}
+			            	<ul class="rating inline-ul text-center pl-0">
+				                <li><i class="fa fa-star amber-text"></i></li>
+				                <li><i class="fa fa-star amber-text"></i></li>
+				                <li><i class="fa fa-star amber-text"></i></li>
+				                <li><i class="fa fa-star"></i></li>
+				                <li><i class="fa fa-star"></i></li>
+				            </ul>
+
 			                {# Contenu du menu #}
-							<div class="list-group" id="list-tab" role="tablist">
-							    <a class="list-group-item list-group-item-action" id="list-informations-list" data-toggle="list" href="#list-informations" role="tab" aria-controls="informations">Informations</a>
-							    <a class="list-group-item list-group-item-action" id="list-evenementorganises-list" data-toggle="list" href="#list-evenementorganises" role="tab" aria-controls="evenementorganises">Événements organisés</a>
-							    <a class="list-group-item list-group-item-action" id="list-evenementparticipes-list" data-toggle="list" href="#list-evenementparticipes" role="tab" aria-controls="evenementparticipes">Événements participés</a>
-							    <a class="list-group-item list-group-item-action" id="list-evenementhistorique-list" data-toggle="list" href="#list-evenementhistorique" role="tab" aria-controls="evenementhistorique">Historique</a>
+							<div class="list-group" id="profil-nav-item" role="tablist">
+								<h4 class="list-group-item"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h4>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-informations-list" data-toggle="list" href="#list-informations" role="tab" aria-controls="informations">Voir / Modifier</a>
+							   <h4 class="list-group-item"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h4>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-evenementorganises-list" data-toggle="list" href="#list-evenementorganises" role="tab" aria-controls="evenementorganises">J'organise</a>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-evenementparticipes-list" data-toggle="list" href="#list-evenementparticipes" role="tab" aria-controls="evenementparticipes">Je participe</a>
+							    <h4 class="list-group-item"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h4>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-evenementhistorique-list" data-toggle="list" href="#list-evenementhistorique" role="tab" aria-controls="evenementhistorique">Consulter</a>
 							</div>
 			            </div>
-			            <div class="modal-footer">
-			                {# <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			                <button type="button" class="btn btn-primary">Save changes</button> #}
-			            </div>
+			            {# <div class="modal-footer">
+			                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			                <button type="button" class="btn btn-primary">Save changes</button> 
+			            </div> #}
 			        </div>
 			    </div>
 			</div>
