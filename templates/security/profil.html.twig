@@ -5,17 +5,13 @@
 	<div class="row">
 
 		{# menu du profil, togglable #}
-		<aside>
+		<aside class="col-md-5 col-sm-12">
 
-			<!-- Modal -->
-			<div id="profil-nav" class="modal fade left show" tabindex="-1" role="dialog" aria-labelledby="profil-user" aria-hidden="true">
-			    <div class="modal-dialog modal-full-height modal-left modal-notify modal-info" role="document">
-			        <div class="modal-content">
-			            <div class="modal-header amber">
-			                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                    <span class="white-text" aria-hidden="true">&times;</span>
-			                </button>
-			            </div>
+			<!-- header profil -->
+			<div id="profil-nav">
+
+						{# Fond coloré #}
+			            <div class="modal-header amber"></div>
 
 			            {# Avatar #}
 			            <div class="avatar mx-auto d-block">
@@ -26,6 +22,7 @@
 
 			            	{# Pseudo utilisateur #}
 			            	<h3 class="text-center" id="profil-user">{{ app.user.username }}</h3>
+
 			            	{# Note de l'utilisateur #}
 			            	<ul class="rating inline-ul text-center pl-0">
 				                <li><i class="fa fa-star amber-text"></i></li>
@@ -36,47 +33,63 @@
 				            </ul>
 
 			                {# Contenu du menu #}
-							<div class="list-group" id="profil-nav-item" role="tablist">
-								<h4 class="list-group-item"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h4>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-informations-list" data-toggle="list" href="#list-informations" role="tab" aria-controls="informations">Voir / Modifier</a>
-							   <h4 class="list-group-item"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h4>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-evenementorganises-list" data-toggle="list" href="#list-evenementorganises" role="tab" aria-controls="evenementorganises">J'organise</a>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-evenementparticipes-list" data-toggle="list" href="#list-evenementparticipes" role="tab" aria-controls="evenementparticipes">Je participe</a>
-							    <h4 class="list-group-item"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h4>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-evenementhistorique-list" data-toggle="list" href="#list-evenementhistorique" role="tab" aria-controls="evenementhistorique">Consulter</a>
+							<div class="list-group collapse" id="profil-nav-item" role="tablist">
+								<h5 class="list-group-item"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h5>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-info-voir-list" data-toggle="list" href="#list-info-voir" role="tab" aria-controls="info-voir">Voir</a>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier <span class="badge badge-danger badge-pill">1</span></a>
+
+							   <h5 class="list-group-item"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h5>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise</a>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe <span class="badge badge-danger badge-pill">1</span></a>
+
+							    <h5 class="list-group-item"><i class="fa fa-envelope-o plusun-color" aria-hidden="true"></i></i> Mes alertes</h5>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir <span class="badge badge-danger badge-pill">1</span></a>
+
+							    <h5 class="list-group-item"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h5>
+							    	<a class="list-group-item list-group-item-action pl-5" id="list-historique-list" data-toggle="list" href="#list-historique" role="tab" aria-controls="historique">Consulter</a>
 							</div>
+
 			            </div>
-			            {# <div class="modal-footer">
-			                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			                <button type="button" class="btn btn-primary">Save changes</button> 
-			            </div> #}
-			        </div>
-			    </div>
+			            <div class="modal-footer">
+			            	<span id="toggle-profil-down">Afficher <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+			            	
+			                <span id="toggle-profil-up">Réduire <i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+			            </div>
 			</div>
                                 
 		</aside>
-
-		{# Bouton pour ouvrir/fermer le menu #}
-		<div class="col-1">
-			<button id="btn-nav-profil" type="button" class="btn-rond btn-lg" data-toggle="modal" data-target="#profil-nav">
-			    <i class="fa fa-user icon-color"></i>
-			</button>
-		</div>
 		
 		{# Contenu lié aux différents éléments du menu profil #}
-		<section id="profil-content" class="col-md-11 col-sm-6">
-			{# pour récupérer les informations sur l'utilisateur (ne fonctionne qu'avec l'utilisateur) app.user.information voulue #}
-			<p>Bonjour, {{ app.user.username }}</p>
-
-			<hr>
+		<section id="profil-content" class="col-md-7 col-sm-12">
+			{# pour récupérer les info sur l'utilisateur (ne fonctionne qu'avec l'utilisateur) app.user.information voulue #}
+			<h3>Bonjour, {{ app.user.username }}</h3>
 
 			<div class="tab-content" id="nav-tabContent">
-		      <div class="tab-pane fade show active" id="list-informations" role="tabpanel" aria-labelledby="list-informations-list">
-		      	{% block infouser %}On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).{% endblock %}
+
+		      <div class="tab-pane fade" id="list-info-voir" role="tabpanel" aria-labelledby="list-info-voir-list">
+		      	{% block infouser %}Emplacement des informations de l'utilisateur{% endblock %}
 		      </div>
-		      <div class="tab-pane fade" id="list-evenementorganises" role="tabpanel" aria-labelledby="list-evenementorganises-list">{% block evenementorganise %}Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.{% endblock %}</div>
-		      <div class="tab-pane fade" id="list-evenementparticipes" role="tabpanel" aria-labelledby="list-evenementparticipes-list">{% block evenementparticipe %}Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intéressé à un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en étudiant tous les usages de ce mot dans la littérature classique, découvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très populaire pendant la Renaissance, est un traité sur la théorie de l'éthique. Les premières lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.{% endblock %}</div>
-		      <div class="tab-pane fade" id="list-evenementhistorique" role="tabpanel" aria-labelledby="list-evenementhistorique-list">{% block evenementhistorique %}Plusieurs variations de Lorem Ipsum peuvent être trouvées ici ou là, mais la majeure partie d'entre elles a été altérée par l'addition d'humour ou de mots aléatoires qui ne ressemblent pas une seconde à du texte standard. Si vous voulez utiliser un passage du Lorem Ipsum, vous devez être sûr qu'il n'y a rien d'embarrassant caché dans le texte. Tous les générateurs de Lorem Ipsum sur Internet tendent à reproduire le même extrait sans fin, ce qui fait de lipsum.com le seul vrai générateur de Lorem Ipsum. Iil utilise un dictionnaire de plus de 200 mots latins, en combinaison de plusieurs structures de phrases, pour générer un Lorem Ipsum irréprochable. Le Lorem Ipsum ainsi obtenu ne contient aucune répétition, ni ne contient des mots farfelus, ou des touches d'humour.{% endblock %}</div>
+
+		      <div class="tab-pane fade" id="list-info-modifier" role="tabpanel" aria-labelledby="list-info-modifier-list">
+		      	{% block infomodif %}Formulaire permettant de modifier les informations utilisateur{% endblock %}
+		      </div>
+
+		      <div class="tab-pane fade show active" id="list-alertes" role="tabpanel" aria-labelledby="list-alertes-list">
+		      	{% block alertes %}Récap' de mes alertes (messages d'utilisateur, commentaires, alerte événement, etc){% endblock %}
+		      </div>
+
+		      <div class="tab-pane fade" id="list-organisateur" role="tabpanel" aria-labelledby="list-organisateur-list">
+		      	{% block evenementorganise %}Liste des événements organisés par l'utilisateur{% endblock %}
+		      </div>
+
+		      <div class="tab-pane fade" id="list-participant" role="tabpanel" aria-labelledby="list-participant-list">
+		      	{% block evenementparticipe %}Liste des événements auxquels l'utilisateur s'est inscrit et qui vont avoir lieu{% endblock %}
+		      </div>
+
+		      <div class="tab-pane fade" id="list-historique" role="tabpanel" aria-labelledby="list-historique-list">
+		      	{% block historique %}Listes des événemens passés (facultatif ?){% endblock %}
+		      </div>
+
 		    </div>
 
 		</section>
@@ -85,9 +98,11 @@
 </div>
 {% endblock %}
 
+
+
+{# ajout de jQuery en fonction des pages #}
 {% block javascripts %}
-    {# Custom JavaScript  #}
-    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 {% endblock %}
 
 
