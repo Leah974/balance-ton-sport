@@ -1,16 +1,19 @@
 $(document).ready(function(){
 
+	// PROFIL - MENU
+	
+	$('#toggle-profil-down').hide();
+	
+	$("#toggle-profil-up").click(function() {
+		$('#profil-nav-item').slideUp();
+		$('#toggle-profil-up').hide();
+		$('#toggle-profil-down').show();
+	});
 
-   // SideNav Initialization
-	$(".button-collapse").click(function() {
-
-		// var largeur = $("#slide-out").width();
-		// var largeurfoisdeux = largeur * 2;
-
-		$('#slide-out').animate({
-			width: 'toggle'
-
-		})
+	$("#toggle-profil-down").click(function() {
+		$('#profil-nav-item').slideDown();
+		$('#toggle-profil-down').hide();
+		$('#toggle-profil-up').show();
 	});
 
 });
