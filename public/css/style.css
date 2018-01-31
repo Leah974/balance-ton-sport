@@ -8,9 +8,9 @@
 
 /*------------------------ BLOCK MAIN --------------------------*/
 
-main {
+/*main {
 	margin-top: 150px;
-}
+}*/
 
 /*------------------------ BLOCK MAIN --------------------------*/
 
@@ -118,4 +118,21 @@ main {
 		}
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/
+
+
+/*--------------------------- BLOCK INDEX ----------------------------*/
+
+.img-banner {
+	height: 500px;
+
+	margin-top : 75px; /* height du main-nav */
+
+	background-image: url(../img/basketball.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+    background-size: cover;
+
+}
+
+/*--------------------------- BLOCK INDEX ----------------------------*/
 
