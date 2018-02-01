@@ -1,0 +1,7 @@
+easy_admin:
+   entities:
+        Evenement:
+            class: App\Form\EvenementType
+            form:
+                fields:
+                    - { property: 'localisation', type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Localisation' } }

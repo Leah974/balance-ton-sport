@@ -45,23 +45,12 @@ class EvenementType extends AbstractType
                     'time_widget' => 'choice',
                     'minutes' => array(00, 15, 30, 45)
                 ))
-
-            ->add('inscription', CheckboxType::class, array(
-                    'label' => ' Inscription requise',
-                    'required' => false
-                ))
-            ->add('participantMin', ChoiceType::class,
-                    array(
-                    'choices' => range(1,50),
-                    'label' => ' ',
-                ))
             ->add('participantMax', ChoiceType::class,
                     array(
                     'choices' => range(1,50),
                     'label' => ' ',
                 ))
-            ->add('codePostal', IntegerType::class)
-            ->add('ville', TextType::class)
+            ->add('localisation', TextType::class)
             ->add('quartier', TextType::class)
             ->add('sport', EntityType::class, array(
                     'class' => Sport::class,

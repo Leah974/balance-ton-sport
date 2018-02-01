@@ -76,22 +76,7 @@ class Evenement
     private $niveau;
 
     /**
-     * @ORM\Column(type="string", nullable=true, length=5)
-     * @Assert\Length(
-     *      min = 5,
-     *      max = 5,
-     *      minMessage = "Code postal invalide",
-     *      maxMessage = "Code postal invalide"
-     * )
-     * @Assert\Regex(
-     *      pattern="/\d/",
-     * )
-     * @var int $codePostal Code postal du lieu de l'événement
-     */
-    private $codePostal;
-
-    /**
-      * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="ville")
+      * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="evenement")
       * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
       */
      private $localisation; 
@@ -112,6 +97,11 @@ class Evenement
    * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="evenement")
    */
     private $participant; 
+
+    public function __toString()
+    {
+        return $this->getLocalisation();
+    }
 
     public function __construct()
     {
@@ -427,6 +417,26 @@ class Evenement
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @param mixed $localisation
+     *
+     * @return self
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
 
         return $this;
     }
