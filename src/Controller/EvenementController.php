@@ -87,15 +87,55 @@ class EvenementController extends Controller
             return $this->render('sitepublic/erreurEvenements.html.twig');
         }
 
-        $participant = $this->getDoctrine()
+            // recuperation des inscrits à l'événement
+        $participants = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(
                 ['evenement' => $id]
             );
 
-        $nombre = count($participant);
+            // recuperation de l'utilisateur
+        $user = $this->getUser();
 
-        return $this->render('sitepublic/details.html.twig', ['evenement' => $evenement, 'participant' => $participant, 'nombre' => $nombre]);
+            // utilisateur déjà inscrit ou non 
+        $dejaInscrit = false;
+
+        foreach($participants as $participant)
+            {
+
+                if($user === $participant->getUser())
+                {
+                    $dejaInscrit = true;
+                }
+            }
+
+            // nombre d' inscrits à l'événement
+        $nombre = count($participants);
+
+            // événement complet ou non
+        $nombreMax = $evenement->getParticipantMax();
+        $complet = false;
+        $vide = false;
+            if($nombre === $nombreMax)
+                {
+                    $complet = true;
+                }
+            elseif($nombre === 0)
+                {
+                    $vide = true;
+                }
+
+        return $this->render('sitepublic/details.html.twig', 
+            [
+            'evenement' => $evenement, 
+            'participants' => $participants, 
+            'nombre' => $nombre,
+            'complet' => $complet,
+            'vide' => $vide,
+            'user' => $user, 
+            'dejaInscrit' => $dejaInscrit
+            ]
+        );
     }
 
     /**
@@ -125,21 +165,101 @@ class EvenementController extends Controller
             ->find($id);
 
             $user = $this->getUser();
+
             if(!$user)
             {
                 return $this->render('security/login.html.twig');
             }
-            $userId = $user->getId();
-
+            
             $participant = new Participant();
-            $participant->setNom($evenement->getTitre());
-            $participant->setUser($userId);
-            $participant->setEvenement($id);
+            $participant->setUser($user);
+            $participant->setEvenement($evenement);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
 
-            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['evenement' => $evenement, 'user' => $user, 'participant' => $participant]);
+                // à l'enregistrement redirection vers la page profil
+            return $this->redirectToRoute('profil');
         }
+
+    /**
+     * Désinscription à un événement
+     * @Route("/evenements/desinscription/{id}", name="desinscriptionEvenement")
+     */
+        public function desinscrireEvenement($id)
+        {
+            $user = $this->getUser();
+
+            $participants = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(
+                ['evenement' => $id]
+            );
+
+             foreach($participants as $participant)
+            {
+
+                if($user === $participant->getUser())
+                {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->remove($participant);
+                    $em->flush();
+                }
+            }
+                // à la suppresion redirection vers la page profil
+            return $this->redirectToRoute('profil');
+        }
+
+    /**
+     * Liste des événements organisés par l'utilisateur
+     * @Route("/testprofil", name="testProfil")
+     */
+        public function listeEvenementsOrganisés()
+        {
+            $user = $this->getUser();
+            $username = $user->getUsername();
+
+            $evenements = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->findBy(
+                ['organisateur' => $username],
+                ['dateEvenement' => 'ASC']
+            );
+
+            $aucun = false;
+            $nombre = count($evenements);
+
+            if($nombre = 0)
+            {
+                $aucun = true;
+            }
+
+            return $this->render('sitepublic/desinscriptionEvenement.html.twig', ['user' => $user, 'evenements' => $evenements, 'aucun' => $aucun]);
+        }
+
+    /**
+     * Liste des événements auxquels participe l'utilisateur
+     * @Route("/testprofil/evenements", name="testProfilEvenement")
+     */
+        public function listeEvenementsParticipe()
+        {
+            $user = $this->getUser();
+
+            $participants = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(
+                ['user' => $user]
+            );
+
+            $aucun = false;
+            $nombre = count($participants);
+
+            if($nombre == 0)
+            {
+                $aucun = true;
+            }
+
+            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['user' => $user, 'participants' => $participants, 'aucun' => $aucun, 'nombre' => $nombre]);
+        }  
 }

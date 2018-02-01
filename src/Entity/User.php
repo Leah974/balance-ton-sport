@@ -72,6 +72,11 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
+    /**
+   * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user")
+   */
+    private $participant; 
+
     public function __construct()
     {
         $this->setIsActive(true);

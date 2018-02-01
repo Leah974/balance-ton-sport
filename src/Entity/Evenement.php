@@ -119,6 +119,11 @@ class Evenement
      */
     private $photo;
 
+    /**
+   * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="evenement")
+   */
+    private $participant; 
+
     public function __construct()
     {
             // par défaut un evenement est public
