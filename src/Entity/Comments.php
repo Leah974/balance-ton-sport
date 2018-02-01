@@ -20,7 +20,7 @@ class Comments
 	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
-    private $id_user;
+    private $user;
 
 //https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony/les-relations-entre-entites-avec-doctrine2-1
 
@@ -69,9 +69,9 @@ class Comments
     /**
      * @return mixed
      */
-    public function getIdUser()
+    public function getUser()
     {
-        return $this->id_user;
+        return $this->user;
     }
 
     /**
@@ -79,9 +79,9 @@ class Comments
      *
      * @return self
      */
-    public function setIdUser($id_user)
+    public function setUser($user)
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
