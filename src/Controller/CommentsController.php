@@ -27,6 +27,7 @@ class CommentsController extends Controller
     	 $user_id = $user->getId();
     	 $comment->setUser($user_id);
 
+    	 $evenement=$this->getEvenement();
     	 $evenement_id = $evenement->getId();
     	 $comment->setEvenement($evenement_id);
 
@@ -45,12 +46,12 @@ class CommentsController extends Controller
      */
         public function showComments($id)
         {
-                $comments = $this->getDoctrine()
+                $comment = $this->getDoctrine()
                 ->getRepository(Comments::class)
-                ->find('$evenement_'.$id)
-                ;
+                ->find($evenement);
 
-        return $this->render('sitepublic/details.html.twig', ['comments' => $comments]);
+
+        return $this->render('sitepublic/details.html.twig', ['comment' => $comment]);
         }
 
 }

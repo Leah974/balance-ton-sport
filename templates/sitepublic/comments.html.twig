@@ -1,11 +1,9 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+
 <div>
-		{% for comment in comments %}
-	Autheur : {{ comment.user }}<br>
-	Date : {{ comment.date }}<br>
-	Message : {{ comment.commentaire }}<br>
+		{% for comments in comments %}
+	Auteur : {{ comments.user.username }}<br>
+	Date : {{ comments.date|date('d/m/Y') }}<br>
+	Message : {{ comments.commentaire }}<br>
 	
 	{% endfor %}
 	</div>

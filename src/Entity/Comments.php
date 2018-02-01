@@ -17,7 +17,7 @@ class Comments
     private $id;
 
      /**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="id")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
     private $user;
@@ -129,9 +129,9 @@ class Comments
     /**
      * @return mixed
      */
-    public function getDateCommentaire()
+    public function getDate()
     {
-        return $this->date_commentaire;
+        return $this->date;
     }
 
     /**
@@ -139,9 +139,9 @@ class Comments
      *
      * @return self
      */
-    public function setDateCommentaire($date_commentaire)
+    public function setDate($date)
     {
-        $this->date_commentaire = $date_commentaire;
+        $this->date = $date;
 
         return $this;
     }
