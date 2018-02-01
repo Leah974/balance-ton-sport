@@ -12,7 +12,7 @@ use App\Entity\Evenement;
 class CommentsController extends Controller
 {
     /**
-     * @Route("/comments", name="comments")
+     * @Route("/evenements/{id}/comments", name="commentaires")
      */
 
      public function newComment(request $request)
@@ -36,11 +36,11 @@ class CommentsController extends Controller
 
             return $this->redirectToRoute('evenement');
         }
-    	return $this->render('sitepublic/comments.html.twig', array('form' => $form->createView())
+    	return $this->render('sitepublic/details.html.twig', array('form' => $form->createView())
     );
      }
      /**
-     * Affiche tous les événements publics (statut = false) rangés par ordre chronologique
+     * Affiche tous les commentaires liés à l'evenement
      * @Route("/evenements/{id}/comments", name="commentaires")
      */
         public function showComments($id)
@@ -50,7 +50,7 @@ class CommentsController extends Controller
                 ->find('$evenement_'.$id)
                 ;
 
-        return $this->render('sitepublic/comments.html.twig', ['comments' => $comments]);
+        return $this->render('sitepublic/details.html.twig', ['comments' => $comments]);
         }
 
 }
