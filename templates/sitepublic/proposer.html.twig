@@ -1,118 +1,169 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container margin-top">
+<section class="container margin-top">
 
-    {# Form without header #}
-    <div class="card">
+	<h1 class="text-center">Organiser un événement</h1>
 
-        <div class="card-body mx-4">
+    {{ form_start(form, {'method': 'POST'}) }}
 
-        	<h1 class="text-center">Organiser un événement</h1>
+    	{{ form_errors(form) }}
 
-		    {{ form_start(form, {'method': 'POST'}) }}
+    	{# PARTIE DESCRIPTION #}
+    	<p class="h5">Description</p>
 
-		    	{{ form_errors(form) }}
+	    	{# TITRE #}
+	    	<div class="md-form">
+	        	{{ form_errors(form.titre) }}
+				{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+				{{ form_label(form.titre, "Titre de l'événement") }}
+	    	</div>
 
-		    	{# TITRE #}
-		    	<div class="md-form">
-		        	{{ form_errors(form.titre) }}
-					{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
-					{{ form_label(form.titre, "Titre de l'événement") }}
-		    	</div>
-
-		    	{# DESCRIPTION #}
-		    	<div class="md-form">
-		        	{{ form_errors(form.description) }}
-					{{ form_widget(form.description, {'attr': {'class': 'md-textarea'}}) }}
-					{{ form_label(form.description, "Description de l'événement") }}
-		    	</div>
-
-		    	{# PRIVE OU NON #}
-		    	<div class="form-group">
-		        	{{ form_errors(form.statut) }}
-		        	{{ form_label(form.statut, "Cet événement est privé") }}
-					{{ form_widget(form.statut, {'attr': {'class': ''}}) }}
-		    	</div>
-
-		    	{# DATE #}
-		    	<div class="">
-		        	{{ form_errors(form.dateEvenement) }}
-		        	<label>Date de l'événement</label>
-					{{ form_widget(form.dateEvenement, {'attr': {'class': ''}}) }}
-		    	</div>
-
-		    	{# INSCRIPTION OU NON #}
-		    	<div class="form-group">
-		    		{{ form_errors(form.inscription) }}
-		    		<label>Evénements sous aux inscriptions : </label>
-					{{ form_widget(form.inscription, {'attr': {'class': ''}}) }}
-		    	</div>
-
-		    	{# NB MIN PARTICIPANT #}
-		    	<div class="">
-		    		{{ form_errors(form.participantMin) }}
-		    		<label>Nombre minimum de participants</label>
-					{{ form_widget(form.participantMin, {'attr': {'class': 'form-control'}}) }}
-		    	</div>
-
-		    	{# NB MAX PARTICIPANT #}
-		    	<div class="">
-		    		{{ form_errors(form.participantMax) }}
-		    		<label>Nombres maximum de participants</label>
-					{{ form_widget(form.participantMax, {'attr': {'class': 'form-control'}}) }}
-		    	</div>
-		    	
-		    	{# NIVEAU REQUIS #}
-		    	<div class="">
-		    		{{ form_errors(form.niveau) }}
-		    		<label>Niveau requis</label>
-					{{ form_widget(form.niveau, {'attr': {'class': 'form-control'}}) }}
-		    	</div>
-
-		    	{# CODE POSTAL #}
-		    	<div class="md-form">
-		        	{{ form_errors(form.codePostal) }}
-					{{ form_widget(form.codePostal, {'attr': {'class': 'form-control'}}) }}
-					{{ form_label(form.codePostal, "Code postal") }}
-		    	</div>
-
-		    	{# VILLE #}
-		    	<div class="md-form">
-		        	{{ form_errors(form.ville) }}
-					{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
-					{{ form_label(form.ville, "Ville") }}
-		    	</div>
-
-		    	{# QUARTIER #}
-		    	<div class="md-form">
-		        	{{ form_errors(form.quartier) }}
-					{{ form_widget(form.quartier, {'attr': {'class': 'form-control'}}) }}
-					{{ form_label(form.quartier, "Quartier") }}
-		    	</div>
+	    	<div class="row">
 
 		    	{# SPORT #}
-		    	<div class="">
+		    	<div class="col-md-6 col-sm-12">
 		    		{{ form_errors(form.sport) }}
 		        	<label>Sport</label>
 					{{ form_widget(form.sport, {'attr': {'class': 'form-control'}}) }}
 		    	</div>
 
-		    	{# PHOTO #}
-		    	<div class="">
-		    		{{ form_errors(form.photo) }}
-		        	{{ form_label(form.photo, "Photo") }}
-					{{ form_widget(form.photo, {'attr': {'class': ''}}) }}
+		    	{# NIVEAU REQUIS #}
+		    	<div class="col-md-6 col-sm-12">
+		    		{{ form_errors(form.niveau) }}
+		    		<label>Niveau souhaité</label>
+					{{ form_widget(form.niveau, {'attr': {'class': 'form-control'}}) }}
 		    	</div>
 
-		    	<div class="text-center">
-		        	<button class="btn btn-primary" type="submit">Lancer l'invitation<i class="fa fa-paper-plane-o ml-1"></i></button>
-		        </div>
+	    	</div>
 
-		    {{ form_end(form) }}
-		</div>
+	    	{# DESCRIPTION #}
+	    	<div class="md-form">
+	        	{{ form_errors(form.description) }}
+				{{ form_widget(form.description, {'attr': {'class': 'md-textarea'}}) }}
+				{{ form_label(form.description, "Description de l'événement") }}
+	    	</div>
 
-	</div>
+	    	{# PHOTO #}
+	    	<div class="">
+	    		{{ form_errors(form.photo) }}
+	        	{{ form_label(form.photo, "Photo") }}
+				{{ form_widget(form.photo, {'attr': {'class': ''}}) }}
+	    	</div>
+
+	    <hr>
+
+	    {# PARTIE LIEU #}
+	    <p class="h5">Lieu</p>
+
+	    	<div class="row">
+
+	    		{# CODE POSTAL #}
+	    		<div class="col-md-4">
+			    	<div class="md-form">
+			        	{{ form_errors(form.codePostal) }}
+						{{ form_widget(form.codePostal, {'attr': {'class': 'form-control'}}) }}
+						{{ form_label(form.codePostal, "Code postal") }}
+			    	</div>
+		    	</div>
+
+		    	{# VILLE #}
+		    	<div class="col-md-4">
+			    	<div class="md-form">
+			        	{{ form_errors(form.ville) }}
+						{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+						{{ form_label(form.ville, "Ville") }}
+			    	</div>
+			    </div>
+
+		    	{# QUARTIER #}
+		    	<div class="col-md-4">
+			    	<div class="md-form">
+			        	{{ form_errors(form.quartier) }}
+						{{ form_widget(form.quartier, {'attr': {'class': 'form-control'}}) }}
+						{{ form_label(form.quartier, "Quartier") }}
+			    	</div>
+			    </div>
+	    	</div>
+
+	    <hr>
+
+	    {# PARTIE DATE ET HEURE #}
+    	<p class="h5">Date et heure</p>
+
+    		<div class="row">
+
+				{# DATE #}
+				<div class="col-md-6">
+			    	<div class="form-group">
+			        	{{ form_errors(form.dateEvenement.date) }}
+			        	<label>Date de l'événement</label>
+						{{ form_widget(form.dateEvenement.date, {'attr': {'class': ''}}) }}
+			    	</div>
+		    	</div>
+
+		    	{# HEURE #}
+		    	<div class="col-md-6">
+			    	<div class="form-group">
+			        	{{ form_errors(form.dateEvenement.time) }}
+			        	<label>Heure de l'événement</label>
+			        	<div class="row">
+			        		<div class="col-6">
+								{{ form_widget(form.dateEvenement.time.hour, {'attr': {'class': 'form-control'}}) }}
+							</div>
+							<div class="col-6">
+								{{ form_widget(form.dateEvenement.time.minute, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+			    	</div>
+		    	</div>
+
+		    </div>
+
+		<hr>
+
+		{# PARTIE INSCRIPTION #}
+    	<p class="h5">Inscription</p>
+
+    	{# INSCRIPTION OU NON #}
+    	<div class="form-group">
+    		{{ form_errors(form.inscription) }}
+    		<label>Événement soumis aux inscriptions : </label>
+			{{ form_widget(form.inscription, {'attr': {'class': ''}}) }}
+			<p class="small font-italic">Cocher cette case vous permet de définir un nombre minimum et/ou maximum de participants à votre événement</p>
+    	</div>
+
+    	<div class="row">
+		{# NB MIN PARTICIPANT #}
+	    	<div class="col-md-6">
+	    		{{ form_errors(form.participantMin) }}
+	    		<label>Nombre minimum de participants</label>
+				{{ form_widget(form.participantMin, {'attr': {'class': 'form-control'}}) }}
+	    	</div>
+
+	    	{# NB MAX PARTICIPANT #}
+	    	<div class="col-md-6">
+	    		{{ form_errors(form.participantMax) }}
+	    		<label>Nombres maximum de participants</label>
+				{{ form_widget(form.participantMax, {'attr': {'class': 'form-control'}}) }}
+	    	</div>
+    	</div>
+
+    	{# PRIVE OU NON #}
+    	<div class="form-group">
+        	{{ form_errors(form.statut) }}
+        	{{ form_label(form.statut, "Cet événement est privé") }}
+			{{ form_widget(form.statut, {'attr': {'class': ''}}) }}
+    	</div>
+
+    	<hr>
+    	
+    	<div class="text-center">
+        	<button class="btn btn-primary" type="submit">Lancer l'invitation<i class="fa fa-paper-plane-o ml-1"></i></button>
+        </div>
+
+    {{ form_end(form) }}
+
 
 </section>
 
