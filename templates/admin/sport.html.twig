@@ -1,9 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container">
-	 {{ form_start(form, {'method': 'POST'}) }}
+<section class="form-elegant container margin-top">
+	<h2 class="text-center">Ajouter un sport à une catégorie</h2>
+
+	{{ form_start(form, {'method': 'POST'}) }}
+
+	<div class="">
+		{# label #}
+		<label>Catégorie</label>
+		{# message d'erreur sur le pseudo #}
+		{{ form_errors(form.categorie) }}
+		{# input, checkbox, select, etc #}
+		{{ form_widget(form.categorie, {'attr': {'class': 'browser-default'}}) }}
+		
+	</div>
+
+	<div class="md-form">
+		{# message d'erreur sur le pseudo #}
+		{{ form_errors(form.nom) }}
+		{# input, checkbox, select, etc #}
+		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.nom, "Sport") }} 
+	</div>
+	<div class="text-center">
 		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+	</div>
 	{{ form_end(form) }}
 </section>
 

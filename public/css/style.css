@@ -1,6 +1,14 @@
+.plusun-color {
+	color : #22B573;
+}
+
+.plusun-bg {
+	background-color: #22B573;
+}
+
 /*------------------------ BLOCK MAIN --------------------------*/
 
-main {
+.margin-top {
 	margin-top: 150px;
 }
 
@@ -27,12 +35,72 @@ main {
 
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/
-
+	
 
 	/* MENU SLIDE */
-	#profil-nav .modal-header {
-		background-color : #22B573;
+	#profil-nav {
+		-webkit-box-shadow: 0 10px 10px 0 #cccccc;
+		box-shadow: 0 10px 10px 0 #cccccc;
 	}
+
+	#profil-nav .modal-header {
+		/*background-color : #22B573;*/
+		background-image: url(../img/logo/plus-un-pattern.png);
+		background-repeat: repeat;
+
+		height : 120px;
+
+		box-shadow : none;
+
+		overflow: hidden;
+	}
+
+		/* AVATAR Photo de profil */
+		.avatar {
+			height : 120px;
+			width : 120px;
+
+			overflow: hidden;
+
+			border : 5px solid #FFFFFF;
+			background-color: #FFFFFF;
+
+			border-radius: 50%;
+
+			position : relative;
+			bottom : 65px;
+		}
+
+	#profil-nav .modal-body {
+		/* annulation des paddings */
+		padding : 0px;
+
+		/* Remonter le bloc pour qu'il soit plus près de l'avatar */
+		bottom: 65px;
+	}
+
+	#profil-nav .list-group-item {
+		/* annulation des borders colorés */
+		border : none;
+
+		/* réduction du padding haut et bas */
+		padding : .5rem 1.25rem;
+	}
+
+		#profil-nav .list-group-item.active {
+			/* background color blanc */
+			background-color: #FFF;
+			border-color : #FFF;
+
+			/* apparence en actif */
+			-webkit-box-shadow:inset 0px 15px 10px -15px #E6E6E6;
+			box-shadow:inset 0px 15px 10px -15px #E6E6E6;
+
+			color : #333;
+
+			font-weight: bold;
+		}
+
 
 		/* BOUTON MENU SLIDE */
 		.btn-rond {
@@ -52,4 +120,19 @@ main {
 		}
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/
+
+
+/*--------------------------- BLOCK INDEX ----------------------------*/
+
+.img-banner {
+	height: 500px;
+
+	margin-top : 75px; /* height du main-nav */
+
+	background-image: url(../img/basketball.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+    background-size: cover;
+
+/*--------------------------- BLOCK INDEX ----------------------------*/
 

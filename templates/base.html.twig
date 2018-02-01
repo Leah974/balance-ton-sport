@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Balance ton sport">
-    <link rel="icon" href="">
+    <meta name="author" content="Plus Un">
+    <link rel="icon" type="image/png" sizes="196x196" href="{{ asset('img/logo/plus-un-icon.png')}}">
 
-    <title>{% block title %}Balance ton sport{% endblock %}</title>
+    <title>{% block title %}Soyez toujours au complet avec Plus Un{% endblock %}</title>
 
     {% block stylesheets %}
     <!-- Font Awesome -->
@@ -36,8 +36,7 @@
         </a>
 
         <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav"
-            aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse" id="main-nav">
 
@@ -45,10 +44,14 @@
             <a id="btn-proposer_evenement" class="nav-link btn btn-default btn-rounded ml-auto" href="{{ path('proposerevenements') }}">Proposer un événement &nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                 
             <ul class="navbar-nav">
-                    <li class="nav_item"><a class="nav-link" href="">Les événements</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('evenements') }}">Les événements</a></li>
+                {# accès limité aux utilisateurs admin #}
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <li class="nav_item"><a class="nav-link" href="{{ path('ajouterSport') }}">Gestion Sports</a></li>
+                {% endif %}  
                 {# accès limité aux utilisateurs connectés, on affiche mon compte et deconnexion #}
                 {% if is_granted('ROLE_USER') %}
-                    <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}">Mon compte</a></li>
+                    <li class="nav_item"><a class="nav-link" href="{{ path('profil') }}">Compte Admin</a></li>
                     <li class="nav_item"><a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</span></a></li>
                 {# si l'utilisateur n'est pas connecté, on affiche inscription / connexion #}
                 {% else %}
