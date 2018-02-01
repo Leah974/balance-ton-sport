@@ -20,3 +20,8 @@ src/Migrations/Version20180124162702.php
 
 src/Migrations/Version20180120150010.php
 src/Entity/User.php
+public/img/uploads/photoevenement55691.jpeg
+templates/admin/sport.html.twig
+templates/admin/sport.html.twig
+templates/admin/sport.html.twig
+composer.lock
