@@ -57,17 +57,6 @@ class Evenement
     private $dateEvenement;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @var boolean $inscription Besoin de s'inscrire (true) ou non (false)
-     */
-    private $inscription;
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @var int $participantMin Nombre minimum de participats requis
-     */
-    private $participantMin;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      * @var int $participantMax Nombre maximum de participats attendu
      */
@@ -102,10 +91,10 @@ class Evenement
     private $codePostal;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     * @var string $ville Ville dans laquelle se déroule l'événement
-     */
-    private $ville;
+      * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="ville")
+      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
+      */
+     private $localisation; 
 
     /**
      * @ORM\Column(type="string", nullable=true)
