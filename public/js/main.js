@@ -13,6 +13,8 @@ $(document).ready(function(){
 		})
 	});
 
+	$('#localisation').autocomplete();
+
 });
 
 
