@@ -76,12 +76,6 @@ class Evenement
     private $niveau;
 
     /**
-      * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="evenement")
-      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
-      */
-     private $localisation; 
-
-    /**
      * @ORM\Column(type="string", nullable=true)
      * @var string $adresse Quartier où à lieu l'événement
      */
@@ -417,26 +411,6 @@ class Evenement
     public function setPhoto($photo)
     {
         $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLocalisation()
-    {
-        return $this->localisation;
-    }
-
-    /**
-     * @param mixed $localisation
-     *
-     * @return self
-     */
-    public function setLocalisation($localisation)
-    {
-        $this->localisation = $localisation;
 
         return $this;
     }

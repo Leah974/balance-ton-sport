@@ -27,11 +27,6 @@ class Categorie
    */
  	private $sport; 
 
-
-    public function __toString()
-    {
-        return $this->getNom();
-    }
     /**
      * @return mixed
      */

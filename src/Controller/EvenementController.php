@@ -26,48 +26,50 @@ class EvenementController extends Controller
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
 
-            // si le formulaire est rempli et valide
-        if ($form->isSubmitted() && $form->isValid()) {
-                // vérifie si l'utilisateur est connecté
-            $user = $this->getUser();
-                // si utilisateur non connecté
-            if (!$user) {
-                // à la validation du formulaire, renvoie vers la page de connexion
+            // vérifie si l'utilisateur est connecté
+        $user = $this->getUser();
+               // si utilisateur non connecté
+        if (!$user) {
+            // renvoie vers la page de connexion
             return $this->redirectToRoute('connexion');
-
-            }
-                // dossier d'enregistrement de la photo evenement
-            $dir = 'img/uploads';
-                // recuperation de la photo uploadé et recuperation de l'extension
-            $file = $form['photo']->getData();
-            $extension = $file->guessExtension();
-                // si l'extension n'est pas reconnu on affecte une extension jpeg
-            if (!$extension) {
-                // extension cannot be guessed
-                $extension = 'jpeg';
-            }
-                // on renomme la photo en 'photoevenement(chiffre entre 1 et 99999).extension'
-            $nomPhoto = 'photoevenement'.rand(1, 99999).'.'.$extension;
-                // on deplace la photo dans le dossier
-            $file->move($dir, $nomPhoto);
-                // on enregistre le nom de la photo en bdd
-            $evenement->setPhoto($nomPhoto);
-                //récupération du nom utilisateur
-            $username = $user->getUsername();
-                // on enregistre le nom utilisateur comme organisateur de l'événement
-            $evenement->setOrganisateur($username);
-                // enregistrement des infos en bdd
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($evenement);
-            $em->flush();
-                // redirection vers la page profil
-            return $this->redirectToRoute('profil');
         }
 
-        return $this->render(
-            'sitepublic/proposer.html.twig',
-            array('form' => $form->createView())
-        );
+        else{
+                // si le formulaire est rempli et valide
+            if ($form->isSubmitted() && $form->isValid()) {
+                    // dossier d'enregistrement de la photo evenement
+                $dir = 'img/uploads';
+                    // recuperation de la photo uploadé et recuperation de l'extension
+                $file = $form['photo']->getData();
+                $extension = $file->guessExtension();
+                    // si l'extension n'est pas reconnu on affecte une extension jpeg
+                if (!$extension) {
+                    // extension cannot be guessed
+                    $extension = 'jpeg';
+                }
+                    // on renomme la photo en 'photoevenement(chiffre entre 1 et 99999).extension'
+                $nomPhoto = 'photoevenement'.rand(1, 99999).'.'.$extension;
+                    // on deplace la photo dans le dossier
+                $file->move($dir, $nomPhoto);
+                    // on enregistre le nom de la photo en bdd
+                $evenement->setPhoto($nomPhoto);
+                    //récupération du nom utilisateur
+                $username = $user->getUsername();
+                    // on enregistre le nom utilisateur comme organisateur de l'événement
+                $evenement->setOrganisateur($username);
+                    // enregistrement des infos en bdd
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($evenement);
+                $em->flush();
+                    // redirection vers la page profil
+                return $this->redirectToRoute('profil');
+            }
+
+            return $this->render(
+                'sitepublic/proposer.html.twig',
+                array('form' => $form->createView())
+            );
+        }
     }
 
     /**
