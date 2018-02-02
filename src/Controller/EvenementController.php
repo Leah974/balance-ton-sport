@@ -261,5 +261,6 @@ class EvenementController extends Controller
             }
 
             return $this->render('sitepublic/inscriptionEvenement.html.twig', ['user' => $user, 'participants' => $participants, 'aucun' => $aucun, 'nombre' => $nombre]);
-        }  
+        }
+
 }
