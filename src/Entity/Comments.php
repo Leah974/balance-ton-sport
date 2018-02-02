@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentsRepository")
@@ -17,15 +18,13 @@ class Comments
     private $id;
 
      /**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="id")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="comments")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
     private $user;
 
-//https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony/les-relations-entre-entites-avec-doctrine2-1
-
      /**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\Evenement")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Evenement",inversedBy="comments")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
   	private $evenement;
@@ -36,7 +35,7 @@ class Comments
     private $commentaire;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 

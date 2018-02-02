@@ -15,43 +15,48 @@ class CommentsController extends Controller
      * @Route("/evenements/{id}/comments", name="commentaires")
      */
 
-     public function newComment(request $request)
+     public function newComment(request $request, $id)
      {
     	$comment = new Comments();
     	$form = $this->createForm(CommentType::class, $comment);
-    	 $form->handleRequest($request);
+    	$form->handleRequest($request);
 
     	if ($form->isSubmitted() && $form->isValid())
     	{
     	 $user = $this->getUser();
-    	 $user_id = $user->getId();
-    	 $comment->setUser($user_id);
 
-    	 $evenement=$this->getEvenement();
-    	 $evenement_id = $evenement->getId();
-    	 $comment->setEvenement($evenement_id);
+    	 $evenement = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->find($id);
+
+    	 $comment->setUser($user);
+    	 $comment->setEvenement($evenement);
 
     	 $em = $this->getDoctrine()->getManager();
          $em->persist($comment);
          $em->flush();
 
-            return $this->redirectToRoute('evenement');
+            return $this->redirectToRoute('evenements');
         }
-    	return $this->render('sitepublic/details.html.twig', array('form' => $form->createView())
-    );
+
+        $comments = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->findBy(
+               ['evenement' => $id]
+            );
+    	return $this->render('sitepublic/comments.html.twig', array('form' => $form->createView(), 'comments' => $comments)
+    	);
      }
-     /**
-     * Affiche tous les commentaires liés à l'evenement
-     * @Route("/evenements/{id}/comments", name="commentaires")
-     */
-        public function showComments($id)
-        {
-                $comment = $this->getDoctrine()
-                ->getRepository(Comments::class)
-                ->find($evenement);
+
+     // /**
+     // * Affiche tous les commentaires liés à l'evenement
+     // * @Route("/evenements/{id}/comments", name="commentaires")
+     // */
+     //    public function showComments($id)
+     //    {
 
 
-        return $this->render('sitepublic/details.html.twig', ['comment' => $comment]);
-        }
+     //    return $this->render('sitepublic/comments.html.twig', ['comments' => $comments]);
+     //    }
 
 }
