@@ -213,7 +213,7 @@ class EvenementController extends Controller
 
     /**
      * Liste des événements organisés par l'utilisateur
-     * @Route("/testprofil", name="testProfil")
+     * @Route("/profil/evenements/organise", name="profilOrganise")
      */
         public function listeEvenementsOrganisés()
         {
@@ -240,7 +240,7 @@ class EvenementController extends Controller
 
     /**
      * Liste des événements auxquels participe l'utilisateur
-     * @Route("/testprofil/evenements", name="testProfilEvenement")
+     * @Route("/profil/evenements/participe", name="profilParticipe")
      */
         public function listeEvenementsParticipe()
         {
