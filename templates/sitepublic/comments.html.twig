@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<div>
+
+	{{ form_start(form, {'method': 'POST'}) }}
+
+	{{ form_end(form) }}
+
+		{% for comment in comments %}
+	Auteur : {{ comment.user.username }}<br>
+	Date : {{ comment.date|date('d/m/Y') }}<br>
+	Message : {{ comment.commentaire }}<br>
+	
+		{% endfor %}
+	</div>
+
+{% endblock %}

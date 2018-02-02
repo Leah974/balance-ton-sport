@@ -13,5 +13,14 @@
 	<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/inscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Je participe</a></i></button>
 
 </section>
+	<div>
+		{% for comment in comment %}
+	Auteur : {{ comments.user.username }}<br>
+	Date : {{ comments.date|date('d/m/Y') }}<br>
+	Message : {{ comments.commentaire }}<br>
+	
+	{% endfor %}
 
+
+	</div>
 {% endblock %}

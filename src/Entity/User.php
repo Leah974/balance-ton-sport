@@ -72,6 +72,11 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="user")
+    */
+    private $comments; 
+
     public function __construct()
     {
         $this->setIsActive(true);
