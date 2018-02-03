@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	Bonjour {{ user.username }} ! <br>
+		{% if aucun %}
+			Vous n'avez organisé aucun événement pour le moment 
+		{% endif %}
+		
+	{% for evenement in evenements %}
+
+	Titre : {{ evenement.titre }}<br>
+	Description : {{ evenement.description }}<br>
+	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
+
+	{% endfor %}
+
+</section>
+
+{% endblock %}
