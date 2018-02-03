@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	 {{ form_start(categorieForm, {'method': 'POST'}) }}
+		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+	{{ form_end(categorieForm) }}
+
+	Categories déjà enregistrées :
+	{% for categorie in categories %}
+		{{ categorie.nom}}
+	{% endfor %}
+</section>
+
+{% endblock %}
