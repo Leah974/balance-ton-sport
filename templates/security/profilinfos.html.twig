@@ -1,77 +1,60 @@
-{% extends 'base.html.twig' %}
+{{ form_start(form, {'method': 'POST'}) }}
 
-{% block main %}
-<section class="form-elegant container">
-
-    {# Form without header #}
-    <div class="card">
-
-        <div class="card-body mx-4">
-
-		    {{ form_start(form, {'method': 'POST'}) }}
-
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.nom, "Nom") }} 
-		    	</div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.prenom, "Prénom") }}
-		        </div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.sexe, "Sexe") }}
-		        </div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.telephone, "Téléphone") }}
-		        </div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-		        	{# label #}
-					{{ form_label(form.dte_naissance, "Date de naissance") }}
-					{{ form_widget(form.dte_naissance, {'attr': {'class': 'form-control'}}) }}
-				</div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.sport_favori, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.sport_favori, "Sport favori") }}
-				</div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.ville, "Ville") }}
-				</div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.mini_bio, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.mini_bio, "Mini bio") }}
-				</div>
-		    	<div class="md-form">
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.photo,  {'attr': {'class': 'form-control-file'}}) }}
-					{# label #}
-					{{ form_label(form.photo, "Votre photo") }}
-				</div>
-		    	<div class="text-center">
-		        	<button class="btn btn-primary" type="submit">Mettre à Jour !</button>
-		        </div>
-		    {{ form_end(form) }}
-		</div>
-
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.nom, "Nom") }} 
 	</div>
-
-</section>
-
-{% endblock %}
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.prenom, "Prénom") }}
+    </div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.sexe, "Sexe") }}
+    </div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.telephone, "Téléphone") }}
+    </div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+    	{# label #}
+		{{ form_label(form.dte_naissance, "Date de naissance") }}
+		{{ form_widget(form.dte_naissance, {'attr': {'class': 'form-control'}}) }}
+	</div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.sport_favori, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.sport_favori, "Sport favori") }}
+	</div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.ville, "Ville") }}
+	</div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.mini_bio, {'attr': {'class': 'form-control'}}) }}
+		{# label #}
+		{{ form_label(form.mini_bio, "Mini bio") }}
+	</div>
+	<div class="md-form">
+    	{# input, checkbox, select, etc #}
+		{{ form_widget(form.photo,  {'attr': {'class': 'form-control-file'}}) }}
+		{# label #}
+		{{ form_label(form.photo, "Votre photo") }}
+	</div>
+	<div class="text-center">
+    	<button class="btn btn-primary" type="submit">Mettre à Jour !</button>
+    </div>
+{{ form_end(form) }}

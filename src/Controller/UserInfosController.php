@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class UserInfosController extends Controller
 {
     /**
-     * @Route("/profil/infos", name="infos_profil")
+     * @Route("/profil", name="profil")
      */
     public function registerUserInfos(Request $request)
     {
@@ -55,7 +55,7 @@ class UserInfosController extends Controller
         }
 
         return $this->render(
-            'security/profilinfos.html.twig',
+            'security/profil.html.twig',
             array('form' => $form->createView())
         );
     }

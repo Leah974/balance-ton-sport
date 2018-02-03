@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Form\SportType;
 use App\Form\CategorieType;
+use App\Form\NiveauType;
 use App\Entity\Categorie;
 use App\Entity\Sport;
+use App\Entity\Niveau;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,7 +48,7 @@ class AdminController extends Controller
 
     /**
      * Enregistrer un nouveau sport dans une catégorie
-     * @Route("/admin/categorie", name="ajouterCategories")
+     * @Route("/admin/categorie", name="ajouterCategorie")
      */
     public function registerCategorie(Request $request)
     {
@@ -62,7 +64,7 @@ class AdminController extends Controller
             $em->persist($categorie);
             $em->flush();
 
-            return $this->redirectToRoute('ajouterSport');
+            return $this->redirectToRoute('ajouterCategorie');
         }
 
         $categories = $this->getDoctrine()
@@ -72,6 +74,37 @@ class AdminController extends Controller
         return $this->render(
             'admin/categorie.html.twig',
             array('categorieForm' => $categorieForm->createView(), 'categories' => $categories)
+        );
+    }
+
+    /**
+     * Enregistrer un nouveau sport dans une catégorie
+     * @Route("/admin/niveau", name="ajouterNiveau")
+     */
+    public function registerNiveau(Request $request)
+    {
+        $niveau = new Niveau();
+
+        $niveauForm = $this->createForm(NiveauType::class, $niveau);
+        $niveauForm->handleRequest($request);
+
+            // si le formulaire est rempli et valide
+        if ($niveauForm->isSubmitted() && $niveauForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($niveau);
+            $em->flush();
+
+            return $this->redirectToRoute('ajouterNiveau');
+        }
+
+        $niveaux = $this->getDoctrine()
+            ->getRepository(Niveau::class)
+            ->findAll();
+
+        return $this->render(
+            'admin/niveau.html.twig',
+            array('niveauForm' => $niveauForm->createView(), 'niveaux' => $niveaux)
         );
     }
 }
