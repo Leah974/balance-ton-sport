@@ -99,12 +99,6 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @var string $adresse Quartier où à lieu l'événement
-     */
-    private $quartier;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
      * @var string $photo Lien de la photo associée à l'événement
      */
     private $photo;
@@ -319,46 +313,6 @@ class Evenement
     }
 
     /**
-     * @return int $codePostal Code postal du lieu de l'événement
-     */
-    public function getCodePostal()
-    {
-        return $this->codePostal;
-    }
-
-    /**
-     * @param int $codePostal Code postal du lieu de l'événement $codePostal
-     *
-     * @return self
-     */
-    public function setCodePostal($codePostal)
-    {
-        $this->codePostal = $codePostal;
-
-        return $this;
-    }
-
-    /**
-     * @return string $adresse Quartier où à lieu l'événement
-     */
-    public function getQuartier()
-    {
-        return $this->quartier;
-    }
-
-    /**
-     * @param string $adresse Quartier où à lieu l'événement $quartier
-     *
-     * @return self
-     */
-    public function setQuartier($quartier)
-    {
-        $this->quartier = $quartier;
-
-        return $this;
-    }
-
-    /**
      * @return string $photo Photo associée à l'événement
      */
     public function getPhoto()
@@ -379,21 +333,61 @@ class Evenement
     }
 
     /**
-     * @return mixed
+     * @return string $adresse Adresse de l'événement
      */
-    public function getLocalisation()
+    public function getAdresse()
     {
-        return $this->localisation;
+        return $this->adresse;
     }
 
     /**
-     * @param mixed $localisation
+     * @param string $adresse Adresse de l'événement $adresse
      *
      * @return self
      */
-    public function setLocalisation($localisation)
+    public function setAdresse($adresse)
     {
-        $this->localisation = $localisation;
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * @param mixed $codePostal
+     *
+     * @return self
+     */
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * @return string $ville Ville dans laquelle se déroule l'événement
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville Ville dans laquelle se déroule l'événement $ville
+     *
+     * @return self
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
 
         return $this;
     }
