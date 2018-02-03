@@ -8,9 +8,12 @@ use App\Entity\Sport;
 use App\Entity\Participant;
 use App\Entity\User;
 use App\Entity\Niveau;
+use App\Form\CommentType;
+use App\Entity\Comments;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 
 class EvenementController extends Controller
@@ -76,7 +79,7 @@ class EvenementController extends Controller
      * Affiche toutes les informations de l'événement dont l'id = $id
      * @Route("/evenements/{id}", name="detailsEvenements")
      */
-    public function showDetailsEvenement($id)
+    public function showDetailsEvenement(request $request, $id)
     {
         $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
@@ -127,8 +130,36 @@ class EvenementController extends Controller
                     $vide = true;
                 }
 
-        return $this->render('sitepublic/details.html.twig', 
-            [
+        $comment = new Comments();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+         $user = $this->getUser();
+
+         $evenement = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->find($id);
+
+         $comment->setUser($user);
+         $comment->setEvenement($evenement);
+
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($comment);
+         $em->flush();
+
+            return $this->redirectToRoute('evenements');
+        }
+
+        $comments = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->findBy(
+               ['evenement' => $id]
+            );
+        return $this->render('sitepublic/details.html.twig', array(
+            'form' => $form->createView(),
+            'comments' => $comments,
             'evenement' => $evenement, 
             'participants' => $participants, 
             'nombre' => $nombre,
@@ -136,7 +167,7 @@ class EvenementController extends Controller
             'vide' => $vide,
             'user' => $user, 
             'dejaInscrit' => $dejaInscrit
-            ]
+        )
         );
     }
 
