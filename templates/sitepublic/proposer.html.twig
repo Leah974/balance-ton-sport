@@ -119,26 +119,7 @@
 
 		    </div>
 
-
-		{# PARTIE INSCRIPTION #}
-    	<p class="h5 mb-4"><i class="fa fa-users" aria-hidden="true"></i> On peut venir à plusieurs ?</p>
-
-    	{# INSCRIPTION OU NON #}
-    	<div class="form-group">
-    		{{ form_errors(form.inscription) }}
-    		<label>Événement soumis aux inscriptions : </label>
-			{{ form_widget(form.inscription, {'attr': {'class': ''}}) }}
-			<p class="small font-italic">Cocher cette case vous permet de définir un nombre minimum et/ou maximum de participants à votre événement</p>
-    	</div>
-
     	<div class="row">
-		{# NB MIN PARTICIPANT #}
-	    	<div class="col-md-6">
-	    		{{ form_errors(form.participantMin) }}
-	    		<label>Nombre minimum de participants</label>
-				{{ form_widget(form.participantMin, {'attr': {'class': 'form-control'}}) }}
-	    	</div>
-
 	    	{# NB MAX PARTICIPANT #}
 	    	<div class="col-md-6">
 	    		{{ form_errors(form.participantMax) }}
