@@ -1,60 +1,86 @@
 {{ form_start(form, {'method': 'POST'}) }}
-
+	
+	{# NOM #}
 	<div class="md-form">
     	{# input, checkbox, select, etc #}
 		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 		{# label #}
 		{{ form_label(form.nom, "Nom") }} 
 	</div>
+
+	{# PRENOM #}
 	<div class="md-form">
     	{# input, checkbox, select, etc #}
 		{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
 		{# label #}
 		{{ form_label(form.prenom, "Prénom") }}
     </div>
-	<div class="md-form">
-    	{# input, checkbox, select, etc #}
+
+    {# SEXE #}
+	<div class="">
+		<label>Sexe</label>
 		{{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }}
-		{# label #}
-		{{ form_label(form.sexe, "Sexe") }}
     </div>
+
+    {# TELEPHONE #}
 	<div class="md-form">
     	{# input, checkbox, select, etc #}
 		{{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
 		{# label #}
 		{{ form_label(form.telephone, "Téléphone") }}
     </div>
-	<div class="md-form">
-    	{# input, checkbox, select, etc #}
-    	{# label #}
-		{{ form_label(form.dte_naissance, "Date de naissance") }}
-		{{ form_widget(form.dte_naissance, {'attr': {'class': 'form-control'}}) }}
+
+    {# DATE DE NAISSANCE #}
+	<div class="form-group">
+    	<label>Date de naissance</label>
+
+    	<div class="row">
+    		<div class="col-4">
+				{{ form_widget(form.dte_naissance.day, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			<div class="col-4">
+				{{ form_widget(form.dte_naissance.month, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			<div class="col-4">
+				{{ form_widget(form.dte_naissance.year, {'attr': {'class': 'form-control'}}) }}
+			</div>
+		</div>
+
 	</div>
+
+	{# SPORT FAVORI #}
 	<div class="md-form">
     	{# input, checkbox, select, etc #}
 		{{ form_widget(form.sport_favori, {'attr': {'class': 'form-control'}}) }}
 		{# label #}
 		{{ form_label(form.sport_favori, "Sport favori") }}
 	</div>
+
+	{# VILLE #}
 	<div class="md-form">
     	{# input, checkbox, select, etc #}
 		{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
 		{# label #}
 		{{ form_label(form.ville, "Ville") }}
 	</div>
+
+	{# MINO BIO #}
 	<div class="md-form">
     	{# input, checkbox, select, etc #}
-		{{ form_widget(form.mini_bio, {'attr': {'class': 'form-control'}}) }}
+		{{ form_widget(form.mini_bio, {'attr': {'class': 'md-textarea'}}) }}
 		{# label #}
-		{{ form_label(form.mini_bio, "Mini bio") }}
+		{{ form_label(form.mini_bio, "Qui es-tu ?") }}
 	</div>
-	<div class="md-form">
+
+	{# PHOTO #}
+	<div class="">
     	{# input, checkbox, select, etc #}
+    	{{ form_label(form.photo, "Photo de profil") }}
 		{{ form_widget(form.photo,  {'attr': {'class': 'form-control-file'}}) }}
-		{# label #}
-		{{ form_label(form.photo, "Votre photo") }}
 	</div>
-	<div class="text-center">
-    	<button class="btn btn-primary" type="submit">Mettre à Jour !</button>
+
+	{# BOUTON VALIDATION #}
+	<div class="text-center mt-4">
+    	<button class="btn btn-plusun" type="submit">Mettre à Jour !</button>
     </div>
 {{ form_end(form) }}
