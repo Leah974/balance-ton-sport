@@ -61,6 +61,12 @@
 	}
 
 		/* AVATAR Photo de profil */
+		.avatar-profil {
+				position : relative;
+
+				bottom : 65px;
+			}
+			
 		.avatar {
 			height : 120px;
 			width : 120px;
@@ -73,10 +79,14 @@
 			border-radius: 50%;
 		}
 
-			.avatar-profil {
-				position : relative;
+			
 
-				bottom : 65px;
+			.img-avatar {
+				max-width  : 150%;
+				height: auto;
+
+				position: relative;
+				right: 25%;
 			}
 
 
