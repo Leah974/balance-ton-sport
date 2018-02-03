@@ -49,7 +49,6 @@ class EvenementType extends AbstractType
                     'choices' => range(1,50),
                     'label' => ' ',
                 ))
-            // ->add('localisation')
             ->add('quartier', TextType::class)
             ->add('sport', EntityType::class, array(
                     'class' => Sport::class,
