@@ -85,6 +85,8 @@ class Evenement
      * @ORM\Column(type="string", nullable=true, length=5)
      * @Assert\Length(
      *      min = 5,
+     *      max = 5
+     *      )
     */
     private $codePostal;
 
