@@ -39,9 +39,6 @@
 
 	/* DIMENSIONS AVATAR */
 	.avatar-120 {
-		position : relative;
-		bottom : 65px;
-
 		height : 120px;
 		width : 120px;
 		}
@@ -123,6 +120,11 @@
 		box-shadow : none;
 
 		overflow: hidden;
+	}
+
+	.position-avatar {
+		position : relative;
+		bottom : 65px;
 	}
 
 	#profil-nav .modal-body {
