@@ -45,10 +45,12 @@
 	{{ form_end(form) }}
 
 		{% for comment in comments %}
+			{# si le commentaire est validé par le modérateur on l'affiche : comment.statut = true #}
+			{% if comment.statut %}
 	Auteur : {{ comment.user.username }}<br>
 	Date : {{ comment.date|date('d/m/Y') }}<br>
 	Message : {{ comment.commentaire }}<br>
-	
+			{% endif %}
 		{% endfor %}
 	</div>	
 </section>
