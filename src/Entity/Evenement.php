@@ -75,18 +75,6 @@ class Evenement
      */
     private $niveau;
 
-   // *
-   //    * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="evenement")
-   //    * @ORM\JoinColumn(nullable=false)
-      
-   //   private $localisation; 
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @var string $adresse Quartier où à lieu l'événement
-     */
-    private $quartier;
-
     /**
      * @ORM\Column(type="string", nullable=true)
      * @var string $photo Lien de la photo associée à l'événement
