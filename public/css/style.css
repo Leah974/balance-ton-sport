@@ -6,6 +6,11 @@
 	background-color: #22B573;
 }
 
+.btn-plusun {
+	background-color: #22B573;
+	border-color : #22B573;
+}
+
 /*------------------------ BLOCK MAIN --------------------------*/
 
 .margin-top {
@@ -66,10 +71,14 @@
 			background-color: #FFFFFF;
 
 			border-radius: 50%;
-
-			position : relative;
-			bottom : 65px;
 		}
+
+			.avatar-profil {
+				position : relative;
+
+				bottom : 65px;
+			}
+
 
 	#profil-nav .modal-body {
 		/* annulation des paddings */
@@ -134,5 +143,22 @@
 	background-position: center;
     background-size: cover;
 
+}
+
 /*--------------------------- BLOCK INDEX ----------------------------*/
 
+
+
+/*---------------------- BLOCK LISTE EVENEMENTS ----------------------*/
+
+.banner-liste-evenement {
+	height : 10px;
+	overflow: hidden;
+}
+
+.profil-user-evenements {
+	width: 200px;
+}
+
+
+/*---------------------- BLOCK LISTE EVENEMENTS -----------------------*/

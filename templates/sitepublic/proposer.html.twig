@@ -10,7 +10,8 @@
     	{{ form_errors(form) }}
 
     	{# PARTIE DESCRIPTION #}
-    	<p class="h5">Description</p>
+    	<div class="pb-3">
+    	<p class="h5 mb-4"><i class="fa fa-pencil" aria-hidden="true"></i> Tu propose quoi ?</p>
 
 	    	{# TITRE #}
 	    	<div class="md-form">
@@ -19,17 +20,17 @@
 				{{ form_label(form.titre, "Titre de l'événement") }}
 	    	</div>
 
-	    	<div class="row">
+	    	<div class="row mb-3">
 
 		    	{# SPORT #}
-		    	<div class="col-md-6 col-sm-12">
+		    	<div class="col-md-6">
 		    		{{ form_errors(form.sport) }}
 		        	<label>Sport</label>
 					{{ form_widget(form.sport, {'attr': {'class': 'form-control'}}) }}
 		    	</div>
 
 		    	{# NIVEAU REQUIS #}
-		    	<div class="col-md-6 col-sm-12">
+		    	<div class="col-md-6">
 		    		{{ form_errors(form.niveau) }}
 		    		<label>Niveau souhaité</label>
 					{{ form_widget(form.niveau, {'attr': {'class': 'form-control'}}) }}
@@ -51,10 +52,11 @@
 				{{ form_widget(form.photo, {'attr': {'class': ''}}) }}
 	    	</div>
 
-	    <hr>
+	    </div>
+
 
 	    {# PARTIE LIEU #}
-	    <p class="h5">Lieu</p>
+	    <p class="h5 mb-4"><i class="fa fa-map-marker" aria-hidden="true"></i> On se retrouve où ?</p>
 
 	    	<div class="row">
 
@@ -86,10 +88,8 @@
 			    </div>
 	    	</div>
 
-	    <hr>
-
 	    {# PARTIE DATE ET HEURE #}
-    	<p class="h5">Date et heure</p>
+    	<p class="h5 mb-4"><i class="fa fa-calendar" aria-hidden="true"></i> Tu penses à une date ?</p>
 
     		<div class="row">
 
@@ -120,10 +120,9 @@
 
 		    </div>
 
-		<hr>
 
 		{# PARTIE INSCRIPTION #}
-    	<p class="h5">Inscription</p>
+    	<p class="h5 mb-4"><i class="fa fa-users" aria-hidden="true"></i> On peut venir à plusieurs ?</p>
 
     	{# INSCRIPTION OU NON #}
     	<div class="form-group">
@@ -159,7 +158,7 @@
     	<hr>
     	
     	<div class="text-center">
-        	<button class="btn btn-primary" type="submit">Lancer l'invitation<i class="fa fa-paper-plane-o ml-1"></i></button>
+        	<button class="btn btn-plusun" type="submit">Lance ta proposition<i class="fa fa-paper-plane-o ml-1"></i></button>
         </div>
 
     {{ form_end(form) }}
