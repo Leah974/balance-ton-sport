@@ -66,11 +66,11 @@
 
 			<div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade" id="list-info-voir" role="tabpanel" aria-labelledby="list-info-voir-list">
-		      	{% block infouser %}{% endblock %}
+		      	 {% block infomodif %}Formulaire permettant de modifier les informations utilisateur{% endblock %}
 		      </div>
 
 		      <div class="tab-pane fade" id="list-info-modifier" role="tabpanel" aria-labelledby="list-info-modifier-list">
-		      	{% block infomodif %}Formulaire permettant de modifier les informations utilisateur{% endblock %}
+		      		{{ include('security/profilinfos.html.twig') }}
 		      </div>
 
 		      <div class="tab-pane fade show active" id="list-alertes" role="tabpanel" aria-labelledby="list-alertes-list">
