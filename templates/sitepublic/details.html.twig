@@ -1,7 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+<<<<<<< HEAD
 <section class="form-elegant container margin-top">
+=======
+<section class="form-elegant container">
+	{% if complet %}
+		Evénement complet !<br>
+	{% endif %}
+	{% if vide %}
+		Soyez le premier à participer !<br>
+	{% endif %}
+	{% if not complet %}
+		Participants : {{ nombre }} / {{ evenement.participantMax }}<br>
+	{% endif %}
+	{% if user %}
+		{% if nombre > 0 %}
+			Liste participants : <br>
+			{% for participant in participants %}
+				{{ participant.user.username }}<br>
+			{% endfor %}<br>
+		{% endif %}
+	{% endif %}
+>>>>>>> evenement
 	Titre : {{ evenement.titre }}<br>
 	Organisé par : {{ evenement.organisateur }}<br>
 	Description : {{ evenement.description }}<br>
@@ -9,9 +30,15 @@
 	Niveau demandé : {{ evenement.niveau.nom }}<br>
 	{{ evenement.sport.nom }}<br>
 	<img src="{{ asset('img/uploads/')}}{{ evenement.photo }}" class="img-fluid">
-
-	<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/inscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Je participe</a></i></button>
-
+	{% if dejaInscrit %}
+		<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/desinscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Ne plus Participer </a></i></button>
+	{% endif %}
+	{% if not dejaInscrit %}
+		{% if not complet %}
+				<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/inscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Participer </a></i></button>
+		{% endif %}
+	{% endif %}
 </section>
+	<div>
 
 {% endblock %}

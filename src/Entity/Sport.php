@@ -22,7 +22,7 @@ class Sport
      */
     private $nom;
 
-	/**
+   /**
    * @ORM\OneToMany(targetEntity="App\Entity\Evenement", mappedBy="sport")
    */
  	private $evenement; 

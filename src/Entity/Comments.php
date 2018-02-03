@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentsRepository")
@@ -17,15 +18,13 @@ class Comments
     private $id;
 
      /**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\User")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="comments")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
-    private $id_user;
-
-//https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony/les-relations-entre-entites-avec-doctrine2-1
+    private $user;
 
      /**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\Evenement")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Evenement",inversedBy="comments")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
   	private $evenement;
@@ -36,7 +35,7 @@ class Comments
     private $commentaire;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -69,9 +68,9 @@ class Comments
     /**
      * @return mixed
      */
-    public function getIdUser()
+    public function getUser()
     {
-        return $this->id_user;
+        return $this->user;
     }
 
     /**
@@ -79,9 +78,9 @@ class Comments
      *
      * @return self
      */
-    public function setIdUser($id_user)
+    public function setUser($user)
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
@@ -129,9 +128,9 @@ class Comments
     /**
      * @return mixed
      */
-    public function getDateCommentaire()
+    public function getDate()
     {
-        return $this->date_commentaire;
+        return $this->date;
     }
 
     /**
@@ -139,9 +138,9 @@ class Comments
      *
      * @return self
      */
-    public function setDateCommentaire($date_commentaire)
+    public function setDate($date)
     {
-        $this->date_commentaire = $date_commentaire;
+        $this->date = $date;
 
         return $this;
     }

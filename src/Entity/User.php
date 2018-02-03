@@ -35,7 +35,7 @@ class User implements UserInterface, \Serializable
      *      minMessage = "Votre pseudo doit avoir au minimum {{ limit }} caractères",
      *      maxMessage = "Votre pseudo doit avoir au maximum {{ limit }} caractères"
      * )
-     * @Assert\NotBlank()
+     * @Assert\NotBlank()(groups={"inscription"})
      */
     private $username;
 
@@ -46,8 +46,8 @@ class User implements UserInterface, \Serializable
      *      max = 14,
      *      minMessage = "Votre mot de passe doit avoir au minimum {{ limit }} caractères",
      *      maxMessage = "Votre mot de passe doit avoir au maximum {{ limit }} caractères"
-     * )
-     * @Assert\NotBlank()
+     * )(groups={"inscription"})
+     * @Assert\NotBlank()(groups={"inscription"})
      */
     private $password;
 
@@ -57,7 +57,7 @@ class User implements UserInterface, \Serializable
      * @Assert\Email(
      *     message = "L'email '{{ value }}' n'est pas correct.",
      *     checkMX = true
-     * )
+     * )(groups={"inscription"})
      */
     private $email;
 
@@ -71,6 +71,57 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="array")
      */
     private $roles = [];
+
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="user")
+    */
+    private $comments; 
+
+      /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $sport_favori;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
+
+    /**
+     * @ORM\Column(type="string", length=1)
+     */
+    private $sexe;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dte_naissance;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="text", length=30)
+     */
+    private $mini_bio;
+
 
     public function __construct()
     {
@@ -217,4 +268,184 @@ class User implements UserInterface, \Serializable
     {
         $this->roles = $roles;
     }
+   /**
+     * @return mixed
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param mixed $nom
+     *
+     * @return self
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param mixed $prenom
+     *
+     * @return self
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param mixed $telephone
+     *
+     * @return self
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSportFavori()
+    {
+        return $this->sport_favori;
+    }
+
+    /**
+     * @param mixed $sport_favori
+     *
+     * @return self
+     */
+    public function setSportFavori($sport_favori)
+    {
+        $this->sport_favori = $sport_favori;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     *
+     * @return self
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * @param mixed $sexe
+     *
+     * @return self
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDteNaissance()
+    {
+        return $this->dte_naissance;
+    }
+
+    /**
+     * @param mixed $dte_naissance
+     *
+     * @return self
+     */
+    public function setDteNaissance($dte_naissance)
+    {
+        $this->dte_naissance = $dte_naissance;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     *
+     * @return self
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMiniBio()
+    {
+        return $this->mini_bio;
+    }
+
+    /**
+     * @param mixed $mini_bio
+     *
+     * @return self
+     */
+    public function setMiniBio($mini_bio)
+    {
+        $this->mini_bio = $mini_bio;
+
+        return $this;
+    }
+
 }
