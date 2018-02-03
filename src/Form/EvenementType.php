@@ -49,6 +49,9 @@ class EvenementType extends AbstractType
                     'choices' => range(1,50),
                     'label' => ' ',
                 ))
+            ->add('adresse', TextType::class)
+            ->add('codePostal', IntegerType::class)
+            ->add('ville', TextType::class)
             ->add('sport', EntityType::class, array(
                     'class' => Sport::class,
                     'choice_label' => 'nom',
