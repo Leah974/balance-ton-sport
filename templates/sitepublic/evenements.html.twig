@@ -19,14 +19,14 @@
 		    <div class="d-inline-flex flex-column align-items-center profil-user-evenements col-md-3">
 
 		    	{# AVATAR #}
-		        <div class="avatar d-block">
-		        	<img class="img-fluid" src="http://static1.purepeople.com/articles/8/26/71/48/@/3774028-emma-watson-a-la-warner-bros-pictures-a-950x0-2.jpg" alt="votre image de profil">
+		        <div class="avatar avatar-90 d-block">
+		        	<img class="img-fluid" src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}">
 		        </div>
 
 		        {# PSEUDO UTILISATEUR #}
 		        <h4 class="card-title">{{ evenement.organisateur }}</h4>
 
-		        {# Note de l'utilisateur #}
+		        {# Note de l'utilisateur 
 	        	<ul class="rating inline-ul pl-0">
 	                <li><i class="fa fa-star amber-text"></i></li>
 	                <li><i class="fa fa-star amber-text"></i></li>
@@ -34,6 +34,7 @@
 	                <li><i class="fa fa-star"></i></li>
 	                <li><i class="fa fa-star"></i></li>
 	            </ul>
+	            #}
 
 	    	</div>
 

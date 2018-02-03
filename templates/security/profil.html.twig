@@ -14,23 +14,28 @@
 			            <div class="modal-header amber"></div>
 
 			            {# Avatar #}
-			            <div class=" avatar avatar-profil mx-auto d-block">
-			            	<img class="img-fluid" src="http://static1.purepeople.com/articles/8/26/71/48/@/3774028-emma-watson-a-la-warner-bros-pictures-a-950x0-2.jpg" alt="votre image de profil">
-			            </div>
+			            <div class="d-flex flex-column align-items-center position-avatar">
+				            <div class="d-inline-flex flex-column align-items-center">
+					            <div class="avatar avatar-120  d-block">
+					            	<img class="img-avatar" src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}" alt="votre image de profil">
+					            </div>
+
+					            {# Pseudo utilisateur #}
+				            	<h3 id="profil-user">{{ app.user.username }}</h3>
+
+				            	{# Note de l'utilisateur
+				            	<ul class="rating inline-ul text-center pl-0">
+					                <li><i class="fa fa-star amber-text"></i></li>
+					                <li><i class="fa fa-star amber-text"></i></li>
+					                <li><i class="fa fa-star amber-text"></i></li>
+					                <li><i class="fa fa-star"></i></li>
+					                <li><i class="fa fa-star"></i></li>
+					            </ul>
+					            #}
+				        	</div>
+			        	</div>
 
 			            <div class="modal-body">
-
-			            	{# Pseudo utilisateur #}
-			            	<h3 class="text-center" id="profil-user">{{ app.user.username }}</h3>
-
-			            	{# Note de l'utilisateur #}
-			            	<ul class="rating inline-ul text-center pl-0">
-				                <li><i class="fa fa-star amber-text"></i></li>
-				                <li><i class="fa fa-star amber-text"></i></li>
-				                <li><i class="fa fa-star amber-text"></i></li>
-				                <li><i class="fa fa-star"></i></li>
-				                <li><i class="fa fa-star"></i></li>
-				            </ul>
 
 			                {# Contenu du menu #}
 							<div class="list-group collapse" id="profil-nav-item" role="tablist">
@@ -66,7 +71,7 @@
 
 			<div class="tab-content" id="nav-tabContent">
 		      <div class="tab-pane fade" id="list-info-voir" role="tabpanel" aria-labelledby="list-info-voir-list">
-		      	 {% block infomodif %}Formulaire permettant de modifier les informations utilisateur{% endblock %}
+		      	 {{ include('security/voirprofilinfos.html.twig') }}
 		      </div>
 
 		      <div class="tab-pane fade" id="list-info-modifier" role="tabpanel" aria-labelledby="list-info-modifier-list">
