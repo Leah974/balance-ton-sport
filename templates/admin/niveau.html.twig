@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	 {{ form_start(niveauForm, {'method': 'POST'}) }}
+		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+	{{ form_end(niveauForm) }}
+
+	Niveaux déjà enregistrées :<br>
+	{% for niveau in niveaux %}
+		{{ niveau.nom}}
+	{% endfor %}
+</section>
+
+{% endblock %}
