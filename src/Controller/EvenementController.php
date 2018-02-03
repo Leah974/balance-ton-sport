@@ -38,7 +38,7 @@ class EvenementController extends Controller
                 // si le formulaire est rempli et valide
             if ($form->isSubmitted() && $form->isValid()) {
                     // dossier d'enregistrement de la photo evenement
-                $dir = 'img/uploads';
+                $dir = 'img/uploads/evenement';
                     // recuperation de la photo uploadé et recuperation de l'extension
                 $file = $form['photo']->getData();
                 $extension = $file->guessExtension();
