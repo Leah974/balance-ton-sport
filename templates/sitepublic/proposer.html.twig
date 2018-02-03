@@ -57,12 +57,20 @@
 	    <p class="h5">Lieu</p>
 
 	    	<div class="row">
+	    		
+	    		{# ADRESSE #}
+	    		<div class="col-md-4">
+			    	<div class="md-form">
+						{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}, {'attr': {'autocomplete': 'off'}}) }}
+						{{ form_label(form.adresse, "Adresse") }}
+			    	</div>
+		    	</div>
 
 	    		{# CODE POSTAL #}
 	    		<div class="col-md-4">
 			    	<div class="md-form">
 			        	{{ form_errors(form.codePostal) }}
-						{{ form_widget(form.codePostal, {'attr': {'class': 'form-control'}}) }}
+						{{ form_widget(form.codePostal, {'id': 'postal_code', 'attr': {'class': 'form-control'}}) }}
 						{{ form_label(form.codePostal, "Code postal") }}
 			    	</div>
 		    	</div>
@@ -71,19 +79,11 @@
 		    	<div class="col-md-4">
 			    	<div class="md-form">
 			        	{{ form_errors(form.ville) }}
-						{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+						{{ form_widget(form.ville, {'id': 'locality', 'attr': {'class': 'form-control'}}) }}
 						{{ form_label(form.ville, "Ville") }}
 			    	</div>
 			    </div>
 
-		    	{# QUARTIER #}
-		    	<div class="col-md-4">
-			    	<div class="md-form">
-			        	{{ form_errors(form.quartier) }}
-						{{ form_widget(form.quartier, {'attr': {'class': 'form-control'}}) }}
-						{{ form_label(form.quartier, "Quartier") }}
-			    	</div>
-			    </div>
 	    	</div>
 
 	    <hr>
