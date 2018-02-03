@@ -83,16 +83,13 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", nullable=true, length=5)
-     * @ORM\Column(type="string", nullable=false, length=5)
      * @Assert\Length(
      *      min = 5,
-     *      max = 5,
     */
     private $codePostal;
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @ORM\Column(type="string", nullable=false)
      * @var string $ville Ville dans laquelle se déroule l'événement
      */
     private $ville;
