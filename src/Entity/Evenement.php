@@ -52,20 +52,9 @@ class Evenement
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\GreaterThan("+6 days", message="Cette date est trop proche. Vous pouvez créer un événement une semaine à l'avance minimum")
-     * @var date $dateEvenement Date de l'événement
+     * @var datetime $dateEvenement Date de l'événement
      */
     private $dateEvenement;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @var boolean $inscription Besoin de s'inscrire (true) ou non (false)
-     */
-    private $inscription;
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @var int $participantMin Nombre minimum de participats requis
-     */
-    private $participantMin;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -75,7 +64,7 @@ class Evenement
 
     /**
       * @ORM\ManyToOne(targetEntity="App\Entity\Sport", inversedBy="evenement")
-      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
+      * @ORM\JoinColumn(nullable=false)
       */
      private $sport; 
 
@@ -86,26 +75,11 @@ class Evenement
      */
     private $niveau;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, length=5)
-     * @Assert\Length(
-     *      min = 5,
-     *      max = 5,
-     *      minMessage = "Code postal invalide",
-     *      maxMessage = "Code postal invalide"
-     * )
-     * @Assert\Regex(
-     *      pattern="/\d/",
-     * )
-     * @var int $codePostal Code postal du lieu de l'événement
-     */
-    private $codePostal;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @var string $ville Ville dans laquelle se déroule l'événement
-     */
-    private $ville;
+   // *
+   //    * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="evenement")
+   //    * @ORM\JoinColumn(nullable=false)
+      
+   //   private $localisation; 
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -123,6 +97,12 @@ class Evenement
     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="evenement")
     */
     private $comments; 
+
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="evenement")
+    */
+    private $participant; 
+
 
     public function __construct()
     {
@@ -263,46 +243,6 @@ class Evenement
     }
 
     /**
-     * @return boolean $inscription Besoin de s'inscrire (true) ou non (false)
-     */
-    public function isInscription()
-    {
-        return $this->inscription;
-    }
-
-    /**
-     * @param boolean $inscription Besoin de s'inscrire (true) ou non (false) $inscription
-     *
-     * @return self
-     */
-    public function setInscription($inscription)
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * @return int $participantMin Nombre minimum de participats requis
-     */
-    public function getParticipantMin()
-    {
-        return $this->participantMin;
-    }
-
-    /**
-     * @param int $participantMin Nombre minimum de participats requis $participantMin
-     *
-     * @return self
-     */
-    public function setParticipantMin($participantMin)
-    {
-        $this->participantMin = $participantMin;
-
-        return $this;
-    }
-
-    /**
      * @return int $participantMax Nombre maximum de participats attendu
      */
     public function getParticipantMax()
@@ -383,26 +323,6 @@ class Evenement
     }
 
     /**
-     * @return string $ville Ville dans laquelle se déroule l'événement
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
-     * @param string $ville Ville dans laquelle se déroule l'événement $ville
-     *
-     * @return self
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
      * @return string $adresse Quartier où à lieu l'événement
      */
     public function getQuartier()
@@ -438,6 +358,26 @@ class Evenement
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @param mixed $localisation
+     *
+     * @return self
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
 
         return $this;
     }

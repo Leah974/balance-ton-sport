@@ -48,15 +48,4 @@ class CommentsController extends Controller
     	);
      }
 
-     // /**
-     // * Affiche tous les commentaires liés à l'evenement
-     // * @Route("/evenements/{id}/comments", name="commentaires")
-     // */
-     //    public function showComments($id)
-     //    {
-
-
-     //    return $this->render('sitepublic/comments.html.twig', ['comments' => $comments]);
-     //    }
-
 }
