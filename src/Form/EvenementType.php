@@ -32,10 +32,7 @@ class EvenementType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('statut', CheckboxType::class, array(
-                    'label' => ' ',
-                    'required' => false
-                ))
+            ->add('statut')
             ->add('niveau', EntityType::class, array(
                     'class' => Niveau::class,
                     'choice_label' => 'nom',
@@ -50,7 +47,7 @@ class EvenementType extends AbstractType
                     'choices' => range(1,50),
                     'label' => ' ',
                 ))
-            ->add('localisation', TextType::class)
+            // ->add('localisation')
             ->add('quartier', TextType::class)
             ->add('sport', EntityType::class, array(
                     'class' => Sport::class,

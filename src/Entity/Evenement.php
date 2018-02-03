@@ -52,7 +52,7 @@ class Evenement
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\GreaterThan("+6 days", message="Cette date est trop proche. Vous pouvez créer un événement une semaine à l'avance minimum")
-     * @var date $dateEvenement Date de l'événement
+     * @var datetime $dateEvenement Date de l'événement
      */
     private $dateEvenement;
 
@@ -64,7 +64,7 @@ class Evenement
 
     /**
       * @ORM\ManyToOne(targetEntity="App\Entity\Sport", inversedBy="evenement")
-      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
+      * @ORM\JoinColumn(nullable=false)
       */
      private $sport; 
 
@@ -74,6 +74,12 @@ class Evenement
      * @var string $niveau Niveau attendu des participants
      */
     private $niveau;
+
+   // *
+   //    * @ORM\ManyToOne(targetEntity="App\Entity\Localisation", inversedBy="evenement")
+   //    * @ORM\JoinColumn(nullable=false)
+      
+   //   private $localisation; 
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -91,11 +97,6 @@ class Evenement
    * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="evenement")
    */
     private $participant; 
-
-    public function __toString()
-    {
-        return $this->getLocalisation();
-    }
 
     public function __construct()
     {
@@ -236,46 +237,6 @@ class Evenement
     }
 
     /**
-     * @return boolean $inscription Besoin de s'inscrire (true) ou non (false)
-     */
-    public function isInscription()
-    {
-        return $this->inscription;
-    }
-
-    /**
-     * @param boolean $inscription Besoin de s'inscrire (true) ou non (false) $inscription
-     *
-     * @return self
-     */
-    public function setInscription($inscription)
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * @return int $participantMin Nombre minimum de participats requis
-     */
-    public function getParticipantMin()
-    {
-        return $this->participantMin;
-    }
-
-    /**
-     * @param int $participantMin Nombre minimum de participats requis $participantMin
-     *
-     * @return self
-     */
-    public function setParticipantMin($participantMin)
-    {
-        $this->participantMin = $participantMin;
-
-        return $this;
-    }
-
-    /**
      * @return int $participantMax Nombre maximum de participats attendu
      */
     public function getParticipantMax()
@@ -356,26 +317,6 @@ class Evenement
     }
 
     /**
-     * @return string $ville Ville dans laquelle se déroule l'événement
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
-
-    /**
-     * @param string $ville Ville dans laquelle se déroule l'événement $ville
-     *
-     * @return self
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
      * @return string $adresse Quartier où à lieu l'événement
      */
     public function getQuartier()
@@ -411,6 +352,26 @@ class Evenement
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @param mixed $localisation
+     *
+     * @return self
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
 
         return $this;
     }
