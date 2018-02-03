@@ -23,8 +23,6 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 
-
-
 class EvenementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -32,36 +30,26 @@ class EvenementType extends AbstractType
         $builder
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('statut', CheckboxType::class, array(
-                    'label' => ' ',
-                    'required' => false
-                ))
+            ->add('statut')
             ->add('niveau', EntityType::class, array(
                     'class' => Niveau::class,
                     'choice_label' => 'nom',
+                ))
+            ->add('statut', CheckboxType::class, array(
+                    'label' => ' ',
+                    'required' => false
                 ))
             ->add('dateEvenement', DateTimeType::class, array(
                     'date_widget' => 'single_text',
                     'time_widget' => 'choice',
                     'minutes' => array(00, 15, 30, 45)
                 ))
-
-            ->add('inscription', CheckboxType::class, array(
-                    'label' => ' Inscription requise',
-                    'required' => false
-                ))
-            ->add('participantMin', ChoiceType::class,
-                    array(
-                    'choices' => range(1,50),
-                    'label' => ' ',
-                ))
             ->add('participantMax', ChoiceType::class,
                     array(
                     'choices' => range(1,50),
                     'label' => ' ',
                 ))
-            ->add('codePostal', IntegerType::class)
-            ->add('ville', TextType::class)
+            // ->add('localisation')
             ->add('quartier', TextType::class)
             ->add('sport', EntityType::class, array(
                     'class' => Sport::class,
