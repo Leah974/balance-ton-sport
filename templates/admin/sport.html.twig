@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<<<<<<< HEAD
 <section class="form-elegant container margin-top">
 	<h2 class="text-center">Ajouter un sport à une catégorie</h2>
 
@@ -29,18 +28,6 @@
 		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
 	</div>
 	{{ form_end(form) }}
-=======
-<section class="form-elegant container">
-	 {{ form_start(sportForm, {'method': 'POST'}) }}
-		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
-	{{ form_end(sportForm) }}
-
-	Sport déjà enregistrés :<br>
-	{% for sport in sports %}
-		{{ sport.nom}} 
-		<button class="btn btn-primary" type="submit"><a href="{{ asset('admin/supprimer/sport/') }}{{ sport.id }}" class="blue-text ml-1"> Supprimer </a></i></button><br>
-	{% endfor %}
->>>>>>> evenement
 </section>
 
 {% endblock %}
