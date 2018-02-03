@@ -8,6 +8,7 @@ use App\Form\NiveauType;
 use App\Entity\Categorie;
 use App\Entity\Sport;
 use App\Entity\Niveau;
+use App\Entity\Comments;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -106,5 +107,22 @@ class AdminController extends Controller
             'admin/niveau.html.twig',
             array('niveauForm' => $niveauForm->createView(), 'niveaux' => $niveaux)
         );
+    }
+
+    /**
+     * Modérer les commentaires
+     * @Route("/admin/commentaire", name="gererCommentaire")
+     */
+    public function gererCommentaire()
+    {
+        $comments = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->findBy(
+                ['statut' => false],
+                ['date' => 'ASC']
+            );
+
+        return $this->render(
+            'admin/commentaire.html.twig', ['comments' => $comments]);
     }
 }

@@ -45,9 +45,12 @@
 	{{ form_end(form) }}
 
 		{% for comment in comments %}
+			{% if comment.statut %}
 	Auteur : {{ comment.user.username }}<br>
 	Date : {{ comment.date|date('d/m/Y') }}<br>
 	Message : {{ comment.commentaire }}<br>
+	<button class="btn btn-primary" type="submit"><a href="{{ signalerCommentaire }}" class="blue-text ml-1"> Signaler</a></i></button>
+			{% endif %}
 		{% endfor %}
 	</div>	
 </section>

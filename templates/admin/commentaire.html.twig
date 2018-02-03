@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container margin-top">
+
+	Commentaires non validés<br>
+	{% for comment in comments %}
+		Le {{ comment.date|date("d/m/Y") }} à {{ comment.date|date("H:i") }}<br>
+		{{ comment.user.username}}<br>
+		{{ comment.commentaire}}<br>
+	{% endfor %}
+</section>
+
+{% endblock %}

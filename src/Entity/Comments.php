@@ -39,10 +39,16 @@ class Comments
      */
     private $date;
 
-    // add your own fields
+    /**
+     * @ORM\Column(type="boolean")
+     * @var boolean $statut Message validé par modérateur(true) ou non (false)
+     */
+    private $statut;   
+
      public function __construct()
      {
      	$this->date = new \Datetime();
+        $this->statut = true;
      }
 
     /**
@@ -141,6 +147,26 @@ class Comments
     public function setDate($date)
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean $statut Message validé par modérateur(true) ou non (false)
+     */
+    public function isStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param boolean $statut Message validé par modérateur(true) ou non (false) $statut
+     *
+     * @return self
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
 
         return $this;
     }
