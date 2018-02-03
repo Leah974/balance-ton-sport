@@ -122,6 +122,11 @@ class User implements UserInterface, \Serializable
      */
     private $mini_bio;
 
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user")
+    */
+    private $participant; 
+
 
     public function __construct()
     {
