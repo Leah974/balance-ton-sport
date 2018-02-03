@@ -4,30 +4,36 @@
 <section class="form-elegant container margin-top">
 	<h2 class="text-center">Ajouter un sport à une catégorie</h2>
 
-	{{ form_start(form, {'method': 'POST'}) }}
+	{{ form_start(sportForm, {'method': 'POST'}) }}
 
 	<div class="">
 		{# label #}
 		<label>Catégorie</label>
 		{# message d'erreur sur le pseudo #}
-		{{ form_errors(form.categorie) }}
+		{{ form_errors(sportForm.categorie) }}
 		{# input, checkbox, select, etc #}
-		{{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+		{{ form_widget(sportForm.categorie, {'attr': {'class': 'form-control'}}) }}
 		
 	</div>
 
 	<div class="md-form">
 		{# message d'erreur sur le pseudo #}
-		{{ form_errors(form.nom) }}
+		{{ form_errors(sportForm.nom) }}
 		{# input, checkbox, select, etc #}
-		{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+		{{ form_widget(sportForm.nom, {'attr': {'class': 'form-control'}}) }}
 		{# label #}
-		{{ form_label(form.nom, "Sport") }} 
+		{{ form_label(sportForm.nom, "Sport") }} 
 	</div>
 	<div class="text-center">
 		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
 	</div>
-	{{ form_end(form) }}
+	{{ form_end(sportForm) }}
+	<div>
+		Liste des sport existants : <br>
+		{% for sport in sports%}
+			{{ sport.nom}}
+		{% endfor %}
+	</div>
 </section>
 
 {% endblock %}
