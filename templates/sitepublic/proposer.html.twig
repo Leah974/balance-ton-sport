@@ -60,6 +60,13 @@
 
 	    	<div class="row">
 
+		    	{# ADRESSE #}
+		    	<div class="col-md-4">
+						{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}, {'attr': {'autocomplete': 'off'}}) }}
+						{{ form_label(form.adresse, "Adresse") }}
+			    	</div>
+			    </div>
+
 	    		{# CODE POSTAL #}
 	    		<div class="col-md-4">
 			    	<div class="md-form">
@@ -78,14 +85,6 @@
 			    	</div>
 			    </div>
 
-		    	{# QUARTIER #}
-		    	<div class="col-md-4">
-			    	<div class="md-form">
-			        	{{ form_errors(form.quartier) }}
-						{{ form_widget(form.quartier, {'attr': {'class': 'form-control'}}) }}
-						{{ form_label(form.quartier, "Quartier") }}
-			    	</div>
-			    </div>
 	    	</div>
 
 	    {# PARTIE DATE ET HEURE #}
