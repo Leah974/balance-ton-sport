@@ -74,6 +74,35 @@ class Evenement
      * @var string $niveau Niveau attendu des participants
      */
     private $niveau;
+    
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string $adresse Adresse de l'événement
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", nullable=true, length=5)
+     * @ORM\Column(type="string", nullable=false, length=5)
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+    */
+    
+    private $codePostal;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
+     * @var string $ville Ville dans laquelle se déroule l'événement
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string $adresse Quartier où à lieu l'événement
+     */
+    private $quartier;
 
     /**
      * @ORM\Column(type="string", nullable=true)
