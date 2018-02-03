@@ -18,23 +18,15 @@ class Participant
     private $id;
 
     /**
-     * @ORM\Column(type="string")
-     * @var string $nom Nom de l'événement auquel les participants sont inscrits
-     */
- 	private $nom; 
+      * @ORM\ManyToOne(targetEntity="App\Entity\Evenement", inversedBy="participant")
+      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
+      */
+     private $evenement; 
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     * @var string $evenement Id de l'événement concerné
-     */
- 	private $evenement; 
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     * @var string $user Id de l'utilisateur inscrit à l'événement
-     */
+      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participant")
+      * @ORM\JoinColumn(nullable=false) // si la relation est obligatoire
+      */
     private $user; 
 
     /**
