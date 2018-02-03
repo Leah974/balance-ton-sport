@@ -88,7 +88,6 @@ class Evenement
      *      min = 5,
      *      max = 5,
     */
-    
     private $codePostal;
 
     /**
