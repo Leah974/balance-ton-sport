@@ -157,6 +157,7 @@ class EvenementController extends Controller
             ->findBy(
                ['evenement' => $id]
             );
+
         return $this->render('sitepublic/details.html.twig', array(
             'form' => $form->createView(),
             'comments' => $comments,
@@ -248,7 +249,7 @@ class EvenementController extends Controller
      * Liste des événements organisés par l'utilisateur
      * @Route("/profil/evenements/organise", name="profilOrganise")
      */
-        public function listeEvenementsOrganisés()
+        public function listerOrganise()
         {
             $user = $this->getUser();
             $username = $user->getUsername();
@@ -275,7 +276,7 @@ class EvenementController extends Controller
      * Liste des événements auxquels participe l'utilisateur
      * @Route("/profil/evenements/participe", name="profilParticipe")
      */
-        public function listeEvenementsParticipe()
+        public function listerParticipe()
         {
             $user = $this->getUser();
 
