@@ -321,12 +321,14 @@
 
 	.input-file-container {
 	  position: relative;
-	  width: 225px;
+	  /*width: 150px;*/
 	} 
 	.js .input-file-trigger {
-	  display: block;
-	  padding: 14px 45px;
-	  background: #22B573;
+	  /*display: block;*/
+	  padding: 14px 25px;
+	  background-color: #22B573;
+	  border : 2px solid #22B573;
+	  border-radius: 2px;
 	  color: #fff;
 	  font-size: 1em;
 	  transition: all .4s;
@@ -335,7 +337,7 @@
 	.js .input-file {
 	  position: absolute;
 	  top: 0; left: 0;
-	  width: 225px;
+	  width: 100%;
 	  opacity: 0;
 	  padding: 14px 0;
 	  cursor: pointer;
@@ -346,7 +348,6 @@
 	.js .input-file-trigger:focus {
 	  background: #FFF;
 	  color: #22B573;
-	  border : 2px solid #22B573;
 	}
 
 	.file-return {
@@ -361,7 +362,7 @@
 	  font-weight: bold;
 	}
 	.js .file-return:not(:empty):before {
-	  content: "Selected file: ";
+	  content: "Fichier ajouté : ";
 	  font-style: normal;
 	  font-weight: normal;
 	}

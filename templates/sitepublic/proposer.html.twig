@@ -47,11 +47,13 @@
 	    	</div>
 
 	    	{# PHOTO #}
+	    	<p>Personnalisez votre événement en y ajoutant une photo</p>
 	    	<div class="input-file-container">
 	    		{{ form_errors(form.photo) }}
-	        	<label tabindex="0" class="input-file-trigger">Ajouter une photo</label>
-				{{ form_widget(form.photo, {'attr': {'class': 'input-file btn-plusun'}}) }}
+				{{ form_widget(form.photo, {'attr': {'class': 'input-file', 'for' : 'photo-file'}}) }}
+				<label tabindex="0" class="input-file-trigger text-center" for="photo-file">Ajouter une photo</label>
 	    	</div>
+	    	<p class="file-return"></p>
 
 	    </div>
 
@@ -63,7 +65,7 @@
 
 		    	{# ADRESSE #}
 		    	<div class="col-md-4">
-		    		<div class="input-file-container">
+		    		<div class="">
 		    			<label class="mb-0">Adresse</label>
 						{{ form_widget(form.adresse, {'attr': {'class': 'form-control mt-0 pt-0'}}, {'attr': {'autocomplete': 'off'}}) }}
 			    	</div>
@@ -136,7 +138,7 @@
 
     	{# PARTIE INSCRIPTION #}
     	<p class="h5 mt-4 mb-3"><i class="fa fa-star-o" aria-hidden="true"></i> Ça reste entre nous ?</p>
-			<p class="small">Un événement privé n'apparaît pas dans le file d'actualité des événements. Vous recevrez un lien URL vers votre événement à partager à vos amis, famille ou aux salariés de votre entreprise.</p>
+			<p class="small">Un événement privé n'apparaît pas dans le fil d'actualité des événements. Vous recevrez un lien URL vers votre événement à partager à vos amis, famille ou aux salariés de votre entreprise.</p>
 
 	    	{# PRIVE OU NON #}
 	    	<p>
