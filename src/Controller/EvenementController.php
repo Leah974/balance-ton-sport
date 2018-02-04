@@ -185,6 +185,7 @@ class EvenementController extends Controller
                     ['dateEvenement' => 'ASC']
                 );
 
+                    // recuperation du nombre de places restantes $placesRestantes
                 foreach($evenements as $evenement)
                 {
                     $placesDispos = $evenement->getParticipantMax();
@@ -312,4 +313,24 @@ class EvenementController extends Controller
             return $this->render('sitepublic/inscriptionEvenement.html.twig', ['user' => $user, 'participants' => $participants, 'aucun' => $aucun, 'nombre' => $nombre]);
         }
 
+/**
+* Signaler un commentaire
+* @Route("/evenements/{evenement}/signaler/commentaire/{id}", name="signalerCommentaire")
+*/
+public function signalerCommentaire($id)
+    {
+
+        $comment = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->find($id);
+
+        $statut = $comment->setStatut(false);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statut);
+        $em->flush();
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('evenements');
+}
 }
