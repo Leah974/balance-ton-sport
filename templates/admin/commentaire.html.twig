@@ -2,12 +2,13 @@
 
 {% block main %}
 <section class="form-elegant container margin-top">
-
-	Commentaires non validés<br>
+	<h2>Commentaires signalés en attente de modération</h2>
 	{% for comment in comments %}
 		Le {{ comment.date|date("d/m/Y") }} à {{ comment.date|date("H:i") }}<br>
 		{{ comment.user.username}}<br>
 		{{ comment.commentaire}}<br>
+		<a href="{{ asset('admin/commentaire/supprimer/') }}{{ comment.id }}" class="blue-text ml-1">Supprimer</a>
+		<a href="{{ asset('admin/commentaire/valider/') }}{{ comment.id }}" class="blue-text ml-1">Valider</a>
 	{% endfor %}
 </section>
 

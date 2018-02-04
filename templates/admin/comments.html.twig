@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<section class="form-elegant container">
+	 {{ form_start(niveauForm, {'method': 'POST'}) }}
+		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+	{{ form_end(niveauForm) }}
+</section>
+<section class="container">
+
+		<h3>Niveaux déjà enregistrés</h3>
+
+		<div>
+			<table>
+				<thead>
+					<td>Nom</td>					
+					<td>Supprimer</td>
+				</thead>
+		{% for niveau in niveaux %}
+				<tr>
+					<td>{{ niveau.nom }}</td>					
+					<td><a href="{{ asset('admin/niveau/supprimer/') }}{{ niveau.id }}" class="blue-text ml-1">Supprimer</a></td>
+				</tr>
+		{% endfor %}
+				</tr>
+			</table>
+		</div>
+
+</section>
+
+{% endblock %}

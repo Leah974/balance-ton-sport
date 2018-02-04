@@ -158,7 +158,7 @@ class AdminController extends Controller
     }
 
 /**
-* Suppresion d'une catégorie
+* Suppresion d'un niveau
 * @Route("/admin/niveau/supprimer/{id}", name="supprimerNiveau")
 */
 public function supprimerNiveau($id)
@@ -181,20 +181,58 @@ public function supprimerNiveau($id)
         return $this->redirectToRoute('ajouterNiveau');
 }
 
-    // /**
-    //  * Modérer les commentaires
-    //  * @Route("/admin/commentaire", name="gererCommentaire")
-    //  */
-    // public function gererCommentaire()
-    // {
-    //     $comments = $this->getDoctrine()
-    //         ->getRepository(Comments::class)
-    //         ->findBy(
-    //             ['statut' => false],
-    //             ['date' => 'ASC']
-    //         );
+/**
+* Listes des commentaires signalés
+* @Route("/admin/commentaire", name="afficherCommentaire")
+*/
+public function afficherCommentaire()
+    {
 
-    //     return $this->render(
-    //         'admin/commentaire.html.twig', ['comments' => $comments]);
-    // }
+        $comments = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->findBy(
+               ['statut' => false]
+            );
+
+        return $this->render(
+            'admin/commentaire.html.twig',
+                ['comments' => $comments]
+        );
+}
+
+/**
+* Supprimer un commentaire signalé
+* @Route("/admin/commentaire/supprimer/{id}", name="supprimerCommentaire")
+*/
+public function supprimerCommentaire($id)
+    {
+        $comment = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->find($id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();       
+
+        return $this->redirectToRoute('afficherCommentaire');
+}
+
+/**
+* Valider un commentaire signalé
+* @Route("/admin/commentaire/valider/{id}", name="validerCommentaire")
+*/
+public function validerCommentaire($id)
+    {
+        $comment = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->find($id);
+
+        $statut = $comment->setStatut(true);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statut);
+        $em->flush();    
+
+        return $this->redirectToRoute('afficherCommentaire');
+}
 }
