@@ -49,7 +49,7 @@
 				<tr>
 					<td>{{ sport.nom }}</td>					
 					<td>{{ sport.categorie.nom }}</td>
-					<td><a href="{{ asset('/supprimer/') }}{{ sport.id }}" class="blue-text ml-1">Supprimer</a></td>
+					<td><a href="{{ asset('admin/sport/supprimer/') }}{{ sport.id }}" class="blue-text ml-1">Supprimer</a></td>
 				</tr>
 		{% endfor %}
 				</tr>

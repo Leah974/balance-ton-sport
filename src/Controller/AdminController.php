@@ -110,11 +110,11 @@ class AdminController extends Controller
     }
 
     /**
-     * Désinscription à un événement
+     * Suppression d'un sport
      * @Route("/admin/sport/supprimer/{id}", name="supprimerSport")
      */
     public function supprimerSport($id)
-        {
+    {
 
         $sports = $this->getDoctrine()
         ->getRepository(Sport::class)
@@ -129,9 +129,58 @@ class AdminController extends Controller
                 $em->flush();
             }
 
-            // à la suppresion redirection vers la page profil
+            // à la suppresion retour vers la page ajouterSport
         return $this->redirectToRoute('ajouterSport');
     }
+
+    /**
+     * Suppresion d'une catégorie
+     * @Route("/admin/categorie/supprimer/{id}", name="supprimerCategorie")
+     */
+    public function supprimerCategorie($id)
+    {
+
+        $categories = $this->getDoctrine()
+        ->getRepository(Categorie::class)
+        ->findBy(
+            ['id' => $id]
+        );
+
+        foreach($categories as $categorie)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($categorie);
+                $em->flush();
+            }
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('ajouterCategorie');
+    }
+
+/**
+* Suppresion d'une catégorie
+* @Route("/admin/niveau/supprimer/{id}", name="supprimerNiveau")
+*/
+public function supprimerNiveau($id)
+    {
+
+        $niveaux = $this->getDoctrine()
+        ->getRepository(Niveau::class)
+        ->findBy(
+            ['id' => $id]
+        );
+
+        foreach($niveaux as $niveau)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($niveau);
+                $em->flush();
+            }
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('ajouterNiveau');
+}
+
     // /**
     //  * Modérer les commentaires
     //  * @Route("/admin/commentaire", name="gererCommentaire")
