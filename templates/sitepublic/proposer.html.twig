@@ -48,13 +48,10 @@
 
 	    	{# PHOTO #}
 	    	<p>Personnalisez votre événement en y ajoutant une photo</p>
-	    	<div class="input-file-container">
-	    		{{ form_errors(form.photo) }}
-				{{ form_widget(form.photo, {'attr': {'class': 'input-file', 'for' : 'photo-file'}}) }}
-				<label tabindex="0" class="input-file-trigger text-center" for="photo-file">Ajouter une photo</label>
-	    	</div>
-	    	<p class="file-return"></p>
-
+	    	{{ form_errors(form.photo) }}
+			{{ form_widget(form.photo, {'id' : 'photo-file', 'attr': {'class': 'input-file'}}) }}
+			<label class="input-file-trigger text-center" for="photo-file"><span><i class="fa fa-file-photo-o" aria-hidden="true"></i> Ajouter une photo...</span></label>
+	    	
 	    </div>
 
 
