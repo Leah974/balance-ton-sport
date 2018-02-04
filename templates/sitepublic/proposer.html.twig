@@ -11,16 +11,17 @@
 
     	{# PARTIE DESCRIPTION #}
     	<div class="pb-3">
-    	<p class="h5 mb-4"><i class="fa fa-pencil" aria-hidden="true"></i> Tu propose quoi ?</p>
+    	<p class="h5 mb-3"><i class="fa fa-pencil" aria-hidden="true"></i> Vous proposez quoi ?</p>
 
 	    	{# TITRE #}
-	    	<div class="md-form">
+	    	<div class="">
 	        	{{ form_errors(form.titre) }}
-				{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
-				{{ form_label(form.titre, "Titre de l'événement") }}
+	        	<label class="mb-0">Titre de l'événement</label>
+				{{ form_widget(form.titre, {'attr': {'class': 'form-control mt-0 pt-0'}}) }}
+				
 	    	</div>
 
-	    	<div class="row mb-3">
+	    	<div class="row">
 
 		    	{# SPORT #}
 		    	<div class="col-md-6">
@@ -39,56 +40,57 @@
 	    	</div>
 
 	    	{# DESCRIPTION #}
-	    	<div class="md-form">
+	    	<div class="mb-4">
 	        	{{ form_errors(form.description) }}
-				{{ form_widget(form.description, {'attr': {'class': 'md-textarea'}}) }}
-				{{ form_label(form.description, "Description de l'événement") }}
+	        	<label class="mb-0">Description de l'événement</label>
+				{{ form_widget(form.description, {'attr': {'class': 'md-textarea mt-0 pt-0'}}) }}
 	    	</div>
 
 	    	{# PHOTO #}
-	    	<div class="">
+	    	<div class="input-file-container">
 	    		{{ form_errors(form.photo) }}
-	        	{{ form_label(form.photo, "Photo") }}
-				{{ form_widget(form.photo, {'attr': {'class': ''}}) }}
+	        	<label tabindex="0" class="input-file-trigger">Ajouter une photo</label>
+				{{ form_widget(form.photo, {'attr': {'class': 'input-file btn-plusun'}}) }}
 	    	</div>
 
 	    </div>
 
 
 	    {# PARTIE LIEU #}
-	    <p class="h5 mb-4"><i class="fa fa-map-marker" aria-hidden="true"></i> On se retrouve où ?</p>
+	    <p class="h5 mt-4 mb-3"><i class="fa fa-map-marker" aria-hidden="true"></i> On se retrouve où ?</p>
 
 	    	<div class="row">
 
 		    	{# ADRESSE #}
 		    	<div class="col-md-4">
-						{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}, {'attr': {'autocomplete': 'off'}}) }}
-						{{ form_label(form.adresse, "Adresse") }}
+		    		<div class="input-file-container">
+		    			<label class="mb-0">Adresse</label>
+						{{ form_widget(form.adresse, {'attr': {'class': 'form-control mt-0 pt-0'}}, {'attr': {'autocomplete': 'off'}}) }}
 			    	</div>
 			    </div>
 
 	    		{# CODE POSTAL #}
 	    		<div class="col-md-4">
-			    	<div class="md-form">
+			    	<div class="">
 			        	{{ form_errors(form.codePostal) }}
-						{{ form_widget(form.codePostal, {'attr': {'class': 'form-control'}}) }}
-						{{ form_label(form.codePostal, "Code postal") }}
+			        	<label class="mb-0">Code Postal</label>
+						{{ form_widget(form.codePostal, {'id': 'postal_code', 'attr': {'class': 'form-control mt-0 pt-0'}}) }}
 			    	</div>
 		    	</div>
 
 		    	{# VILLE #}
 		    	<div class="col-md-4">
-			    	<div class="md-form">
+			    	<div class="">
 			        	{{ form_errors(form.ville) }}
-						{{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
-						{{ form_label(form.ville, "Ville") }}
+			        	<label class="mb-0">Ville</label>
+						{{ form_widget(form.ville, {'id': 'locality', 'attr': {'class': 'form-control mt-0 pt-0'}}) }}
 			    	</div>
 			    </div>
 
 	    	</div>
 
 	    {# PARTIE DATE ET HEURE #}
-    	<p class="h5 mb-4"><i class="fa fa-calendar" aria-hidden="true"></i> Tu penses à une date ?</p>
+    	<p class="h5 mt-4 mb-3"><i class="fa fa-calendar" aria-hidden="true"></i> Vous pensez à une date ?</p>
 
     		<div class="row">
 
@@ -119,7 +121,10 @@
 
 		    </div>
 
+		{# PARTIE INSCRIPTION #}
+    	<p class="h5 mt-4 mb-3"><i class="fa fa-group" aria-hidden="true"></i> On peut venir à combien ?</p>
     	<div class="row">
+
 	    	{# NB MAX PARTICIPANT #}
 	    	<div class="col-md-6">
 	    		{{ form_errors(form.participantMax) }}
@@ -128,17 +133,22 @@
 	    	</div>
     	</div>
 
-    	{# PRIVE OU NON #}
-    	<div class="form-group">
-        	{{ form_errors(form.statut) }}
-        	{{ form_label(form.statut, "Cet événement est privé") }}
-			{{ form_widget(form.statut, {'attr': {'class': ''}}) }}
-    	</div>
+
+    	{# PARTIE INSCRIPTION #}
+    	<p class="h5 mt-4 mb-3"><i class="fa fa-star-o" aria-hidden="true"></i> Ça reste entre nous ?</p>
+			<p class="small">Un événement privé n'apparaît pas dans le file d'actualité des événements. Vous recevrez un lien URL vers votre événement à partager à vos amis, famille ou aux salariés de votre entreprise.</p>
+
+	    	{# PRIVE OU NON #}
+	    	<p>
+	        	{{ form_errors(form.statut) }}
+	        	{{ form_widget(form.statut, {'id': 'prive'}) }}
+	        	<label for="prive"><span class="ui"></span>Cet événement est privé</label>
+	        </p>
 
     	<hr>
     	
     	<div class="text-center">
-        	<button class="btn btn-plusun" type="submit">Lance ta proposition<i class="fa fa-paper-plane-o ml-1"></i></button>
+        	<button class="btn btn-plusun" type="submit">Lancez votre proposition<i class="fa fa-paper-plane-o ml-1"></i></button>
         </div>
 
     {{ form_end(form) }}
@@ -146,4 +156,9 @@
 
 </section>
 
+{% endblock %}
+
+{# ajout de jQuery en fonction des pages #}
+{% block javascripts %}
+	<script type="text/javascript" src="{{ asset('js/file.js') }}"></script>
 {% endblock %}
