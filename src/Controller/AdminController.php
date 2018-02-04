@@ -110,19 +110,42 @@ class AdminController extends Controller
     }
 
     /**
-     * Modérer les commentaires
-     * @Route("/admin/commentaire", name="gererCommentaire")
+     * Désinscription à un événement
+     * @Route("/admin/sport/supprimer/{id}", name="supprimerSport")
      */
-    public function gererCommentaire()
-    {
-        $comments = $this->getDoctrine()
-            ->getRepository(Comments::class)
-            ->findBy(
-                ['statut' => false],
-                ['date' => 'ASC']
-            );
+    public function supprimerSport($id)
+        {
 
-        return $this->render(
-            'admin/commentaire.html.twig', ['comments' => $comments]);
+        $sports = $this->getDoctrine()
+        ->getRepository(Sport::class)
+        ->findBy(
+            ['id' => $id]
+        );
+
+        foreach($sports as $sport)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($sport);
+                $em->flush();
+            }
+
+            // à la suppresion redirection vers la page profil
+        return $this->redirectToRoute('ajouterSport');
     }
+    // /**
+    //  * Modérer les commentaires
+    //  * @Route("/admin/commentaire", name="gererCommentaire")
+    //  */
+    // public function gererCommentaire()
+    // {
+    //     $comments = $this->getDoctrine()
+    //         ->getRepository(Comments::class)
+    //         ->findBy(
+    //             ['statut' => false],
+    //             ['date' => 'ASC']
+    //         );
+
+    //     return $this->render(
+    //         'admin/commentaire.html.twig', ['comments' => $comments]);
+    // }
 }

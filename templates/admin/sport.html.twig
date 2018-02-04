@@ -2,6 +2,7 @@
 
 {% block main %}
 <section class="form-elegant container margin-top">
+
 	<h2 class="text-center">Ajouter un sport à une catégorie</h2>
 
 	{{ form_start(sportForm, {'method': 'POST'}) }}
@@ -24,16 +25,37 @@
 		{# label #}
 		{{ form_label(sportForm.nom, "Sport") }} 
 	</div>
+
 	<div class="text-center">
 		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
 	</div>
+
 	{{ form_end(sportForm) }}
-	<div>
-		Liste des sport existants : <br>
+
+</section>
+
+<section class="container">
+
+		<h3>Sports déjà enregistrés</h3>
+
+		<div>
+			<table>
+				<thead>
+					<td>Nom</td>					
+					<td>Catégorie</td>
+					<td>Supprimer</td>
+				</thead>
 		{% for sport in sports%}
-			{{ sport.nom}}
+				<tr>
+					<td>{{ sport.nom }}</td>					
+					<td>{{ sport.categorie.nom }}</td>
+					<td><a href="{{ asset('/supprimer/') }}{{ sport.id }}" class="blue-text ml-1">Supprimer</a></td>
+				</tr>
 		{% endfor %}
-	</div>
+				</tr>
+			</table>
+		</div>
+
 </section>
 
 {% endblock %}
