@@ -185,7 +185,22 @@ class EvenementController extends Controller
                     ['dateEvenement' => 'ASC']
                 );
 
-        return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements]);
+                foreach($evenements as $evenement)
+                {
+                    $placesDispos = $evenement->getParticipantMax();
+
+                    $participants = $this->getDoctrine()
+                        ->getRepository(Participant::class)
+                        ->findBy(
+                    ['evenement' => $evenement]
+                    );
+
+                    $placesPrises = count($participants);
+                    $placesRestantes = $placesDispos - $placesPrises;
+
+                }
+
+        return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
         }
 
     /**
