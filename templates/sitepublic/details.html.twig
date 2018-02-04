@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<section class="form-elegant container">
+<section class="form-elegant container margin-top">
 	{% if complet %}
 		Evénement complet !<br>
 	{% endif %}
@@ -37,19 +37,62 @@
 		{% endif %}
 	{% endif %}
 </section>
-<section>
-<div>
 
-	{{ form_start(form, {'method': 'POST'}) }}
 
-	{{ form_end(form) }}
+<section class="container">
 
-		{% for comment in comments %}
-	Auteur : {{ comment.user.username }}<br>
-	Date : {{ comment.date|date('d/m/Y') }}<br>
-	Message : {{ comment.commentaire }}<br>
-		{% endfor %}
+<div class="chatContainer">
+    <div class="chatTitleContainer">nbre Commentaires</div>
+	<div class="chatHistoryContainer">
+
+        <ul class="formComments">
+        	{% for comment in comments %}
+			<li class="commentLi commentstep-1" data-commentid="{{ comment.id }}">
+				<table class="form-comments-table">
+					<tr>
+						<td></td>
+						<td>
+							<div class="comment-avatar text-center">
+								<img src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}">
+							</div>
+							<div class="comment-user">{{ comment.user.username }}</div>
+						</td>
+						<td></td>
+						<td>
+							<div id="comment-{{ comment.id }}" data-commentid="{{ comment.id }}" class="comment comment-step1">
+								{{ comment.commentaire }}
+								<div class="comment-timestamp">{{ comment.date|date('d/m/Y H:i:s') }}</div>
+                                <div id="commentactions-{{ comment.id }}" class="comment-actions">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
+                                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i>Edit</button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
+                                    </div>                                
+                                </div>
+                            </div>
+						</td>
+					</tr>
+				</table>
+			</li>  
+           
+			{% endfor %}  
+        </ul>
+	</div>
+</div>
 	</div>	
+{{ form_start(form, {'method': 'POST'}) }}
+	<div class="input-group input-group-sm chatMessageControls">
+	
+         {{ form_widget(form.commentaire, {'attr': { 'placeholder': 'Votre commentaire ici..', 'id': 'sendMessageForm'}}) }}   
+        <span class="input-group-btn">
+        	{{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary fa fa-send', 'type': 'button', 'id': 'sendMessageButton'}}) }}  
+        </span>
+	
+	</div>
+{{ form_end(form) }}
+
 </section>
 
 {% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>{% endblock %}

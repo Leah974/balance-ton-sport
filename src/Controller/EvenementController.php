@@ -41,7 +41,7 @@ class EvenementController extends Controller
                 // si le formulaire est rempli et valide
             if ($form->isSubmitted() && $form->isValid()) {
                     // dossier d'enregistrement de la photo evenement
-                $dir = 'img/uploads/evenement';
+                $dir = 'img/uploads';
                     // recuperation de la photo uploadé et recuperation de l'extension
                 $file = $form['photo']->getData();
                 $extension = $file->guessExtension();
@@ -157,7 +157,6 @@ class EvenementController extends Controller
             ->findBy(
                ['evenement' => $id]
             );
-
         return $this->render('sitepublic/details.html.twig', array(
             'form' => $form->createView(),
             'comments' => $comments,
@@ -249,7 +248,7 @@ class EvenementController extends Controller
      * Liste des événements organisés par l'utilisateur
      * @Route("/profil/evenements/organise", name="profilOrganise")
      */
-        public function listerOrganise()
+        public function listeEvenementsOrganisés()
         {
             $user = $this->getUser();
             $username = $user->getUsername();
@@ -276,7 +275,7 @@ class EvenementController extends Controller
      * Liste des événements auxquels participe l'utilisateur
      * @Route("/profil/evenements/participe", name="profilParticipe")
      */
-        public function listerParticipe()
+        public function listeEvenementsParticipe()
         {
             $user = $this->getUser();
 
