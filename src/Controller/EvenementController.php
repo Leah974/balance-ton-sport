@@ -285,7 +285,7 @@ class EvenementController extends Controller
                 $aucun = true;
             }
 
-            return $this->render('sitepublic/desinscriptionEvenement.html.twig', ['user' => $user, 'evenements' => $evenements, 'aucun' => $aucun]);
+            return $this->render('sitepublic/listeOrganise.html.twig', ['user' => $user, 'evenements' => $evenements, 'aucun' => $aucun]);
         }
 
     /**
@@ -310,7 +310,7 @@ class EvenementController extends Controller
                 $aucun = true;
             }
 
-            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['user' => $user, 'participants' => $participants, 'aucun' => $aucun, 'nombre' => $nombre]);
+            return $this->render('sitepublic/listeParticipe.html.twig', ['user' => $user, 'participants' => $participants, 'aucun' => $aucun, 'nombre' => $nombre]);
         }
 
 /**
