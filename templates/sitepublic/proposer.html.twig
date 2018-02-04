@@ -61,18 +61,16 @@
 	    {# PARTIE LIEU #}
 	    <p class="h5 mt-4 mb-3"><i class="fa fa-map-marker" aria-hidden="true"></i> On se retrouve où ?</p>
 
+	    	{# ADRESSE #}
+	    	<div class="mb-4">
+    			<label class="mb-0">Adresse</label>
+				{{ form_widget(form.adresse, {'attr': {'class': 'form-control mt-0 pt-0'}}, {'attr': {'autocomplete': 'off'}}) }}
+		    </div>
+
 	    	<div class="row">
 
-		    	{# ADRESSE #}
-		    	<div class="col-md-4">
-		    		<div class="">
-		    			<label class="mb-0">Adresse</label>
-						{{ form_widget(form.adresse, {'attr': {'class': 'form-control mt-0 pt-0'}}, {'attr': {'autocomplete': 'off'}}) }}
-			    	</div>
-			    </div>
-
 	    		{# CODE POSTAL #}
-	    		<div class="col-md-4">
+	    		<div class="col-md-6">
 			    	<div class="">
 			        	{{ form_errors(form.codePostal) }}
 			        	<label class="mb-0">Code Postal</label>
@@ -81,7 +79,7 @@
 		    	</div>
 
 		    	{# VILLE #}
-		    	<div class="col-md-4">
+		    	<div class="col-md-6">
 			    	<div class="">
 			        	{{ form_errors(form.ville) }}
 			        	<label class="mb-0">Ville</label>
