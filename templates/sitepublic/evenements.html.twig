@@ -4,61 +4,89 @@
 	
 <section class="container margin-top">
 
-	{% for evenement in evenements %}
+	<div class="row">
 
+		<aside class="col-md-4">Emplacement des filtres</aside>
 
-	<!-- UN EVENEMENT -->
-	<div class="card mb-4">
+		<section class="col-md-8">
+			{% for evenement in evenements %}
 
-	    <!--Card image-->
-	    <div class="banner-liste-evenement plusun-bg"></div>
+				{# EVENEMENT #}
+				<div class="card mb-4 gradient-light">
 
-	    <div class="row card-body">
+					{# ligne colorée #}
+				    {# <div class="banner-liste-evenement plusun-bg view"><div class="mask pattern-5"></div></div> #}
 
-		    {# Avatar #}
-		    <div class="d-inline-flex flex-column align-items-center profil-user-evenements col-md-3">
+				    {# CORPS DE L'EVENEMENT #}
+				    <div class="card-body pb-0">
 
-		    	{# AVATAR #}
-		        <div class="avatar avatar-90 d-block">
-		        	<img class="img-fluid" src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}">
-		        </div>
+					    {# ORGANISATEUR #}
+					    <div class="row">
 
-		        {# PSEUDO UTILISATEUR #}
-		        <h4 class="card-title">{{ evenement.organisateur }}</h4>
+				    		<div class="col-auto">
+						    	<div class="d-flex flex-column align-items-center">
+							    	{# PHOTO PROFIL #}
+							        <div class="avatar avatar-90 d-block z-depth-1">
+							        	<img class="img-avatar" src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}">
+							        </div>
 
-		        {# Note de l'utilisateur 
-	        	<ul class="rating inline-ul pl-0">
-	                <li><i class="fa fa-star amber-text"></i></li>
-	                <li><i class="fa fa-star amber-text"></i></li>
-	                <li><i class="fa fa-star amber-text"></i></li>
-	                <li><i class="fa fa-star"></i></li>
-	                <li><i class="fa fa-star"></i></li>
-	            </ul>
-	            #}
+							        {# PSEUDO UTILISATEUR #}
+							        <h5 class="h5-responsive mt-2">{{ evenement.organisateur }}</h5>
+						    	</div>
+						    </div>
 
-	    	</div>
+						    
+					    	<div class="col d-flex flex-column justify-content-md-end">
+						        {# TITRE #}
+						        <a href="{{ asset('evenements/') }}{{ evenement.id }}" alt="{{ evenement.titre }} par l'utilisateur {{ evenement.organisateur }}" class="dark-grey-text">
+						        	<h4 class="h4-responsive">{{ evenement.titre }}</h4>
+						    	</a>
 
-		    <!--Card content-->
-		    <div class="col-md-9">
-		        <!--Title-->
-		        
-		        <h5 class="card-title">{{ evenement.titre }}</h5>
-		        <!--Text-->
-		        <p class="card-text">{{ evenement.description }}</p>
-		        <p class="card-text">{{ evenement.sport.nom }}</p>
-		        <p class="card-text">{{ evenement.niveau.nom }}</p>
-		        <p class="card-text">Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}</p>
-		        <a href="#" class="btn btn-primary">Button</a>
-		    </div>
+						       	{# SPORT ET NIVEAU #}
+						        <p>
+						        	<span class="badge indigo">{{ evenement.sport.nom }} </span>
+							        <span class="badge {{evenement.niveau.nom}} ">{{ evenement.niveau.nom }}</span>
+						        </p>
+						    </div>
+						</div>
 
-		</div>
+						<div class="row">
+
+							{# DESCRIPTION #}
+						    <div class="offset-lg-2 col-lg-5 col-sm-12">
+							    <p class="small font-italic"><i class="fa fa-quote-left grey-text"></i> {{ evenement.description }}</p>
+						    </div>
+
+						    {# DATE HEURE LIEU #}
+				        	<div class="col-lg-3 col-sm-12">
+
+					        	<ul class="list-unstyled">
+						        	<li><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("d/m/Y") }}</li>
+						        	<li><i class="fa fa-clock-o plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("H:i") }}</li>
+						        	<li><i class="fa fa-map-marker plusun-color" aria-hidden="true"></i> {{ evenement.ville }}</li>
+						        </ul>
+
+				        	</div>
+					    </div>  
+						
+				    </div>
+
+			        <div class="card-footer pt-0 pb-0 gradient-yellow-plusun">
+
+				    	<div class="d-flex justify-content-end align-items-center evenement-bg">
+				    		<span class="text-center text-white mr-2">X places restantes </span>
+				        	<a href="{{ asset('evenements/') }}{{ evenement.id }}" class="btn btn-plusun btn-rond waves-effect btn-small btn-list-evenement" role="button"><span class="font-weight-bold h5">+ 1</span></a>
+				    	</div>
+
+			    	</div>
+					
+				</div>
+				{# FIN EVENEMENT #}
+
+			{% endfor %}
+
+		</section>
 	</div>
-	<!--/.UN EVENEMENT -->
-                
-	
-	{% endfor %}
-	</div>
-
 
 </section>
 
