@@ -1,21 +1,104 @@
 /**********************************************************************/
 /*----------------------------- COULEURS -----------------------------*/
 
-	/* couleur */
+	/* couleur texte */
 	.plusun-color {
-		color : #22B573;
+		color : #005D77;
 	}
 
 	/* background */
 	.plusun-bg {
-		background-color: #22B573;
+		background-color: #005D77;
 	}
 
-	/* bouton */
+	/* bouton plein */
 	.btn-plusun {
-		background-color: #22B573;
-		border-color : #22B573;
+		background-color: #005D77;
+		border-color : #005D77;
 	}
+
+	/* bouton ligne */
+	.btn-outline-plusun {
+		border : 2.5px solid #FFF;
+		background-color: #22B573;
+
+		color : #FFF !important;
+	}
+
+	/* Bouton coin arrondi */
+	.btn-rounded {
+		border-radius: 10em;
+	}
+
+	.btn-small {
+		/*padding : .2rem 1.4rem;*/
+		padding : 1rem;
+	}
+
+	/* bouton rond avec ombre */
+	.btn-rond {
+		-webkit-border-radius: 100%;
+		border-radius: 100%;
+
+		padding : 10px;
+	}
+
+		.btn-rond a {
+			color : #FFF !important;
+		}
+
+		.icon-color {
+			color : ;
+		}
+
+	/* dégradés */
+
+		/* gris-noir */
+		.gradient-dark {
+			background: #424242;
+			background: -moz-linear-gradient(45deg, #424242 0%, #232323 100%);
+			background: -webkit-linear-gradient(45deg, #424242 0%,#232323 100%);
+			background: linear-gradient(45deg, #424242 0%,#232323 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#232323',GradientType=1 );
+		}
+
+		.gradient-light {
+			background: #fafafa;
+			background: -moz-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+			background: -webkit-linear-gradient(top, #fafafa 0%,#eaeaea 100%);
+			background: linear-gradient(to bottom, #fafafa 0%,#eaeaea 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#eaeaea',GradientType=0 );
+		}
+
+		.gradient-yellow-plusun {
+			background: #afce25;
+			background: -moz-linear-gradient(45deg, #afce25 0%, #22b573 93%);
+			background: -webkit-linear-gradient(45deg, #afce25 0%,#22b573 93%);
+			background: linear-gradient(45deg, #afce25 0%,#22b573 93%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#afce25', endColorstr='#22b573',GradientType=1 );
+		}
+
+
+	/* Badge vert découverte */
+	.Découverte {
+		background-color : #28a745;
+	}
+
+	/* Badge bleu débutant */
+	.Débutant {
+		background-color : #007bff;
+	}
+
+	/* Badge fuschia intermédiaire */
+	.Intermédiaire {
+		background-color : #e91e63;
+	}
+
+	/* Badge violet expert */
+	.Expert {
+		background-color : #9c27b0;
+	}
+
 
 /*----------------------------- COULEURS -----------------------------*/
 /**********************************************************************/
@@ -55,7 +138,7 @@
 
 		/* PHOTO AVATAR */
 		.img-avatar {
-			max-width  : 150%;
+			max-width : 155%;
 			height: auto;
 
 			position: relative;
@@ -158,23 +241,6 @@
 			}
 
 
-		/* BOUTON MENU PROFIL */
-		.btn-rond {
-			-webkit-border-radius: 100%;
-			border-radius: 100%;
-
-			border : none;
-
-			background-color: #22B573;
-
-			-webkit-box-shadow: 1px 1px 10px 1px #cccccc;
-			box-shadow: 1px 1px 10px 1px #cccccc;
-		}
-
-		.icon-color {
-			color : white;
-		}
-
 /*------------------------ BLOCK PROFIL NAV --------------------------*/
 
 
@@ -211,16 +277,27 @@
 /**********************************************************************/
 /*---------------------- BLOCK LISTE EVENEMENTS ----------------------*/
 
-	
 	.banner-liste-evenement {
 		height : 10px;
 		overflow: hidden;
 	}
 
-	.profil-user-evenements {
-		width: 200px;
+	.evenement-bg {
+		background-image: url(../img/logo/plus-un-pattern.png);
+		background-repeat: repeat-y;
+		background-size: 35px;
+		background-position: left;
 	}
 
+	/* Bouton +1 */
+	.btn-list-evenement {
+		position: relative;
+		bottom: 30px;
+	}
+
+	.card-footer {
+		border-top : none;
+	}
 
 /*---------------------- BLOCK LISTE EVENEMENTS ----------------------*/
 /**********************************************************************/
@@ -277,7 +354,7 @@
 
 	/* on checked */
 	[type="checkbox"]:checked + label:before {
-		background:#22B573; 
+		background:#005D77; 
 	}
 	[type="checkbox"]:checked + label:after {
 		background: #FFF;
@@ -333,8 +410,8 @@
 	.input-file + .input-file-trigger {
 	  display: inline-block;
 	  padding: 14px 25px;
-	  background-color: #22B573;
-	  border : 2px solid #22B573;
+	  background-color: #005D77;
+	  border : 2px solid #005D77;
 	  border-radius: 2px;
 	  color: #fff;
 	  font-size: 1em;
@@ -346,7 +423,7 @@
 	.input-file:focus + .input-file-trigger,
 	.input-file + .input-file-trigger:hover {
 	  background: #FFF;
-	  color: #22B573;
+	  color: #005D77;
 	}
 
 	/* Changer le curseur en "hand cursor" */
@@ -362,3 +439,5 @@
 
 /*------------------- BLOCK PROPOSER UN EVENEMENT --------------------*/
 /**********************************************************************/
+
+
