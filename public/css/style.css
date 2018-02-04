@@ -319,12 +319,25 @@
 
 	/* PHOTO */
 
-	.input-file-container {
+	/*.input-file-container {
 	  position: relative;
-	  /*width: 150px;*/
-	} 
-	.js .input-file-trigger {
-	  /*display: block;*/
+	  width: 178.35px;
+	} */
+
+	
+	/* On cache le bouton par défaut */
+	.input-file {
+	  position: absolute;
+	  z-index: -1;
+	  overflow: hidden;
+	  width: 0.1px;
+	  height: 0.1px;
+	  opacity: 0;
+	}
+
+	/* Stylisé le label */
+	.input-file + .input-file-trigger {
+	  display: inline-block;
 	  padding: 14px 25px;
 	  background-color: #22B573;
 	  border : 2px solid #22B573;
@@ -334,37 +347,23 @@
 	  transition: all .4s;
 	  cursor: pointer;
 	}
-	.js .input-file {
-	  position: absolute;
-	  top: 0; left: 0;
-	  width: 100%;
-	  opacity: 0;
-	  padding: 14px 0;
-	  cursor: pointer;
-	}
-	.js .input-file:hover + .input-file-trigger,
-	.js .input-file:focus + .input-file-trigger,
-	.js .input-file-trigger:hover,
-	.js .input-file-trigger:focus {
+
+	/* Stylisé le label */
+	.input-file:focus + .input-file-trigger,
+	.input-file + .input-file-trigger:hover {
 	  background: #FFF;
 	  color: #22B573;
 	}
 
-	.file-return {
-	  margin: 0;
+	/* Changer le curseur en "hand cursor" */
+	.input-file + .input-file-label {
+		cursor: pointer;
 	}
-	.file-return:not(:empty) {
-	  margin: 1em 0;
-	}
-	.js .file-return {
-	  font-style: italic;
-	  font-size: .9em;
-	  font-weight: bold;
-	}
-	.js .file-return:not(:empty):before {
-	  content: "Fichier ajouté : ";
-	  font-style: normal;
-	  font-weight: normal;
+
+	/* Accessible au clavier */
+	.input-file:focus + .input-file-label {
+		outline: 1px dotted #000;
+		outline: -webkit-focus-ring-color auto 5px;
 	}
 
 /*------------------- BLOCK PROPOSER UN EVENEMENT --------------------*/
