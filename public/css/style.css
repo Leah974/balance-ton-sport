@@ -195,9 +195,6 @@
 	}
 
 	#profil-nav .modal-header {
-		background-image: url(../img/logo/plus-un-pattern.png);
-		background-repeat: repeat;
-
 		height : 120px;
 
 		box-shadow : none;
@@ -205,17 +202,19 @@
 		overflow: hidden;
 	}
 
+		#profil-nav .modal-header .modal-header-decoration {
+			height : 100%;
+			width: 100%;
+		}
+
 	.position-avatar {
-		position : relative;
-		bottom : 65px;
+		position : absolute;
+		bottom : 6px;
 	}
 
 	#profil-nav .modal-body {
 		/* annulation des paddings */
 		padding : 0px;
-
-		/* Remonter le bloc pour qu'il soit plus près de l'avatar */
-		bottom: 65px;
 	}
 
 		#profil-nav .list-group-item {
