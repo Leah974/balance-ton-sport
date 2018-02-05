@@ -35,8 +35,8 @@
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier <span class="badge badge-danger badge-pill">1</span></a>
 
 					   <h5 class="list-group-item h5-responsive"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes évévements</h5>
-					    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise</a>
-					    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe <span class="badge badge-danger badge-pill">1</span></a>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise {% if (organiseNombre != 0) %}  <span class="badge badge-danger badge-pill">{{ organiseNombre }}</span> {% endif %}</a>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe {% if (participeNombre != 0) %} <span class="badge badge-danger badge-pill">{{ participeNombre }}</span> {% endif %}</a>
 
 					    <h5 class="list-group-item h5-responsive"><i class="fa fa-envelope-o plusun-color" aria-hidden="true"></i></i> Mes alertes</h5>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir {% if (nbAlertes != 0) %} <span class="badge badge-danger badge-pill" id="badge_alertes">{{ nbAlertes }}</span> {% endif %}</a>
