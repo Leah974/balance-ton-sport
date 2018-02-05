@@ -449,26 +449,7 @@
 
 
 
-
-
-/**********************************************************************/
-/*------------------ BLOCK INSCRIPTION / CONNEXION -------------------*/
-	
-	/* mettre sur une ligne le bouton inscription et connexion */
-	#register-form .list-group {
-		flex-direction: row;
-		justify-content: center;
-	}
-
-/*------------------ BLOCK INSCRIPTION / CONNEXION -------------------*/
-/**********************************************************************/
-
-
-
-
-
-/**********************************************************************/
-/*------------------------ BLOCK COMMENTAIRES ------------------------*/
+/*------------------- BLOCK COMMENTAIRES --------------------*/
 
 	.chatTitleContainer {
 	  
