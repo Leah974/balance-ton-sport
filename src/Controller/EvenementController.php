@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Form\EvenementType;
 use App\Entity\Evenement;
 use App\Entity\Sport;
@@ -13,9 +11,6 @@ use App\Entity\Comments;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-
-
 class EvenementController extends Controller
 {
     /**
@@ -28,7 +23,6 @@ class EvenementController extends Controller
             // création du formulaire
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
-
             // vérifie si l'utilisateur est connecté
         $user = $this->getUser();
                // si utilisateur non connecté
@@ -36,12 +30,11 @@ class EvenementController extends Controller
             // renvoie vers la page de connexion
             return $this->redirectToRoute('connexion');
         }
-
         else{
                 // si le formulaire est rempli et valide
             if ($form->isSubmitted() && $form->isValid()) {
                     // dossier d'enregistrement de la photo evenement
-                $dir = 'img/uploads';
+                $dir = 'img/uploads/evenement';
                     // recuperation de la photo uploadé et recuperation de l'extension
                 $file = $form['photo']->getData();
                 $extension = $file->guessExtension();
@@ -67,14 +60,12 @@ class EvenementController extends Controller
                     // redirection vers la page profil
                 return $this->redirectToRoute('profil');
             }
-
             return $this->render(
                 'sitepublic/proposer.html.twig',
                 array('form' => $form->createView())
             );
         }
     }
-
     /**
      * Affiche toutes les informations de l'événement dont l'id = $id
      * @Route("/evenements/{id}", name="detailsEvenements")
@@ -84,39 +75,31 @@ class EvenementController extends Controller
         $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
-
             // si il n'y a pas d'événement ou si l'événement id = $id n'existe pas
         if (!$evenement || !$id)
         {
                 // renvoie vers une page d'erreur
             return $this->render('sitepublic/erreurEvenements.html.twig');
         }
-
             // recuperation des inscrits à l'événement
         $participants = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(
                 ['evenement' => $id]
             );
-
             // recuperation de l'utilisateur
         $user = $this->getUser();
-
             // utilisateur déjà inscrit ou non 
         $dejaInscrit = false;
-
         foreach($participants as $participant)
             {
-
                 if($user === $participant->getUser())
                 {
                     $dejaInscrit = true;
                 }
             }
-
             // nombre d' inscrits à l'événement
         $nombre = count($participants);
-
             // événement complet ou non
         $nombreMax = $evenement->getParticipantMax();
         $complet = false;
@@ -129,29 +112,22 @@ class EvenementController extends Controller
                 {
                     $vide = true;
                 }
-
         $comment = new Comments();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid())
         {
          $user = $this->getUser();
-
          $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
-
          $comment->setUser($user);
          $comment->setEvenement($evenement);
-
          $em = $this->getDoctrine()->getManager();
          $em->persist($comment);
          $em->flush();
-
             return $this->redirectToRoute('evenements');
         }
-
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(
@@ -170,14 +146,6 @@ class EvenementController extends Controller
         )
         );
     }
-    public function removeComment($id)
-    {
-        $comment = $em->getRepository(Comments::class)->find($id);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($comment);
-        $em->flush();
-    }
-
     /**
      * Affiche tous les événements publics (statut = false) rangés par ordre chronologique
      * @Route("/evenements", name="evenements")
@@ -190,40 +158,31 @@ class EvenementController extends Controller
                     ['statut' => false],
                     ['dateEvenement' => 'ASC']
                 );
-
                     // recuperation du nombre de places restantes $placesRestantes
                 foreach($evenements as $evenement)
                 {
                     $placesDispos = $evenement->getParticipantMax();
-
                     $participants = $this->getDoctrine()
                         ->getRepository(Participant::class)
                         ->findBy(
                     ['evenement' => $evenement]
                     );
-
                     $placesPrises = count($participants);
                     $placesRestantes = $placesDispos - $placesPrises;
-
                         // récupération du pseudo de l'organisateur pour affichage de la photo
                     $pseudo = $evenement->getOrganisateur();
-
                     $users = $this->getDoctrine()
                         ->getRepository(User::class)
                         ->findBy(
                             ['username' => $pseudo]
                     );
-
                     foreach($users as $user)
                     {
                         $photo = $user->getPhoto();
                     }
-
                 }
-
         return $this->render('sitepublic/evenements.html.twig', ['photo' => $photo, 'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
         }
-
     /**
      * Inscription à un événement
      * @Route("/evenements/inscription/{id}", name="inscriptionEvenement")
@@ -233,9 +192,7 @@ class EvenementController extends Controller
             $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
-
             $user = $this->getUser();
-
             if(!$user)
             {
                 return $this->render('security/login.html.twig');
@@ -244,15 +201,12 @@ class EvenementController extends Controller
             $participant = new Participant();
             $participant->setUser($user);
             $participant->setEvenement($evenement);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
-
                 // à l'enregistrement redirection vers la page profil
             return $this->redirectToRoute('profil');
         }
-
     /**
      * Désinscription à un événement
      * @Route("/evenements/desinscription/{id}", name="desinscriptionEvenement")
@@ -260,16 +214,13 @@ class EvenementController extends Controller
         public function desinscrireEvenement($id)
         {
             $user = $this->getUser();
-
             $participants = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(
                 ['evenement' => $id]
             );
-
              foreach($participants as $participant)
             {
-
                 if($user === $participant->getUser())
                 {
                     $em = $this->getDoctrine()->getManager();
@@ -280,71 +231,42 @@ class EvenementController extends Controller
                 // à la suppresion redirection vers la page profil
             return $this->redirectToRoute('profil');
         }
-
-
-    /**
-     * Liste des événements organisés par l'utilisateur
-     * @Route("/profil/evenements/organise", name="profilOrganise")
-     */
-        public function listeEvenementsOrganisés()
-        {
-            $user = $this->getUser();
-            $username = $user->getUsername();
-
 /**
 * Signaler un commentaire
 * @Route("/evenements/{evenement}/signaler/commentaire/{id}", name="signalerCommentaire")
 */
 public function signalerCommentaire($id)
     {
-
-
         $comment = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->find($id);
-
         $statut = $comment->setStatut(false);
         
         $em = $this->getDoctrine()->getManager();
         $em->persist($statut);
         $em->flush();
-
             // à la suppresion retour vers la page ajouterCategorie
         return $this->redirectToRoute('evenements');
 }
-
 /**
 * Annuler un événement
 * @Route("/profil/annuler/{id}", name="annulerEvenement")
 */
 public function annulerEvenement($id)
     {
-
-    /**
-     * Liste des événements auxquels participe l'utilisateur
-     * @Route("/profil/evenements/participe", name="profilParticipe")
-     */
-        public function listeEvenementsParticipe()
-        {
-            $user = $this->getUser();
-
         $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
-
-
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(
                 ['evenement' => $evenement]
             );
-
         $participants = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(
                 ['evenement' => $evenement]
             );
-
                 // suppression des participantsen bdd
             foreach($participants as $participant)
             {
@@ -352,7 +274,6 @@ public function annulerEvenement($id)
             $em->remove($participant);
             $em->flush();
             }
-
                 // suppression des commentaires en bdd
             foreach($comments as $comment)
             {
@@ -364,9 +285,7 @@ public function annulerEvenement($id)
         $em = $this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();
-
             // à la suppresion retour vers la page ajouterCategorie
         return $this->redirectToRoute('profil');
 }
-
 }
