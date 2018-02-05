@@ -325,6 +325,34 @@ public function annulerEvenement($id)
             ->getRepository(Evenement::class)
             ->find($id);
 
+        $comments = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->findBy(
+                ['evenement' => $evenement]
+            );
+
+        $participants = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(
+                ['evenement' => $evenement]
+            );
+
+                // suppression des participantsen bdd
+            foreach($participants as $participant)
+            {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($participant);
+            $em->flush();
+            }
+
+                // suppression des commentaires en bdd
+            foreach($comments as $comment)
+            {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+            }
+                // suppression de l'événement en bdd
         $em = $this->getDoctrine()->getManager();
         $em->remove($evenement);
         $em->flush();

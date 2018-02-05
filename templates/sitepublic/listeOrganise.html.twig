@@ -8,5 +8,5 @@
 	Titre : {{ evenement.titre }}<br>
 	Description : {{ evenement.description }}<br>
 	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
-	<button class="btn btn-primary" type="submit"><a href="{{ asset('profil/annuler/') }}{{ evenement.id }}" class="blue-text ml-1"> Participer </a></i></button>
+	<button class="btn btn-primary" type="submit"><a href="{{ asset('profil/annuler/') }}{{ evenement.id }}" class="blue-text ml-1"> Annuler</a></i></button>
 	{% endfor %}
