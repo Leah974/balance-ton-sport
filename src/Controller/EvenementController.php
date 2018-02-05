@@ -41,7 +41,7 @@ class EvenementController extends Controller
                 // si le formulaire est rempli et valide
             if ($form->isSubmitted() && $form->isValid()) {
                     // dossier d'enregistrement de la photo evenement
-                $dir = 'img/uploads/evenement';
+                $dir = 'img/uploads';
                     // recuperation de la photo uploadé et recuperation de l'extension
                 $file = $form['photo']->getData();
                 $extension = $file->guessExtension();
@@ -157,7 +157,6 @@ class EvenementController extends Controller
             ->findBy(
                ['evenement' => $id]
             );
-
         return $this->render('sitepublic/details.html.twig', array(
             'form' => $form->createView(),
             'comments' => $comments,
@@ -170,6 +169,13 @@ class EvenementController extends Controller
             'dejaInscrit' => $dejaInscrit
         )
         );
+    }
+    public function removeComment($id)
+    {
+        $comment = $em->getRepository(Comments::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
     }
 
     /**
@@ -275,12 +281,23 @@ class EvenementController extends Controller
             return $this->redirectToRoute('profil');
         }
 
+
+    /**
+     * Liste des événements organisés par l'utilisateur
+     * @Route("/profil/evenements/organise", name="profilOrganise")
+     */
+        public function listeEvenementsOrganisés()
+        {
+            $user = $this->getUser();
+            $username = $user->getUsername();
+
 /**
 * Signaler un commentaire
 * @Route("/evenements/{evenement}/signaler/commentaire/{id}", name="signalerCommentaire")
 */
 public function signalerCommentaire($id)
     {
+
 
         $comment = $this->getDoctrine()
             ->getRepository(Comments::class)
@@ -303,9 +320,18 @@ public function signalerCommentaire($id)
 public function annulerEvenement($id)
     {
 
+    /**
+     * Liste des événements auxquels participe l'utilisateur
+     * @Route("/profil/evenements/participe", name="profilParticipe")
+     */
+        public function listeEvenementsParticipe()
+        {
+            $user = $this->getUser();
+
         $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
+
 
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
