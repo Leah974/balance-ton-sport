@@ -734,8 +734,19 @@ font-weight: bold;
 
 
 	.bg-inscription {
-
+		background-image: url(../img/bg-inscription.jpg);
 	}
+
+	.bg-connexion {
+		background-image: url(../img/bg-connexion.jpg);
+	}
+
+	.relative-inscription-connexion {
+		z-index: 1;
+
+		bottom : 400px;
+	}
+
 
 
 /*-------------------------- BLOCK INSCRIPTION -----------------------*/

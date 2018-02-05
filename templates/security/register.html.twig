@@ -8,12 +8,15 @@
 
 <section class="container">
 
-    <div class="offset-md-3 col-md-6 position-relative">
+    <div class="offset-sm-1 col-sm-10 offset-lg-3 col-lg-6 position-relative relative-inscription-connexion">
 	    <div class="card">
 
-	        <div class="card-body mx-4">
+	        <div class="card-body">
 
-	        	<h2 class="h2-responsive mb-4 text-center">Inscription</h2>
+	        	<div class=" mb-4 text-center">
+	        		<h2 class="h2-responsive">Inscription</h2>
+	        		<small class="text-muted">Plein d'événements vous attendent</small>
+	        	</div>
 
 			    {{ form_start(form, {'method': 'POST'}) }}
 
@@ -49,16 +52,19 @@
 						{{ form_label(form.password.second, "Confirmer le mot de passe") }}
 			    	</div>
 			    	<div class="text-center">
-			        	<button class="btn btn-plusun" type="submit">S'inscrire ! <i class="fa fa-paper-plane-o ml-1"></i></button>
+			        	<button class="btn btn-plusun" type="submit">S'inscrire !</button>
 			        </div>
 			    {{ form_end(form) }}
 
 			</div>
 
-			{# Footer #}
-		    <div class="modal-footer mx-5 pt-3 mb-1">
-		        <p class="font-small grey-text d-flex justify-content-end">Déjà membre ? <a href="{{ path('connexion') }}" class="blue-text ml-1"> Connectez-vous !</a></p>
-		    </div>
+		    <div class="card-footer pt-0 pb-0 gradient-yellow-plusun">
+
+		    	<div class="d-flex justify-content-end align-items-center evenement-bg p-3">
+		    		<p class="font-small text-white d-flex justify-content-end mb-0">Déjà membre ? <a href="{{ path('connexion') }}" class="plusun-color ml-1"> Connectez-vous !</a></p>
+		    	</div>
+
+			</div>
 		</div>
 	</div>
 
