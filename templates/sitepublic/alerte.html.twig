@@ -1,0 +1,7 @@
+<section class="form-elegant container margin-top">
+		{% for alerte in alertes %}
+				<p class="card-text">
+					{% if (alerte.typeAlerte == 'Inscription') %} Il y a un nouvel inscrit à votre événement{% endif %} <a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">"{{ alerte.evenement.titre }}"</a>
+				</p>
+		{% endfor %}
+</section>

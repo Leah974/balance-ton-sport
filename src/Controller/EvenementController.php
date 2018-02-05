@@ -8,6 +8,7 @@ use App\Entity\Sport;
 use App\Entity\Participant;
 use App\Entity\User;
 use App\Entity\Niveau;
+use App\Entity\Alerte;
 use App\Form\CommentType;
 use App\Entity\Comments;
 use Symfony\Component\HttpFoundation\Request;
@@ -212,6 +213,24 @@ class EvenementController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
+
+            //ajout d'une l'alerte inscription
+            $alerte = new Alerte();
+            $alerte->setTypeAlerte('Inscription');
+            $alerte->setEvenement($evenement);
+            
+            //récupération user organisateur
+            $pseudo_organisateur = $evenement->getOrganisateur();
+            $user_organisateur = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['username' => $pseudo_organisateur]);
+
+            $user_organisateur->addAlerte($alerte);
+
+            $am = $this->getDoctrine()->getManager();
+            $am->persist($alerte);
+            $am->flush();
+
 
                 // à l'enregistrement redirection vers la page profil
             return $this->redirectToRoute('profil');
