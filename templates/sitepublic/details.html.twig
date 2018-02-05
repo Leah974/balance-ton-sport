@@ -1,41 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
+<div class="fil container">Accueil>{{ evenement.ville }}>{{ evenement.sport.categorie.nom }}>{{ evenement.sport.nom }}<br></div>
 
-<section class="form-elegant container margin-top">
-	{% if complet %}
-		Evénement complet !<br>
-	{% endif %}
-	{% if vide %}
-		Soyez le premier à participer !<br>
-	{% endif %}
-	{% if not complet %}
-		Participants : {{ nombre }} / {{ evenement.participantMax }}<br>
-	{% endif %}
-	{% if user %}
-		{% if nombre > 0 %}
-			Liste participants : <br>
-			{% for participant in participants %}
-				{{ participant.user.username }}<br>
-			{% endfor %}<br>
-		{% endif %}
-	{% endif %}
 
-	Titre : {{ evenement.titre }}<br>
-	Organisé par : {{ evenement.organisateur }}<br>
-	Description : {{ evenement.description }}<br>
-	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
-	Niveau demandé : {{ evenement.niveau.nom }}<br>
-	{{ evenement.sport.nom }}<br>
-	<img src="{{ asset('img/uploads/evenement/')}}{{ evenement.photo }}" class="img-fluid">
-	{% if dejaInscrit %}
-		<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/desinscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Ne plus Participer </a></i></button>
-	{% endif %}
-	{% if not dejaInscrit %}
-		{% if not complet %}
-				<button class="btn btn-primary" type="submit"><a href="{{ asset('evenements/inscription/') }}{{ evenement.id }}" class="blue-text ml-1"> Participer </a></i></button>
-		{% endif %}
-	{% endif %}
+<section class="form-elegant container">
+	<div class="gradient-yellow-plusun">
+		<div class="d-flex justify-content-center align-items-center p-2 evenement-bg">
+		<h1>{{ evenement.titre |title }}</h1>
+	</div>
+	</div>
+	
+		<p class="text-right">
+			<span class="badge indigo">{{ evenement.sport.nom }} </span>
+ 			<span class="badge {{evenement.niveau.nom}} ">{{ evenement.niveau.nom }}</span>
+		</p>
+<div class="row">
+
+	<div class='col-md-6'>
+		<ul class="list-group">
+		<li class="list-group-item d-flex justify-content-between align-items-center">Organisé par {{ evenement.organisateur }}</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">Description :<br>
+		 {{ evenement.description }}</li>
+		
+				<li class="list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("d/m/Y") }}</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-clock-o plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("H:i") }}</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker plusun-color" aria-hidden="true"></i> {{ evenement.ville }}</li>
+			<li class="list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-child  plusun-color" aria-hidden="true"></i> Participants : {{ nombre }} / {{ evenement.participantMax }}<br></li>
+		
+		{% if dejaInscrit %}
+					<a class="btn btn-plusun btn-lg btn-block" type="button" href="{{ asset('evenements/desinscription/') }}{{ evenement.id }}"> Ne plus participer </a></i></button>
+				{% endif %}
+			{% if not dejaInscrit %}
+				{% if not complet %}
+						<a class="btn btn-plusun btn-lg btn-block" type="button" href="{{ asset('evenements/inscription/') }}{{ evenement.id }}"> Participer !</a></i>
+				{% endif %}
+			{% endif %}
+		{% if complet %}
+			<li class="list-group-item align-items-center list-group-item-danger">Evénement complet !</li>
+			{% endif %}
+			{% if vide %}
+			<li class="list-group-item d-flex justify-content-between align-items-center">Soyez le premier à participer !</li>
+			{% endif %}
+				</ul>
+	</div>
+				<div class='col-md-6'>
+				<img src="{{ asset('img/uploads/evenement/')}}{{ evenement.photo }}" class="img-fluid">		     
+		
+				
+
+			{% if user %}
+				{% if nombre > 0 %}
+					Découvrez la liste des inscrits : <br>
+					<div class="row">
+					{% for participant in participants %}
+						<div class='col-sm-6'>
+						<div class="comment-avatar p-1">
+								<img src="{# {{ asset('img/uploads/user/')}}{{ app.user.photo }} #}">	
+						{{ participant.user.username |title }}<br>
+						</div>
+					</div>
+					{% endfor %}<br>
+				</div>
+				{% endif %}
+			{% endif %}
+</div>
+</div>
 </section>
 
 
@@ -54,15 +84,13 @@
 					<tr>
 						<td></td>
 						<td>
-							<div class="comment-avatar text-center">
-								<img src="{# {{ asset('img/uploads/user/')}}{{ app.user.photo }} #}">
-							</div>
+							
 							<div class="comment-user">{{ comment.user.username }}</div>
 						</td>
 						<td></td>
 						<td>
 							<div id="comment-{{ comment.id }}" data-commentid="{{ comment.id }}" class="comment comment-step1">
-								<i class="fa fa-flag signal"></i>
+								<i class="fa fa-flag signal"><a href="{{ asset('sitepublic/evenements/{evenement}/signaler/commentaire/{id}') }}{{ comment.id }}"></a></i>
 								{{ comment.commentaire }}
 								
 								{% if app.user.id == comment.user.id %}
@@ -70,7 +98,7 @@
                                     <div class="btn-group" role="group" aria-label="...">
                                        {#  <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button> #}
                                         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i>Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i><a href="">Delete</a></button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i><a href="{{ asset('sitepublic/evenements/commentaire/supprimer/{id}') }}{{ comment.id }}">Delete</a></button>
                                     </div>                                
                                 </div>
                                 {% endif %}
@@ -91,7 +119,7 @@
 	
          {{ form_widget(form.commentaire, {'attr': { 'placeholder': 'Votre commentaire ici..', 'id': 'sendMessageForm'}}) }}   
         <span class="input-group-btn">
-        	{{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-primary fa fa-send', 'type': 'button', 'id': 'sendMessageButton'}}) }}  
+        	{{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-plusun', 'type': 'button', 'id': 'sendMessageButton'}}) }}  
         </span>
 	
 	</div>
