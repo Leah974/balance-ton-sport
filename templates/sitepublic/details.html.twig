@@ -43,6 +43,8 @@
 
 <div class="chatContainer">
     <div class="chatTitleContainer">nbre Commentaires</div>
+
+    {% if is_granted('ROLE_USER') %}
 	<div class="chatHistoryContainer">
 
         <ul class="formComments">
@@ -53,23 +55,27 @@
 						<td></td>
 						<td>
 							<div class="comment-avatar text-center">
-								<img src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}">
+								<img src="{# {{ asset('img/uploads/user/')}}{{ app.user.photo }} #}">
 							</div>
 							<div class="comment-user">{{ comment.user.username }}</div>
 						</td>
 						<td></td>
 						<td>
 							<div id="comment-{{ comment.id }}" data-commentid="{{ comment.id }}" class="comment comment-step1">
+								<i class="fa fa-flag signal"></i>
 								{{ comment.commentaire }}
-								<div class="comment-timestamp">{{ comment.date|date('d/m/Y H:i:s') }}</div>
+								
+								{% if app.user.id == comment.user.id %}
                                 <div id="commentactions-{{ comment.id }}" class="comment-actions">
                                     <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button>
+                                       {#  <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button> #}
                                         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i>Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i><a href="">Delete</a></button>
                                     </div>                                
                                 </div>
+                                {% endif %}
                             </div>
+                            <div class="comment-timestamp">{{ comment.date|date('d/m/Y H:i:s') }}</div>
 						</td>
 					</tr>
 				</table>
@@ -92,7 +98,12 @@
 {{ form_end(form) }}
 
 </section>
+{% else %}
+	<div class="alert alert-info" role="alert">
+  <strong>Hep là!</strong> Pour accéder aux commentaires tu dois te <a href="/connexion" class="alert-link">connecter</a>, ou <a href="/inscription" class="alert-link">t'inscrire</a> (et tu pourras même rejoindre cet évenement! ).
+</div> 
 
+{% endif %}
 {% endblock %}
 {% block javascripts %}
 <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>{% endblock %}

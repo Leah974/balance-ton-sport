@@ -514,7 +514,11 @@ display: block;
     vertical-align: top;
 	
 }
-
+.signal {
+	float: right;
+	margin-right: -3px;
+	margin-top: -3px;
+}
 .comment-user {
 	
 font-weight: bold;
@@ -577,11 +581,6 @@ font-weight: bold;
 	
 }
 
-
-.comment-step1:hover {
-	
-	
-}
 
 .comment {
     

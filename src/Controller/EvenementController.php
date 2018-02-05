@@ -170,6 +170,13 @@ class EvenementController extends Controller
         )
         );
     }
+    public function removeComment($id)
+    {
+        $comment = $em->getRepository(Comments::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
+    }
 
     /**
      * Affiche tous les événements publics (statut = false) rangés par ordre chronologique
