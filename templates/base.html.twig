@@ -47,11 +47,24 @@
                     <li class="nav_item"><a class="nav-link font-weight-normal" href="{{ path('evenements') }}">Les événements</a></li>
                 {# accès limité aux utilisateurs admin #}
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    <li class="nav_item"><a class="nav-link font-weight-normal" href="{{ path('ajouterSport') }}">Gestion Sports</a></li>
+                    
+                    <div class="dropdown">
+                        <a class="nav-link font-weight-normal dropdown-toggle" role="button" id="gestion-admin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Gestion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="gestion-admin">
+                            <a class="dropdown-item" href="{{ path('ajouterCategorie') }}">Catégories des sports</a>
+                            <a class="dropdown-item" href="{{ path('ajouterSport') }}">Sports</a>
+                            <a class="dropdown-item" href="{{ path('ajouterNiveau') }}">Niveau</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('afficherCommentaire') }}">Modération</a>
+                        </div>
+                    </div>
+                
                 {% endif %}  
                 {# accès limité aux utilisateurs connectés, on affiche mon compte et deconnexion #}
                 {% if is_granted('ROLE_USER') %}
-                    <li class="nav_item"><a class="nav-link font-weight-normal" href="{{ path('profil') }}">Compte Admin</a></li>
+                    <li class="nav_item"><a class="nav-link font-weight-normal" href="{{ path('profil') }}">Compte</a></li>
                     <li class="nav_item"><a class="nav-link font-weight-normal" href="{{ path('deconnexion') }}">Déconnexion</span></a></li>
                 {# si l'utilisateur n'est pas connecté, on affiche inscription / connexion #}
                 {% else %}

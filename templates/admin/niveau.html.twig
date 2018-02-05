@@ -1,29 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container">
-	 {{ form_start(niveauForm, {'method': 'POST'}) }}
-		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
-	{{ form_end(niveauForm) }}
+<section class="container margin-top">
+
+	<div class="card">
+		<div class="card-body">
+
+		<h2 class="h2-responsive mb-2">Ajouter un niveau</h2>
+
+		{{ form_start(niveauForm, {'method': 'POST'}) }}
+
+			{{ form_widget(niveauForm.nom, {'attr': {'class': 'form-control'}}) }}
+			<div class="text-center">
+				<button class="btn btn-plusun" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+			</div>
+
+		{{ form_end(niveauForm) }}
+	</div>
+
 </section>
-<section class="container">
 
-		<h3>Niveaux déjà enregistrés</h3>
+<section class="container mt-4">
 
-		<div>
-			<table>
+		<h3 class="h3-responsive">Niveaux déjà enregistrés</h3>
+
+		<div class="table-reponsive">
+		<table class="table product-table">
 				<thead>
-					<td>Nom</td>					
-					<td>Supprimer</td>
+					<th>Niveau</th>					
+					<th>Action</th>
 				</thead>
-		{% for niveau in niveaux %}
-				<tr>
-					<td>{{ niveau.nom }}</td>					
-					<td><a href="{{ asset('admin/niveau/supprimer/') }}{{ niveau.id }}" class="blue-text ml-1">Supprimer</a></td>
+				{% for niveau in niveaux %}
+					<tr>
+						<td>{{ niveau.nom }}</td>					
+						<td><a href="{{ asset('admin/niveau/supprimer/') }}{{ niveau.id }}" class="blue-text ml-1"><span class="badge red">Supprimer <i class="fa fa-times" aria-hidden="true"></i></span></a></td>
+					</tr>
+				{% endfor %}
 				</tr>
-		{% endfor %}
-				</tr>
-			</table>
+		</table>
 		</div>
 
 </section>
