@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Form\UserInfosType;
 use App\Entity\User;
+use App\Entity\Evenement;
+use App\Entity\Participant;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -54,9 +56,48 @@ class UserInfosController extends Controller
            return $this->redirectToRoute('profil'); 
         }
 
+        $username = $user_infos->getUsername();
+
+        $organiseEvenements = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->findBy(
+                ['organisateur' => $username],
+                ['dateEvenement' => 'ASC']
+            );
+
+            $organiseAucun = false;
+            $organiseNombre = count($organiseEvenements);
+
+            if($organiseNombre == 0)
+            {
+                $organiseAucun = true;
+            }
+
+         $participants = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(
+                ['user' => $user_infos]
+            );
+
+            $participeAucun = false;
+            $participeNombre = count($participants);
+
+            if($participeNombre == 0)
+            {
+                $participeAucun = true;
+            }
+
         return $this->render(
-            'security/profil.html.twig',
-            array('form' => $form->createView())
-        );
+            'security/profil.html.twig',array(
+                'form' => $form->createView(), 
+                'organiseEvenements' => $organiseEvenements, 
+                'organiseAucun' => $organiseAucun,
+                'organiseNombre' => $organiseNombre,
+                'participants' => $participants, 
+                'participeAucun' => $participeAucun, 
+                'participeNombre' => $participeNombre
+            ));
     }
+
+
 }

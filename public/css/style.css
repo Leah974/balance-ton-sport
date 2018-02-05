@@ -1,21 +1,112 @@
 /**********************************************************************/
 /*----------------------------- COULEURS -----------------------------*/
 
-	/* couleur */
+	/* couleur texte */
 	.plusun-color {
-		color : #22B573;
+		color : #005D77;
 	}
 
 	/* background */
 	.plusun-bg {
-		background-color: #22B573;
+		background-color: #005D77;
 	}
 
-	/* bouton */
+	/* bouton plein */
 	.btn-plusun {
-		background-color: #22B573;
-		border-color : #22B573;
+		background-color: #005D77;
+		border-color : #005D77;
 	}
+
+	/* bouton ligne */
+	.btn-outline-plusun {
+		border : 2.5px solid #FFF;
+		background-color: #22B573;
+
+		color : #FFF !important;
+	}
+
+	/* Bouton coin arrondi */
+	.btn-rounded {
+		border-radius: 10em;
+	}
+
+	.btn-small {
+		/*padding : .2rem 1.4rem;*/
+		padding : 1rem;
+	}
+
+	/* bouton rond avec ombre */
+	.btn-rond {
+		-webkit-border-radius: 100%;
+		border-radius: 100%;
+
+		padding : 10px;
+	}
+
+		.btn-rond a {
+			color : #FFF !important;
+		}
+
+		.icon-color {
+			color : ;
+		}
+
+	/* dégradés */
+
+		/* gris-noir */
+		.gradient-dark {
+			background: #424242;
+			background: -moz-linear-gradient(45deg, #424242 0%, #232323 100%);
+			background: -webkit-linear-gradient(45deg, #424242 0%,#232323 100%);
+			background: linear-gradient(45deg, #424242 0%,#232323 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#232323',GradientType=1 );
+		}
+
+		.gradient-light {
+			background: #fafafa;
+			background: -moz-linear-gradient(top, #fafafa 0%, #eaeaea 100%);
+			background: -webkit-linear-gradient(top, #fafafa 0%,#eaeaea 100%);
+			background: linear-gradient(to bottom, #fafafa 0%,#eaeaea 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#eaeaea',GradientType=0 );
+		}
+
+		.gradient-yellow-plusun {
+			background: #afce25;
+			background: -moz-linear-gradient(45deg, #afce25 0%, #22b573 93%);
+			background: -webkit-linear-gradient(45deg, #afce25 0%,#22b573 93%);
+			background: linear-gradient(45deg, #afce25 0%,#22b573 93%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#afce25', endColorstr='#22b573',GradientType=1 );
+		}
+
+		/* Dégradé RGBAlpha */
+		.gradient-yellow-plusun-rgba {
+			background: -moz-linear-gradient(45deg, rgba(175,206,37,0.45) 0%, rgba(34,181,115,0.64) 93%, rgba(34,181,115,0.65) 100%);
+			background: -webkit-linear-gradient(45deg, rgba(175,206,37,0.45) 0%,rgba(34,181,115,0.64) 93%,rgba(34,181,115,0.65) 100%);
+			background: linear-gradient(45deg, rgba(175,206,37,0.45) 0%,rgba(34,181,115,0.64) 93%,rgba(34,181,115,0.65) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#73afce25', endColorstr='#a622b573',GradientType=1 );
+		}
+
+
+	/* Badge vert découverte */
+	.Découverte {
+		background-color : #28a745;
+	}
+
+	/* Badge bleu débutant */
+	.Débutant {
+		background-color : #007bff;
+	}
+
+	/* Badge fuschia intermédiaire */
+	.Intermédiaire {
+		background-color : #e91e63;
+	}
+
+	/* Badge violet expert */
+	.Expert {
+		background-color : #9c27b0;
+	}
+
 
 /*----------------------------- COULEURS -----------------------------*/
 /**********************************************************************/
@@ -55,7 +146,7 @@
 
 		/* PHOTO AVATAR */
 		.img-avatar {
-			max-width  : 150%;
+			max-width : 155%;
 			height: auto;
 
 			position: relative;
@@ -106,15 +197,12 @@
 	
 
 	/* MENU DU PROFIL */
-	#profil-nav {
+	.form-plusun {
 		-webkit-box-shadow: 0 10px 10px 0 #cccccc;
 		box-shadow: 0 10px 10px 0 #cccccc;
 	}
 
-	#profil-nav .modal-header {
-		background-image: url(../img/logo/plus-un-pattern.png);
-		background-repeat: repeat;
-
+	.form-plusun .modal-header {
 		height : 120px;
 
 		box-shadow : none;
@@ -122,20 +210,22 @@
 		overflow: hidden;
 	}
 
+		.form-plusun .modal-header .modal-header-decoration {
+			height : 100%;
+			width: 100%;
+		}
+
 	.position-avatar {
-		position : relative;
-		bottom : 65px;
+		position : absolute;
+		bottom : 6px;
 	}
 
-	#profil-nav .modal-body {
+	.form-plusun .modal-body {
 		/* annulation des paddings */
 		padding : 0px;
-
-		/* Remonter le bloc pour qu'il soit plus près de l'avatar */
-		bottom: 65px;
 	}
 
-		#profil-nav .list-group-item {
+		.form-plusun .list-group-item {
 			/* annulation des borders colorés */
 			border : none;
 
@@ -143,7 +233,7 @@
 			padding : .5rem 1.25rem;
 		}
 
-			#profil-nav .list-group-item.active {
+			.form-plusun .list-group-item.active {
 				/* background color blanc */
 				background-color: #FFF;
 				border-color : #FFF;
@@ -157,23 +247,6 @@
 				font-weight: bold;
 			}
 
-
-		/* BOUTON MENU PROFIL */
-		.btn-rond {
-			-webkit-border-radius: 100%;
-			border-radius: 100%;
-
-			border : none;
-
-			background-color: #22B573;
-
-			-webkit-box-shadow: 1px 1px 10px 1px #cccccc;
-			box-shadow: 1px 1px 10px 1px #cccccc;
-		}
-
-		.icon-color {
-			color : white;
-		}
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/
 
@@ -211,16 +284,27 @@
 /**********************************************************************/
 /*---------------------- BLOCK LISTE EVENEMENTS ----------------------*/
 
-	
 	.banner-liste-evenement {
 		height : 10px;
 		overflow: hidden;
 	}
 
-	.profil-user-evenements {
-		width: 200px;
+	.evenement-bg {
+		background-image: url(../img/logo/plus-un-pattern.png);
+		background-repeat: repeat-y;
+		background-size: 35px;
+		background-position: left;
 	}
 
+	/* Bouton +1 */
+	.btn-list-evenement {
+		position: relative;
+		bottom: 30px;
+	}
+
+	.card-footer {
+		border-top : none;
+	}
 
 /*---------------------- BLOCK LISTE EVENEMENTS ----------------------*/
 /**********************************************************************/
@@ -277,7 +361,7 @@
 
 	/* on checked */
 	[type="checkbox"]:checked + label:before {
-		background:#22B573; 
+		background:#005D77; 
 	}
 	[type="checkbox"]:checked + label:after {
 		background: #FFF;
@@ -319,52 +403,45 @@
 
 	/* PHOTO */
 
-	.input-file-container {
-	  position: relative;
-	  /*width: 150px;*/
-	} 
-	.js .input-file-trigger {
-	  /*display: block;*/
+	/* On cache le bouton par défaut */
+	.input-file {
+	  position: absolute;
+	  z-index: -1;
+	  overflow: hidden;
+	  width: 0.1px;
+	  height: 0.1px;
+	  opacity: 0;
+	}
+
+	/* Stylisé le label */
+	.input-file + .input-file-trigger {
+	  display: inline-block;
 	  padding: 14px 25px;
-	  background-color: #22B573;
-	  border : 2px solid #22B573;
+	  background-color: #005D77;
+	  border : 2px solid #005D77;
 	  border-radius: 2px;
 	  color: #fff;
 	  font-size: 1em;
 	  transition: all .4s;
 	  cursor: pointer;
 	}
-	.js .input-file {
-	  position: absolute;
-	  top: 0; left: 0;
-	  width: 100%;
-	  opacity: 0;
-	  padding: 14px 0;
-	  cursor: pointer;
-	}
-	.js .input-file:hover + .input-file-trigger,
-	.js .input-file:focus + .input-file-trigger,
-	.js .input-file-trigger:hover,
-	.js .input-file-trigger:focus {
+
+	/* Stylisé le label */
+	.input-file:focus + .input-file-trigger,
+	.input-file + .input-file-trigger:hover {
 	  background: #FFF;
-	  color: #22B573;
+	  color: #005D77;
 	}
 
-	.file-return {
-	  margin: 0;
+	/* Changer le curseur en "hand cursor" */
+	.input-file + .input-file-label {
+		cursor: pointer;
 	}
-	.file-return:not(:empty) {
-	  margin: 1em 0;
-	}
-	.js .file-return {
-	  font-style: italic;
-	  font-size: .9em;
-	  font-weight: bold;
-	}
-	.js .file-return:not(:empty):before {
-	  content: "Fichier ajouté : ";
-	  font-style: normal;
-	  font-weight: normal;
+
+	/* Accessible au clavier */
+	.input-file:focus + .input-file-label {
+		outline: 1px dotted #000;
+		outline: -webkit-focus-ring-color auto 5px;
 	}
 
 /*------------------- BLOCK PROPOSER UN EVENEMENT --------------------*/

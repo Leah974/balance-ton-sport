@@ -110,19 +110,129 @@ class AdminController extends Controller
     }
 
     /**
-     * Modérer les commentaires
-     * @Route("/admin/commentaire", name="gererCommentaire")
+     * Suppression d'un sport
+     * @Route("/admin/sport/supprimer/{id}", name="supprimerSport")
      */
-    public function gererCommentaire()
+    public function supprimerSport($id)
     {
+
+        $sports = $this->getDoctrine()
+        ->getRepository(Sport::class)
+        ->findBy(
+            ['id' => $id]
+        );
+
+        foreach($sports as $sport)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($sport);
+                $em->flush();
+            }
+
+            // à la suppresion retour vers la page ajouterSport
+        return $this->redirectToRoute('ajouterSport');
+    }
+
+    /**
+     * Suppresion d'une catégorie
+     * @Route("/admin/categorie/supprimer/{id}", name="supprimerCategorie")
+     */
+    public function supprimerCategorie($id)
+    {
+
+        $categories = $this->getDoctrine()
+        ->getRepository(Categorie::class)
+        ->findBy(
+            ['id' => $id]
+        );
+
+        foreach($categories as $categorie)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($categorie);
+                $em->flush();
+            }
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('ajouterCategorie');
+    }
+
+/**
+* Suppresion d'un niveau
+* @Route("/admin/niveau/supprimer/{id}", name="supprimerNiveau")
+*/
+public function supprimerNiveau($id)
+    {
+
+        $niveaux = $this->getDoctrine()
+        ->getRepository(Niveau::class)
+        ->findBy(
+            ['id' => $id]
+        );
+
+        foreach($niveaux as $niveau)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($niveau);
+                $em->flush();
+            }
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('ajouterNiveau');
+}
+
+/**
+* Listes des commentaires signalés
+* @Route("/admin/commentaire", name="afficherCommentaire")
+*/
+public function afficherCommentaire()
+    {
+
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(
-                ['statut' => false],
-                ['date' => 'ASC']
+               ['statut' => false]
             );
 
         return $this->render(
-            'admin/commentaire.html.twig', ['comments' => $comments]);
-    }
+            'admin/commentaire.html.twig',
+                ['comments' => $comments]
+        );
+}
+
+/**
+* Supprimer un commentaire signalé
+* @Route("/admin/commentaire/supprimer/{id}", name="supprimerCommentaire")
+*/
+public function supprimerCommentaire($id)
+    {
+        $comment = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->find($id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();       
+
+        return $this->redirectToRoute('afficherCommentaire');
+}
+
+/**
+* Valider un commentaire signalé
+* @Route("/admin/commentaire/valider/{id}", name="validerCommentaire")
+*/
+public function validerCommentaire($id)
+    {
+        $comment = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->find($id);
+
+        $statut = $comment->setStatut(true);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statut);
+        $em->flush();    
+
+        return $this->redirectToRoute('afficherCommentaire');
+}
 }

@@ -20,6 +20,8 @@ class SportType extends AbstractType
             ->add('categorie', EntityType::class, array(
                     'class' => Categorie::class,
                     'choice_label' => 'nom',
+                    'required' => true,
+                    'placeholder' => 'Catégorie du sport'
                 ))
         ;
     }

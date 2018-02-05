@@ -73,11 +73,10 @@
 	</div>
 
 	{# PHOTO #}
-	<div class="">
-    	{# input, checkbox, select, etc #}
-    	{{ form_label(form.photo, "Photo de profil") }}
-		{{ form_widget(form.photo,  {'attr': {'class': 'form-control-file'}}) }}
-	</div>
+	<p>Personnalisez votre profil en y ajoutant une photo</p>
+	{{ form_errors(form.photo) }}
+	{{ form_widget(form.photo, {'id' : 'photo-file', 'attr': {'class': 'input-file'}}) }}
+	<label class="input-file-trigger text-center" for="photo-file"><span><i class="fa fa-file-photo-o" aria-hidden="true"></i> Ajouter une photo...</span></label>
 
 	{# BOUTON VALIDATION #}
 	<div class="text-center mt-4">

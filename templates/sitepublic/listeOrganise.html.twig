@@ -1,20 +1,12 @@
-{% extends 'base.html.twig' %}
 
-{% block main %}
-<section class="form-elegant container">
-	Bonjour {{ user.username }} ! <br>
-		{% if aucun %}
+		{% if organiseAucun %}
 			Vous n'avez organisé aucun événement pour le moment 
 		{% endif %}
 		
-	{% for evenement in evenements %}
+	{% for evenement in organiseEvenements %}
 
 	Titre : {{ evenement.titre }}<br>
 	Description : {{ evenement.description }}<br>
 	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
-
+	<button class="btn btn-primary" type="submit"><a href="{{ asset('profil/annuler/') }}{{ evenement.id }}" class="blue-text ml-1"> Annuler</a></i></button>
 	{% endfor %}
-
-</section>
-
-{% endblock %}

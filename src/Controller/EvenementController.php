@@ -191,7 +191,37 @@ class EvenementController extends Controller
                     ['dateEvenement' => 'ASC']
                 );
 
-        return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements]);
+                    // recuperation du nombre de places restantes $placesRestantes
+                foreach($evenements as $evenement)
+                {
+                    $placesDispos = $evenement->getParticipantMax();
+
+                    $participants = $this->getDoctrine()
+                        ->getRepository(Participant::class)
+                        ->findBy(
+                    ['evenement' => $evenement]
+                    );
+
+                    $placesPrises = count($participants);
+                    $placesRestantes = $placesDispos - $placesPrises;
+
+                        // récupération du pseudo de l'organisateur pour affichage de la photo
+                    $pseudo = $evenement->getOrganisateur();
+
+                    $users = $this->getDoctrine()
+                        ->getRepository(User::class)
+                        ->findBy(
+                            ['username' => $pseudo]
+                    );
+
+                    foreach($users as $user)
+                    {
+                        $photo = $user->getPhoto();
+                    }
+
+                }
+
+        return $this->render('sitepublic/evenements.html.twig', ['photo' => $photo, 'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
         }
 
     /**
@@ -251,6 +281,7 @@ class EvenementController extends Controller
             return $this->redirectToRoute('profil');
         }
 
+
     /**
      * Liste des événements organisés par l'utilisateur
      * @Route("/profil/evenements/organise", name="profilOrganise")
@@ -260,23 +291,34 @@ class EvenementController extends Controller
             $user = $this->getUser();
             $username = $user->getUsername();
 
-            $evenements = $this->getDoctrine()
-            ->getRepository(Evenement::class)
-            ->findBy(
-                ['organisateur' => $username],
-                ['dateEvenement' => 'ASC']
-            );
+/**
+* Signaler un commentaire
+* @Route("/evenements/{evenement}/signaler/commentaire/{id}", name="signalerCommentaire")
+*/
+public function signalerCommentaire($id)
+    {
 
-            $aucun = false;
-            $nombre = count($evenements);
 
-            if($nombre = 0)
-            {
-                $aucun = true;
-            }
+        $comment = $this->getDoctrine()
+            ->getRepository(Comments::class)
+            ->find($id);
 
-            return $this->render('sitepublic/desinscriptionEvenement.html.twig', ['user' => $user, 'evenements' => $evenements, 'aucun' => $aucun]);
-        }
+        $statut = $comment->setStatut(false);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statut);
+        $em->flush();
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('evenements');
+}
+
+/**
+* Annuler un événement
+* @Route("/profil/annuler/{id}", name="annulerEvenement")
+*/
+public function annulerEvenement($id)
+    {
 
     /**
      * Liste des événements auxquels participe l'utilisateur
@@ -286,21 +328,45 @@ class EvenementController extends Controller
         {
             $user = $this->getUser();
 
-            $participants = $this->getDoctrine()
-            ->getRepository(Participant::class)
+        $evenement = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->find($id);
+
+
+        $comments = $this->getDoctrine()
+            ->getRepository(Comments::class)
             ->findBy(
-                ['user' => $user]
+                ['evenement' => $evenement]
             );
 
-            $aucun = false;
-            $nombre = count($participants);
+        $participants = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(
+                ['evenement' => $evenement]
+            );
 
-            if($nombre == 0)
+                // suppression des participantsen bdd
+            foreach($participants as $participant)
             {
-                $aucun = true;
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($participant);
+            $em->flush();
             }
 
-            return $this->render('sitepublic/inscriptionEvenement.html.twig', ['user' => $user, 'participants' => $participants, 'aucun' => $aucun, 'nombre' => $nombre]);
-        }
+                // suppression des commentaires en bdd
+            foreach($comments as $comment)
+            {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+            }
+                // suppression de l'événement en bdd
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($evenement);
+        $em->flush();
+
+            // à la suppresion retour vers la page ajouterCategorie
+        return $this->redirectToRoute('profil');
+}
 
 }

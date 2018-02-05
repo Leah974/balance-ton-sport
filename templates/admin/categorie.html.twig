@@ -5,11 +5,28 @@
 	 {{ form_start(categorieForm, {'method': 'POST'}) }}
 		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
 	{{ form_end(categorieForm) }}
+</section>
 
-	Categories déjà enregistrées :<br>
-	{% for categorie in categories %}
-		{{ categorie.nom}}
-	{% endfor %}
+<section class="container">
+
+		<h3>Catégories déjà enregistrées</h3>
+
+		<div>
+			<table>
+				<thead>
+					<td>Nom</td>					
+					<td>Supprimer</td>
+				</thead>
+		{% for categorie in categories %}
+				<tr>
+					<td>{{ categorie.nom }}</td>					
+					<td><a href="{{ asset('admin/categorie/supprimer/') }}{{ categorie.id }}" class="blue-text ml-1">Supprimer</a></td>
+				</tr>
+		{% endfor %}
+				</tr>
+			</table>
+		</div>
+
 </section>
 
 {% endblock %}

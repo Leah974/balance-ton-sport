@@ -41,7 +41,7 @@ class Comments
 
     /**
      * @ORM\Column(type="boolean")
-     * @var boolean $statut Message validé par modérateur(true) ou non (false)
+     * @var boolean $statut Message signalé = false
      */
     private $statut;   
 
@@ -154,7 +154,7 @@ class Comments
     /**
      * @return boolean $statut Message validé par modérateur(true) ou non (false)
      */
-    public function isStatut()
+    public function getStatut()
     {
         return $this->statut;
     }
