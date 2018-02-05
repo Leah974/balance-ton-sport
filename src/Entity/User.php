@@ -127,6 +127,11 @@ class User implements UserInterface, \Serializable
     */
     private $participant; 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Alerte", inversedBy="users")
+     * @ORM\JoinTable(name="users_alertes")
+    */
+    private $alertes;
 
     public function __construct()
     {
@@ -135,6 +140,9 @@ class User implements UserInterface, \Serializable
         // $this->salt = md5(uniqid('', true));
 
         $this->setRoles(array ('ROLE_SUPER_ADMIN'));
+        
+        //relation avec la table alerte
+        $this->alertes = new ArrayCollection();
     }
 
     /**
@@ -453,4 +461,17 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function addAlerte(Alerte $alerte)
+    {
+        $alerte->addUser($this); // synchronously updating inverse side
+        $this->alertes[] = $alerte;
+    }
+    
+    /**
+     * @return Collection|Alerte[]
+     */
+    public function getAlertes()
+    {
+        return $this->alertes;
+    }
 }

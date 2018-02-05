@@ -34,12 +34,12 @@
 						<h5 class="list-group-item h5-responsive"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h5>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier <span class="badge badge-danger badge-pill">1</span></a>
 
-					   <h5 class="list-group-item h5-responsive"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h5>
+					   <h5 class="list-group-item h5-responsive"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes évévements</h5>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise</a>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe <span class="badge badge-danger badge-pill">1</span></a>
 
 					    <h5 class="list-group-item h5-responsive"><i class="fa fa-envelope-o plusun-color" aria-hidden="true"></i></i> Mes alertes</h5>
-					    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir <span class="badge badge-danger badge-pill">1</span></a>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir {% if (nbAlertes != 0) %} <span class="badge badge-danger badge-pill" id="badge_alertes">{{ nbAlertes }}</span> {% endif %}</a>
 
 					    <h5 class="list-group-item h5-responsive"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h5>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-historique-list" data-toggle="list" href="#list-historique" role="tab" aria-controls="historique">Consulter</a>
@@ -70,7 +70,7 @@
 		      </div>
 
 		      <div class="tab-pane fade show active" id="list-alertes" role="tabpanel" aria-labelledby="list-alertes-list">
-		      	{% block alertes %}Récap' de mes alertes (messages d'utilisateur, commentaires, alerte événement, etc){% endblock %}
+		      	{{ include('sitepublic/alerte.html.twig') }}
 		      </div>
 
 		      <div class="tab-pane fade" id="list-organisateur" role="tabpanel" aria-labelledby="list-organisateur-list">
@@ -101,5 +101,7 @@
 	<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 	{# bouton photo #}
 	<script type="text/javascript" src="{{ asset('js/file.js') }}"></script>
+	{# bouton alertes #}
+	<script type="text/javascript" src="{{ asset('js/alertes_jq.js') }}"></script>
 {% endblock %}
 

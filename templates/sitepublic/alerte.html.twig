@@ -1,0 +1,19 @@
+{% if nbAlertes == 0 %}
+	Vous n'avez aucune alerte pour le moment 
+{% endif %}
+
+
+{% for alerte in alertes %}		
+	{% if (alerte.typeAlerte == 'Inscription' and alerte.statut == 1) %} 
+		<div class="card" data-num="{{ alerte.id }}" data-url="{{ path("statut") }}">
+			Il y a un nouvel inscrit à votre événement <a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">"{{ alerte.evenement.titre }}"</a>
+			<button type="button" class="btn btn-danger">X</button>
+		</div>
+	{% endif %}
+	{% if (alerte.typeAlerte == 'Désinscription') and alerte.statut == 1 %} 
+		<div class="card" data-num="{{ alerte.id }}" data-url="{{ path("statut") }}">
+			Un participant s'est désinscrit de votre événement <a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">"{{ alerte.evenement.titre }}"</a>
+			<button type="button" class="btn btn-danger">X</button>
+		</div>
+	{% endif %}
+{% endfor %}
