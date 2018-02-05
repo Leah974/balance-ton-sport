@@ -1,56 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container margin-top">
 
-    {# Form without header #}
-    <div class="card">
+<div class="view img-banner bg-inscription hm-teal-light">
+	<div class="mask pattern-5 flex-center"></div>
+</div>
 
-        <div class="card-body mx-4">
+<section class="container">
 
-		    {{ form_start(form, {'method': 'POST'}) }}
+    <div class="offset-sm-1 col-sm-10 offset-lg-3 col-lg-6 position-relative relative-inscription-connexion">
+	    <div class="card">
 
-		    	{# message d'erreur générale sur le formulaire #}
-		    	{{ form_errors(form) }}
+	        <div class="card-body">
 
-		    	<div class="md-form">
-		    		{# message d'erreur sur le pseudo #}
-		        	{{ form_errors(form.username) }}
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.username, "Pseudo") }} 
+	        	<div class=" mb-4 text-center">
+	        		<h2 class="h2-responsive">Inscription</h2>
+	        		<small class="text-muted">Plein d'événements vous attendent</small>
+	        	</div>
+
+			    {{ form_start(form, {'method': 'POST'}) }}
+
+			    	{# message d'erreur générale sur le formulaire #}
+			    	{{ form_errors(form) }}
+
+			    	<div class="md-form">
+			    		{# message d'erreur sur le pseudo #}
+			        	{{ form_errors(form.username) }}
+			        	{# input, checkbox, select, etc #}
+						{{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+						{# label #}
+						{{ form_label(form.username, "Pseudo") }} 
+			    	</div>
+			    	<div class="md-form">
+			        	{# message d'erreur sur le pseudo #}
+			        	{{ form_errors(form.email) }}
+			        	{# input, checkbox, select, etc #}
+						{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+						{# label #}
+						{{ form_label(form.email, "Adresse e-mail") }}
+			        </div>
+			    	<div class="md-form">
+			        	{# {{ form_row(form.password.first) }} #}
+			        	{{ form_errors(form.password.first) }}
+						{{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+						{{ form_label(form.password.first, "Mot de passe") }}
+			        </div>
+			    	<div class="md-form">
+			        	{# {{ form_row(form.password.second) }} #}
+			        	{{ form_errors(form.password.second) }}
+						{{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+						{{ form_label(form.password.second, "Confirmer le mot de passe") }}
+			    	</div>
+			    	<div class="text-center">
+			        	<button class="btn btn-plusun" type="submit">S'inscrire !</button>
+			        </div>
+			    {{ form_end(form) }}
+
+			</div>
+
+		    <div class="card-footer pt-0 pb-0 gradient-yellow-plusun">
+
+		    	<div class="d-flex justify-content-end align-items-center evenement-bg p-3">
+		    		<p class="font-small text-white d-flex justify-content-end mb-0">Déjà membre ? <a href="{{ path('connexion') }}" class="plusun-color ml-1"> Connectez-vous !</a></p>
 		    	</div>
-		    	<div class="md-form">
-		        	{# message d'erreur sur le pseudo #}
-		        	{{ form_errors(form.email) }}
-		        	{# input, checkbox, select, etc #}
-					{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-					{# label #}
-					{{ form_label(form.email, "Adresse e-mail") }}
-		        </div>
-		    	<div class="md-form">
-		        	{# {{ form_row(form.password.first) }} #}
-		        	{{ form_errors(form.password.first) }}
-					{{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
-					{{ form_label(form.password.first, "Mot de passe") }}
-		        </div>
-		    	<div class="md-form">
-		        	{# {{ form_row(form.password.second) }} #}
-		        	{{ form_errors(form.password.second) }}
-					{{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
-					{{ form_label(form.password.second, "Confirmer le mot de passe") }}
-		    	</div>
-		    	<div class="text-center">
-		        	<button class="btn btn-primary" type="submit">S'inscrire ! <i class="fa fa-paper-plane-o ml-1"></i></button>
-		        </div>
-		    {{ form_end(form) }}
+
+			</div>
 		</div>
-
-		{# Footer #}
-	    <div class="modal-footer mx-5 pt-3 mb-1">
-	        <p class="font-small grey-text d-flex justify-content-end">Déjà membre ? <a href="{{ path('connexion') }}" class="blue-text ml-1"> Connectez-vous !</a></p>
-	    </div>
 	</div>
 
 </section>

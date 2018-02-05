@@ -1,12 +1,36 @@
+{% if organiseAucun %}
+	<div class="">Vous n'avez organisé aucun événement pour le moment</div>
+{% endif %}
 
-		{% if organiseAucun %}
-			Vous n'avez organisé aucun événement pour le moment 
-		{% endif %}
-		
-	{% for evenement in organiseEvenements %}
 
-	Titre : {{ evenement.titre }}<br>
-	Description : {{ evenement.description }}<br>
-	Le {{ evenement.dateEvenement|date("d/m/Y") }} à {{ evenement.dateEvenement|date("H:i") }}<br>
-	<button class="btn btn-primary" type="submit"><a href="{{ asset('profil/annuler/') }}{{ evenement.id }}" class="blue-text ml-1"> Annuler</a></i></button>
-	{% endfor %}
+<div class="table-reponsive">
+	<table class="table product-table">
+		<thead>
+			<th>Événement</th>					
+			<th>Action</th>
+		</thead>
+
+		{% for evenement in organiseEvenements %}
+			<tr>
+				<td>	
+					<h4 class="h4-responsive">{{ evenement.titre }}</h4>
+
+					<p class="small font-italic"><i class="fa fa-quote-left grey-text"></i> {{ evenement.description }}</p>
+
+					<ul class="list-unstyled">
+				    	<li><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("d/m/Y") }}</li>
+				    	<li><i class="fa fa-clock-o plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("H:i") }}</li>
+				    	<li><i class="fa fa-map-marker plusun-color" aria-hidden="true"></i> {{ evenement.ville }}</li>
+				    </ul>
+				</td>
+				<td>
+					<a href="{{ asset('profil/annuler/') }}{{ evenement.id }}"><span class="badge red">ANNULER <i class="fa fa-times" aria-hidden="true"></i></span></a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+
+
+
+

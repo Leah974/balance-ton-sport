@@ -22,23 +22,22 @@
 
 <section class="container mt-4">
 
-		<h3 class="h3-responsive">Niveaux déjà enregistrés</h3>
+	<h3 class="h3-responsive">Niveaux déjà enregistrés</h3>
 
-		<div class="table-reponsive">
-		<table class="table product-table">
-				<thead>
-					<th>Niveau</th>					
-					<th>Action</th>
-				</thead>
-				{% for niveau in niveaux %}
-					<tr>
-						<td>{{ niveau.nom }}</td>					
-						<td><a href="{{ asset('admin/niveau/supprimer/') }}{{ niveau.id }}" class="blue-text ml-1"><span class="badge red">Supprimer <i class="fa fa-times" aria-hidden="true"></i></span></a></td>
-					</tr>
-				{% endfor %}
-				</tr>
-		</table>
-		</div>
+	<div class="table-reponsive">
+	<table class="table product-table">
+		<thead>
+			<th>Niveau</th>					
+			<th>Action</th>
+		</thead>
+		{% for niveau in niveaux %}
+			<tr>
+				<td>{{ niveau.nom }}</td>					
+				<td><a href="{{ asset('admin/niveau/supprimer/') }}{{ niveau.id }}" class="blue-text ml-1"><span class="badge red">Supprimer <i class="fa fa-times" aria-hidden="true"></i></span></a></td>
+			</tr>
+		{% endfor %}
+	</table>
+	</div>
 
 </section>
 
