@@ -1,31 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container">
-	 {{ form_start(categorieForm, {'method': 'POST'}) }}
-		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
-	{{ form_end(categorieForm) }}
+<section class="container margin-top">
+
+	<div class="card">
+		<div class="card-body">
+
+		<h2 class="h2-responsive mb-2">Ajouter une catégorie</h2>
+
+		{{ form_start(categorieForm, {'method': 'POST'}) }}
+
+		 	{{ form_widget(categorieForm.nom, {'attr': {'class': 'form-control'}}) }}
+
+		 	<div class="text-center">
+				<button class="btn btn-plusun" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+			</div>
+
+		{{ form_end(categorieForm) }}
+
+		</div>
+	</div>
+
 </section>
 
-<section class="container">
+<section class="container mt-4">
 
-		<h3>Catégories déjà enregistrées</h3>
+	<h3 class="h3-responsive">Catégories déjà enregistrées</h3>
 
-		<div>
-			<table>
-				<thead>
-					<td>Nom</td>					
-					<td>Supprimer</td>
-				</thead>
-		{% for categorie in categories %}
-				<tr>
-					<td>{{ categorie.nom }}</td>					
-					<td><a href="{{ asset('admin/categorie/supprimer/') }}{{ categorie.id }}" class="blue-text ml-1">Supprimer</a></td>
-				</tr>
-		{% endfor %}
-				</tr>
-			</table>
-		</div>
+	<div class="table-reponsive">
+		<table class="table product-table">
+			<thead>
+				<th>Catégorie</th>					
+				<th>Action</th>
+			</thead>
+	{% for categorie in categories %}
+			<tr>
+				<td>{{ categorie.nom }}</td>					
+				<td><a href="{{ asset('admin/categorie/supprimer/') }}{{ categorie.id }}" ><span class="badge red">Supprimer <i class="fa fa-times" aria-hidden="true"></i></span></a></td>
+			</tr>
+	{% endfor %}
+			</tr>
+		</table>
+	</div>
 
 </section>
 

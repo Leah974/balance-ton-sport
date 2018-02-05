@@ -1,15 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container margin-top">
-	<h2>Commentaires signalés en attente de modération</h2>
+<section class="container margin-top">
+
+	<h2 class="h2-responsive mb-4">Commentaires signalés en attente de modération</h2>
+
 	{% for comment in comments %}
-		Le {{ comment.date|date("d/m/Y") }} à {{ comment.date|date("H:i") }}<br>
-		{{ comment.user.username}}<br>
-		{{ comment.commentaire}}<br>
-		<a href="{{ asset('admin/commentaire/supprimer/') }}{{ comment.id }}" class="blue-text ml-1">Supprimer</a>
-		<a href="{{ asset('admin/commentaire/valider/') }}{{ comment.id }}" class="blue-text ml-1">Valider</a>
+		
+		<div class="card">
+
+			<div class="card-header d-flex flex-row align-items-center justify-content-between">
+				<span>{{ comment.user.username}}, Lle {{ comment.date|date("d/m/Y") }} à {{ comment.date|date("H:i") }}</span>
+				{# <button type="button" class="close" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button> #}
+			</div>
+
+			<div class="card-body">
+				<blockquote class="blockquote bq-primary">
+				    <p>{{ comment.commentaire}}</p>
+				</blockquote>
+			</div>
+
+			<div class="card-footer d-flex flex-row align-items-center justify-content-end">
+
+					<a class="btn btn-danger btn-rounded btn-small" href="{{ asset('admin/commentaire/supprimer/') }}{{ comment.id }}">Supprimer <i class="fa fa-times" aria-hidden="true"></i></a>
+					<a class="btn btn-success btn-rounded btn-small" href="{{ asset('admin/commentaire/valider/') }}{{ comment.id }}" >Valider <i class="fa fa-check" aria-hidden="true"></i></a>
+
+			</div>
+
+		</div>
+
 	{% endfor %}
+
 </section>
 
 {% endblock %}

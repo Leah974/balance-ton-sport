@@ -1,60 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<section class="form-elegant container margin-top">
+<section class="container margin-top">
 
-	<h2 class="text-center">Ajouter un sport à une catégorie</h2>
+	<div class="card">
+		<div class="card-body">
 
-	{{ form_start(sportForm, {'method': 'POST'}) }}
+			<h2 class="h2-responsive">Ajouter un sport à une catégorie</h2>
 
-	<div class="">
-		{# label #}
-		<label>Catégorie</label>
-		{# message d'erreur sur le pseudo #}
-		{{ form_errors(sportForm.categorie) }}
-		{# input, checkbox, select, etc #}
-		{{ form_widget(sportForm.categorie, {'attr': {'class': 'form-control'}}) }}
-		
+			{{ form_start(sportForm, {'method': 'POST'}) }}
+			<div class="row mt-4">
+
+				<div class="col-md-6">
+					<label>Catégorie</label>
+					{{ form_errors(sportForm.categorie) }}
+					{{ form_widget(sportForm.categorie, {'attr': {'class': 'form-control'}}) }}
+					
+				</div>
+
+				<div class="col-md-6">
+					<div class="">
+						{{ form_errors(sportForm.nom) }}
+						{{ form_label(sportForm.nom, "Sport") }} 
+						{{ form_widget(sportForm.nom, {'attr': {'class': 'form-control pb-0 mt-0'}}) }}
+					</div>
+				</div>
+
+			</div>
+
+			<div class="text-center">
+				<button class="btn btn-plusun" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
+			</div>
+
+			{{ form_end(sportForm) }}
+
+		</div>
 	</div>
-
-	<div class="md-form">
-		{# message d'erreur sur le pseudo #}
-		{{ form_errors(sportForm.nom) }}
-		{# input, checkbox, select, etc #}
-		{{ form_widget(sportForm.nom, {'attr': {'class': 'form-control'}}) }}
-		{# label #}
-		{{ form_label(sportForm.nom, "Sport") }} 
-	</div>
-
-	<div class="text-center">
-		<button class="btn btn-primary" type="submit">Enregistrer<i class="fa fa-paper-plane-o ml-1"></i></button>
-	</div>
-
-	{{ form_end(sportForm) }}
 
 </section>
 
-<section class="container">
+<section class="container mt-4">
 
-		<h3>Sports déjà enregistrés</h3>
+	<h3>Sports déjà enregistrés</h3>
 
-		<div>
-			<table>
-				<thead>
-					<td>Nom</td>					
-					<td>Catégorie</td>
-					<td>Supprimer</td>
-				</thead>
-		{% for sport in sports%}
-				<tr>
-					<td>{{ sport.nom }}</td>					
-					<td>{{ sport.categorie.nom }}</td>
-					<td><a href="{{ asset('admin/sport/supprimer/') }}{{ sport.id }}" class="blue-text ml-1">Supprimer</a></td>
-				</tr>
-		{% endfor %}
-				</tr>
-			</table>
-		</div>
+	<div class="table-reponsive">
+		<table class="table product-table">
+			<thead>
+				<th>Sport</th>					
+				<th>Catégorie</th>
+				<th>Action</th>
+			</thead>
+	{% for sport in sports%}
+			<tr>
+				<td>{{ sport.nom }}</td>					
+				<td>{{ sport.categorie.nom }}</td>
+				<td><a href="{{ asset('admin/sport/supprimer/') }}{{ sport.id }}" class="blue-text ml-1"><span class="badge red">Supprimer <i class="fa fa-times" aria-hidden="true"></i></span></a></td>
+			</tr>
+	{% endfor %}
+			</tr>
+		</table>
+	</div>
 
 </section>
 
