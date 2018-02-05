@@ -199,41 +199,23 @@ class EvenementController extends Controller
                     $placesPrises = count($participants);
                     $placesRestantes = $placesDispos - $placesPrises;
 
-                }
+                        // récupération du pseudo de l'organisateur pour affichage de la photo
+                    $pseudo = $evenement->getOrganisateur();
 
-        return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
-        }
-
-    /**
-     * Affiche tous les événements publics (statut = false) rangés par ordre chronologique
-     * @Route("/evenements", name="evenements")
-     */
-        public function rechercherEvenement()
-        {
-                $evenements = $this->getDoctrine()
-                ->getRepository(Evenement::class)
-                ->findBy(
-                    ['statut' => false],
-                    ['dateEvenement' => 'ASC']
-                );
-
-                    // recuperation du nombre de places restantes $placesRestantes
-                foreach($evenements as $evenement)
-                {
-                    $placesDispos = $evenement->getParticipantMax();
-
-                    $participants = $this->getDoctrine()
-                        ->getRepository(Participant::class)
+                    $users = $this->getDoctrine()
+                        ->getRepository(User::class)
                         ->findBy(
-                    ['evenement' => $evenement]
+                            ['username' => $pseudo]
                     );
 
-                    $placesPrises = count($participants);
-                    $placesRestantes = $placesDispos - $placesPrises;
+                    foreach($users as $user)
+                    {
+                        $photo = $user->getPhoto();
+                    }
 
                 }
 
-        return $this->render('sitepublic/evenements.html.twig', ['evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
+        return $this->render('sitepublic/evenements.html.twig', ['photo' => $photo, 'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
         }
 
     /**
