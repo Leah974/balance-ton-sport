@@ -9,61 +9,62 @@
 
 			<!-- header profil -->
 			<div id="profil-nav">
+				<div style="position:relative">
+				{# Fond coloré #}
+	            <div class="modal-header gradient-yellow-plusun pt-0 pb-0"><div class="modal-header-decoration evenement-bg"></div></div>
 
-						{# Fond coloré #}
-			            <div class="modal-header amber"></div>
-
-			            {# Avatar #}
-			            <div class="d-flex flex-column align-items-center position-avatar">
-				            <div class="d-inline-flex flex-column align-items-center">
-					            <div class="avatar avatar-120 d-block">
-					            	<img class="img-avatar" src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}" alt="votre image de profil">
-					            </div>
-
-					            {# Pseudo utilisateur #}
-				            	<h3 id="profil-user">{{ app.user.username }}</h3>
-
-				        	</div>
-			        	</div>
-
-			            <div class="modal-body">
-
-			                {# Contenu du menu #}
-							<div class="list-group collapse" id="profil-nav-item" role="tablist">
-								<h5 class="list-group-item"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h5>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-info-voir-list" data-toggle="list" href="#list-info-voir" role="tab" aria-controls="info-voir">Voir</a>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier <span class="badge badge-danger badge-pill">1</span></a>
-
-							   <h5 class="list-group-item"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h5>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise</a>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe <span class="badge badge-danger badge-pill">1</span></a>
-
-							    <h5 class="list-group-item"><i class="fa fa-envelope-o plusun-color" aria-hidden="true"></i></i> Mes alertes</h5>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir <span class="badge badge-danger badge-pill">1</span></a>
-
-							    <h5 class="list-group-item"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h5>
-							    	<a class="list-group-item list-group-item-action pl-5" id="list-historique-list" data-toggle="list" href="#list-historique" role="tab" aria-controls="historique">Consulter</a>
-							</div>
-
+	            {# Avatar #}
+	            <div class="d-flex flex-column align-items-center">
+		            <div class="d-inline-flex flex-column align-items-center position-avatar">
+			            <div class="avatar avatar-120 d-block">
+			            	<img class="img-avatar" src="{{ asset('img/uploads/user/')}}{{ app.user.photo }}" alt="votre image de profil">
 			            </div>
-			            <div class="modal-footer">
-			            	<span id="toggle-profil-down">Afficher <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-			            	
-			                <span id="toggle-profil-up">Réduire <i class="fa fa-chevron-up" aria-hidden="true"></i></span>
-			            </div>
+
+			            {# Pseudo utilisateur #}
+		            	<h3 class="h3-responsive text-white" id="profil-user">{{ app.user.username }}</h3>
+
+		        	</div>
+	        	</div>
+	        	</div>
+
+	            <div class="modal-body">
+
+	                {# Contenu du menu #}
+					<div class="list-group collapse" id="profil-nav-item" role="tablist">
+						<h5 class="list-group-item h5-responsive"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h5>
+					    	{# <a class="list-group-item list-group-item-action pl-5" id="list-info-voir-list" data-toggle="list" href="#list-info-voir" role="tab" aria-controls="info-voir">Voir</a> #}
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier <span class="badge badge-danger badge-pill">1</span></a>
+
+					   <h5 class="list-group-item h5-responsive"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h5>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise</a>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe <span class="badge badge-danger badge-pill">1</span></a>
+
+					    <h5 class="list-group-item h5-responsive"><i class="fa fa-envelope-o plusun-color" aria-hidden="true"></i></i> Mes alertes</h5>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir <span class="badge badge-danger badge-pill">1</span></a>
+
+					    <h5 class="list-group-item h5-responsive"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h5>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-historique-list" data-toggle="list" href="#list-historique" role="tab" aria-controls="historique">Consulter</a>
+					</div>
+
+	            </div>
+	            <div class="modal-footer">
+	            	<span id="toggle-profil-down">Afficher <i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+	            	
+	                <span id="toggle-profil-up">Réduire <i class="fa fa-chevron-up" aria-hidden="true"></i></span>
+	            </div>
 			</div>
                                 
 		</aside>
 		
 		{# Contenu lié aux différents éléments du menu profil #}
 		<section id="profil-content" class="col-md-7 col-sm-12">
-			{# pour récupérer les info sur l'utilisateur (ne fonctionne qu'avec l'utilisateur) app.user.information voulue #}
-			<h3>Bonjour, {{ app.user.username }}</h3>
 
 			<div class="tab-content" id="nav-tabContent">
-		      <div class="tab-pane fade" id="list-info-voir" role="tabpanel" aria-labelledby="list-info-voir-list">
+
+		      {# <div class="tab-pane fade" id="list-info-voir" role="tabpanel" aria-labelledby="list-info-voir-list">
+				<h3>Bonjour, {{ app.user.username }}</h3>
 		      	 {{ include('security/voirprofilinfos.html.twig') }}
-		      </div>
+		      </div> #}
 
 		      <div class="tab-pane fade" id="list-info-modifier" role="tabpanel" aria-labelledby="list-info-modifier-list">
 		      		{{ include('security/profilinfos.html.twig') }}
@@ -97,7 +98,9 @@
 
 {# ajout de jQuery en fonction des pages #}
 {% block javascripts %}
+	{# menu toggle #}
 	<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+	{# bouton photo #}
+	<script type="text/javascript" src="{{ asset('js/file.js') }}"></script>
 {% endblock %}
-
 
