@@ -27,7 +27,7 @@ class UserInfosType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('telephone', TextType::class)
-            ->add('dte_naissance', BirthdayType::class)
+            ->add('dte_naissance', BirthdayType::class, array('years' => range(date('Y') - 90, date('Y') - 0)))
             ->add('sport_favori', TextType::class)
             ->add('photo', FileType::class, array('required' => false,
                                                   'data_class' => null
