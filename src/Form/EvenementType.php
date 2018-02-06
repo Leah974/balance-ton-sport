@@ -46,7 +46,7 @@ class EvenementType extends AbstractType
                 ))
             ->add('participantMax', ChoiceType::class,
                     array(
-                    'choices' => range(1,50),
+                    'choices' => range(0,50),
                     'label' => ' ',
                 ))
             ->add('adresse', TextType::class)
