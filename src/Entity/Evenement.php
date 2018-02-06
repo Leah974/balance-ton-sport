@@ -45,10 +45,10 @@ class Evenement
     private $statut;
 
     /**
-     * @ORM\Column(type="string")
-     * @var string $organisateur Pseudo de l'organisateur
-     */
-    private $organisateur;
+      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="evenement")
+      * @ORM\JoinColumn(nullable=false)
+      */
+    private $user;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -119,6 +119,12 @@ class Evenement
     private $participant; 
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @var string $placesRestantes Places Restantes
+     */
+    private $placesRestantes;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Alerte", mappedBy="evenement")
      */
     private $alertes;
@@ -129,6 +135,8 @@ class Evenement
         $this->setStatut(false);
             // par défaut la date de l'événement est 7 jours après la date du jour
         $this->dateEvenement = new \DateTime('+6 day');
+
+        $this->setPlacesRestantes($this->getParticipantMax());
     
         $this->alertes = new ArrayCollection();
     } 
@@ -225,9 +233,9 @@ class Evenement
     /**
      * @return string $organisateur Pseudo de l'organisateur
      */
-    public function getOrganisateur()
+    public function getUser()
     {
-        return $this->organisateur;
+        return $this->user;
     }
 
     /**
@@ -235,9 +243,9 @@ class Evenement
      *
      * @return self
      */
-    public function setOrganisateur($organisateur)
+    public function setUser($user)
     {
-        $this->organisateur = $organisateur;
+        $this->user = $user;
 
         return $this;
     }
@@ -427,6 +435,26 @@ class Evenement
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return string $placesRestantes Places Restantes
+     */
+    public function getPlacesRestantes()
+    {
+        return $this->placesRestantes;
+    }
+
+    /**
+     * @param string $placesRestantes Places Restantes $placesRestantes
+     *
+     * @return self
+     */
+    public function setPlacesRestantes($placesRestantes)
+    {
+        $this->placesRestantes = $placesRestantes;
 
         return $this;
     }

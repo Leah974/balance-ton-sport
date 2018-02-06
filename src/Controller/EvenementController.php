@@ -47,14 +47,15 @@ class EvenementController extends Controller
                 }
                     // on renomme la photo en 'photoevenement(chiffre entre 1 et 99999).extension'
                 $nomPhoto = 'photoevenement'.rand(1, 99999).'.'.$extension;
+
                     // on deplace la photo dans le dossier
                 $file->move($dir, $nomPhoto);
+
                     // on enregistre le nom de la photo en bdd
                 $evenement->setPhoto($nomPhoto);
-                    //récupération du nom utilisateur
-                $username = $user->getUsername();
+
                     // on enregistre le nom utilisateur comme organisateur de l'événement
-                $evenement->setOrganisateur($username);
+                $evenement->setUser($user);
 
                 $sport = $form['sport']->getData();
 
@@ -107,29 +108,33 @@ class EvenementController extends Controller
                     $dejaInscrit = true;
                 }
             }
-            // nombre d' inscrits à l'événement
-        $nombre = count($participants);
+
             // événement complet ou non
         $nombreMax = $evenement->getParticipantMax();
+        $nombreRestant = $evenement->getPlacesRestantes();
         $complet = false;
         $vide = false;
-            if($nombre === $nombreMax)
+
+            if($nombreRestant === 0)
                 {
                     $complet = true;
                 }
-            elseif($nombre === 0)
+            elseif($nombreMax === $nombreRestant)
                 {
                     $vide = true;
                 }
+
         $comment = new Comments();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+
          $user = $this->getUser();
          $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
+
          $comment->setUser($user);
          $comment->setEvenement($evenement);
          $em = $this->getDoctrine()->getManager();
@@ -137,6 +142,7 @@ class EvenementController extends Controller
          $em->flush();
             return $this->redirectToRoute('evenements');
         }
+
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(
@@ -174,22 +180,11 @@ class EvenementController extends Controller
                 {
                     $aucunEvenement = true;
                 }
-                    // recuperation du nombre de places restantes $placesRestantes
-                foreach($evenements as $evenement)
-                {
-                    $placesDispos = $evenement->getParticipantMax();
-                    $participants = $this->getDoctrine()
-                        ->getRepository(Participant::class)
-                        ->findBy(
-                    ['evenement' => $evenement]
-                    );
-                    $placesPrises = count($participants);
-                    $placesRestantes = $placesDispos - $placesPrises;
 
-                }
-                
-        return $this->render('sitepublic/evenements.html.twig', ['aucunEvenement' => $aucunEvenement,'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
+
+        return $this->render('sitepublic/evenements.html.twig', ['aucunEvenement' => $aucunEvenement, 'evenements' => $evenements]);
         }
+
     /**
      * Inscription à un événement
      * @Route("/evenements/inscription/{id}", name="inscriptionEvenement")
@@ -208,6 +203,10 @@ class EvenementController extends Controller
             $participant = new Participant();
             $participant->setUser($user);
             $participant->setEvenement($evenement);
+
+            $places = $evenement->getPlacesRestantes() - 1;
+            $evenement->setPlacesRestantes($places);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
