@@ -57,6 +57,9 @@ class EvenementController extends Controller
                     // on enregistre le nom utilisateur comme organisateur de l'événement
                 $evenement->setUser($user);
 
+                $places = $form['participantMax']->getData();
+                $evenement->setPlacesRestantes($places);
+
                 $sport = $form['sport']->getData();
 
                 $categorie = $sport->getCategorie();
@@ -108,7 +111,7 @@ class EvenementController extends Controller
         {
             $dejaInscrit = true;
         }
-        
+
         foreach($participants as $participant)
             {
                 if($user === $participant->getUser())
