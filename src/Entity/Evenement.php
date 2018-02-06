@@ -135,8 +135,6 @@ class Evenement
         $this->setStatut(false);
             // par défaut la date de l'événement est 7 jours après la date du jour
         $this->dateEvenement = new \DateTime('+6 day');
-
-        $this->setPlacesRestantes($this->getParticipantMax());
     
         $this->alertes = new ArrayCollection();
     } 

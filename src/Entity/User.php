@@ -144,7 +144,7 @@ class User implements UserInterface, \Serializable
         $this->setIsActive(true);
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
-        $this->photo='avatar.png';
+        $this->setPhoto('avatar.png');
 
         $this->setRoles(array ('ROLE_SUPER_ADMIN'));
         //relation avec la table alerte

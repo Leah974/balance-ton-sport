@@ -1,6 +1,6 @@
 $(function() {
             
-    var $btn = $('.btn-danger');
+    var $btn = $('.btn-plusun');
     /**tabLength = $btn.length;*/
 
     $btn.each(function(){ 

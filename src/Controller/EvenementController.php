@@ -57,6 +57,9 @@ class EvenementController extends Controller
                     // on enregistre le nom utilisateur comme organisateur de l'événement
                 $evenement->setUser($user);
 
+                $places = $form['participantMax']->getData();
+                $evenement->setPlacesRestantes($places);
+
                 $sport = $form['sport']->getData();
 
                 $categorie = $sport->getCategorie();
@@ -103,7 +106,7 @@ class EvenementController extends Controller
         $dejaInscrit = false;
 
         $nombre = count($participants);
-        
+
         foreach($participants as $participant)
             {
                 if($user === $participant->getUser())
@@ -168,7 +171,7 @@ class EvenementController extends Controller
      * Affiche tous les événements publics (statut = false) rangés par ordre chronologique
      * @Route("/evenements", name="evenements")
      */
-        public function showEvenement()
+        public function showEvenement(Request $request, $aucunResultat = false)
         {
                 $aucunEvenement = false;
 
@@ -184,8 +187,104 @@ class EvenementController extends Controller
                     $aucunEvenement = true;
                 }
 
+                    // récupération des niveaux pour affichage
+            $niveaux = $this->getDoctrine()
+                ->getRepository(Niveau::class)
+                ->findAll(); 
 
-        return $this->render('sitepublic/evenements.html.twig', ['aucunEvenement' => $aucunEvenement, 'evenements' => $evenements]);
+                // récupération des sports pour affichage
+            $sports = $this->getDoctrine()
+                ->getRepository(Sport::class)
+                ->findAll(); 
+
+                // récupération des categories pour affichage
+            $categories = $this->getDoctrine()
+                ->getRepository(Categorie::class)
+                ->findAll();
+
+            if(isset($_POST['niveau']) || isset($_POST['sport']) || isset($_POST['categorie']) || isset($_POST['ville']) || isset($_POST['dateRecherche']))
+            {
+                if(empty($_POST['niveau']))
+
+                    {$recupNiveau = null; }
+
+                else{
+                $niveau = $request->request->get('niveau');
+
+                        $recupNiveau = $this->getDoctrine()
+                        ->getRepository(Niveau::class)
+                        ->findOneBy(
+                            ['nom' => $niveau]
+                        );
+                }
+
+                if(empty($_POST['sport']))
+
+                    {$recupSport = null; }
+                else{
+
+                    $sport = $request->request->get('sport');
+
+                        $recupSport = $this->getDoctrine()
+                        ->getRepository(Sport::class)
+                        ->findOneBy(
+                            ['nom' => $sport]
+                        );
+                }
+
+                if(empty($_POST['categorie']))
+
+                    {$recupCategorie = null; }
+
+                else{
+
+                    $categorie = $request->request->get('categorie');
+
+                        $recupCategorie = $this->getDoctrine()
+                        ->getRepository(Categorie::class)
+                        ->findOneBy(
+                            ['nom' => $categorie]
+                        );
+                }
+
+                if(empty($_POST['ville']))
+
+                    {$ville = null; }
+
+                else{
+
+                    $ville = ucfirst($request->request->get('ville'));
+
+                }
+
+                if(empty($_POST['dateRecherche']))
+
+                    {$dateEvenement = null; }
+
+                else{
+
+                    $dateRecherche = new \DateTime($request->request->get('dateRecherche'));
+                    $dateEvenement = $dateRecherche->format('Y-m-d');
+                }
+
+                $evenements = $this->getDoctrine()
+                    ->getRepository(Evenement::class)
+                    ->findEvenement($recupNiveau, $recupSport, $recupCategorie, $ville, $dateEvenement);
+
+                if(count($evenements) == 0){
+  
+                    $aucunResultat = true;   
+                }
+            }
+
+        return $this->render('sitepublic/evenements.html.twig', [
+                                'aucunEvenement' => $aucunEvenement, 
+                                'evenements' => $evenements,
+                                'niveaux' => $niveaux,
+                                'categories' => $categories,
+                                'sports' => $sports,
+                                'aucunResultat' => $aucunResultat
+                            ]);
         }
 
     /**
