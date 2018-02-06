@@ -5,6 +5,7 @@ use App\Entity\Evenement;
 use App\Entity\Sport;
 use App\Entity\Participant;
 use App\Entity\User;
+use App\Entity\Categorie;
 use App\Entity\Niveau;
 use App\Form\CommentType;
 use App\Entity\Comments;
@@ -54,6 +55,13 @@ class EvenementController extends Controller
                 $username = $user->getUsername();
                     // on enregistre le nom utilisateur comme organisateur de l'événement
                 $evenement->setOrganisateur($username);
+
+                $sport = $form['sport']->getData();
+
+                $categorie = $sport->getCategorie();
+
+                $evenement->setCategorie($categorie);
+
                     // enregistrement des infos en bdd
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($evenement);
@@ -153,12 +161,19 @@ class EvenementController extends Controller
      */
         public function showEvenement()
         {
+                $aucunEvenement = false;
+
                 $evenements = $this->getDoctrine()
                 ->getRepository(Evenement::class)
                 ->findBy(
                     ['statut' => false],
                     ['dateEvenement' => 'ASC']
                 );
+
+                if(count($evenements) == 0)
+                {
+                    $aucunEvenement = true;
+                }
                     // recuperation du nombre de places restantes $placesRestantes
                 foreach($evenements as $evenement)
                 {
@@ -170,19 +185,10 @@ class EvenementController extends Controller
                     );
                     $placesPrises = count($participants);
                     $placesRestantes = $placesDispos - $placesPrises;
-                        // récupération du pseudo de l'organisateur pour affichage de la photo
-                    $pseudo = $evenement->getOrganisateur();
-                    $users = $this->getDoctrine()
-                        ->getRepository(User::class)
-                        ->findBy(
-                            ['username' => $pseudo]
-                    );
-                    foreach($users as $user)
-                    {
-                        $photo = $user->getPhoto();
-                    }
+
                 }
-        return $this->render('sitepublic/evenements.html.twig', ['photo' => $photo, 'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
+                
+        return $this->render('sitepublic/evenements.html.twig', ['aucunEvenement' => $aucunEvenement,'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
         }
     /**
      * Inscription à un événement

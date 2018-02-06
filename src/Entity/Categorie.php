@@ -23,6 +23,11 @@ class Categorie
     private $nom;
 
    /**
+   * @ORM\OneToMany(targetEntity="App\Entity\Evenement", mappedBy="categorie")
+   */
+    private $evenement; 
+
+   /**
    * @ORM\OneToMany(targetEntity="App\Entity\Sport", mappedBy="categorie")
    */
  	private $sport; 

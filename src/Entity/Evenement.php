@@ -70,6 +70,11 @@ class Evenement
      private $sport; 
 
     /**
+      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="evenement")
+      * @ORM\JoinColumn(nullable=false)
+      */
+     private $categorie;
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Niveau", inversedBy="evenement")
      * @ORM\JoinColumn(nullable=false) 
      * @var string $niveau Niveau attendu des participants
@@ -404,6 +409,26 @@ class Evenement
     public function getAlertes()
     {
         return $this->alertes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param mixed $categorie
+     *
+     * @return self
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
     }
 }
  
