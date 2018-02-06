@@ -139,9 +139,11 @@
 		width : 90px;
 		}
 
-	.avatar-55 {
-		height : 55px;
-		width : 55px;
+	.avatar-45 {
+		height : 45px;
+		width : 45px;
+
+		border : 2px solid #FFF;
 		}
 
 		/* PHOTO AVATAR */
@@ -461,6 +463,23 @@
 
 }
 
+/* IMAGE BANNIERE DETAIL EVENEMENT */
+.banner-detail-evenement {
+	height : 400px;
+}
+
+	.banner-detail-evenement img {
+		width: 100%;
+
+		bottom : 50%;
+	}
+
+
+.avatar-organisateur-detail {
+	bottom : 45px;
+	z-index: 1;
+}
+
 /*--------------------------- BLOCK DETAILS --------------------------*/
 /**********************************************************************/
 
@@ -488,7 +507,7 @@
     
     height: 100%;
     width: 100%;
-    padding: 20px 0;
+    /*padding: 20px 0;*/
     
 }
 
@@ -496,12 +515,12 @@
     
     padding: 20px;
     height: 400px;
-    width: 100%;
+    width: 100%;/*
     background-color: #f4f4f4;
     border-top: 1px solid #e1e1e1;
     border-left: 1px solid #d4d4d4;
     border-right: 1px solid #d4d4d4;
-    border-bottom: 1px solid #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;*/
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     
@@ -509,14 +528,14 @@
 
 .chatMessageControls {
     
-    margin-top: 6px;
+    /*margin-top: 6px;*/
     padding: 10px;
     width: 100%;
-    background-color: #fff;
+    background-color: #fff;/*
     border-top: 1px solid #e1e1e1;
     border-left: 1px solid #d4d4d4;
     border-right: 1px solid #d4d4d4;
-    border-bottom: 1px solid #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;*/
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     
@@ -555,7 +574,8 @@ display: block;
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  /*border: 1px solid #ced4da;*/
+  border: transparent;
   border-radius: 0.25rem;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
