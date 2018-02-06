@@ -24,21 +24,21 @@ class UserInfosType extends AbstractType
     {
 
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('telephone', TextType::class)
+            ->add('nom', TextType::class, array('required' => false))
+            ->add('prenom', TextType::class, array('required' => false))
+            ->add('telephone', TextType::class, array('required' => false))
             ->add('dte_naissance', BirthdayType::class, array('years' => range(date('Y') - 90, date('Y') - 0)))
-            ->add('sport_favori', TextType::class)
+            ->add('sport_favori', TextType::class, array('required' => false))
             ->add('photo', FileType::class, array('required' => false,
                                                   'data_class' => null
                                                 ))
             ->add('sexe', ChoiceType::class, array(
                             'choices'  => array(
                                     'Homme' => 'm',
-                                    'Femme' => 'f')
+                                    'Femme' => 'f'), 'required' => false
                                             ))
-            ->add('ville', TextType::class)
-            ->add('mini_bio', TextareaType::class)
+            ->add('ville', TextType::class, array('required' => false))
+            ->add('mini_bio', TextareaType::class, array('required' => false))
         ;
     }
 
