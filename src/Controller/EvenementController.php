@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Entity\Niveau;
 use App\Form\CommentType;
 use App\Entity\Comments;
+use App\Entity\Alerte;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -204,6 +205,23 @@ class EvenementController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
+
+            //ajout d'une l'alerte inscription
+            $alerte = new Alerte();
+            $alerte->setTypeAlerte('Inscription');
+            $alerte->setEvenement($evenement);
+            $alerte->setStatut('false');
+            
+            //récupération user organisateur
+            $pseudo_organisateur = $evenement->getOrganisateur();
+            $user_organisateur = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['username' => $pseudo_organisateur]);
+            $user_organisateur->addAlerte($alerte);
+            $am = $this->getDoctrine()->getManager();
+            $am->persist($alerte);
+            $am->flush();
+
                 // à l'enregistrement redirection vers la page profil
             return $this->redirectToRoute('profil');
         }
@@ -228,6 +246,27 @@ class EvenementController extends Controller
                     $em->flush();
                 }
             }
+
+            //ajout d'une l'alerte désinscription
+            $evenement = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->find($id);
+
+            $alerte = new Alerte();
+            $alerte->setTypeAlerte('Désinscription');
+            $alerte->setEvenement($evenement);
+            $alerte->setStatut('false');
+            
+            //récupération user organisateur
+            $pseudo_organisateur = $evenement->getOrganisateur();
+            $user_organisateur = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['username' => $pseudo_organisateur]);
+            $user_organisateur->addAlerte($alerte);
+            $am = $this->getDoctrine()->getManager();
+            $am->persist($alerte);
+            $am->flush();
+            
                 // à la suppresion redirection vers la page profil
             return $this->redirectToRoute('profil');
         }

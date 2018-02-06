@@ -112,6 +112,10 @@ class Evenement
     */
     private $participant; 
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Alerte", mappedBy="evenement")
+     */
+    private $alertes;
 
     public function __construct()
     {
@@ -119,6 +123,8 @@ class Evenement
         $this->setStatut(false);
             // par défaut la date de l'événement est 7 jours après la date du jour
         $this->dateEvenement = new \DateTime('+6 day');
+    
+        $this->alertes = new ArrayCollection();
     } 
 
     public function verifierDate($dateEvenement)
@@ -389,6 +395,14 @@ class Evenement
         $this->ville = $ville;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlertes()
+    {
+        return $this->alertes;
     }
 }
  

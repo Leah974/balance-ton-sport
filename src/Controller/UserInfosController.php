@@ -6,6 +6,7 @@ use App\Form\UserInfosType;
 use App\Entity\User;
 use App\Entity\Evenement;
 use App\Entity\Participant;
+use App\Entity\Alerte;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -87,6 +88,21 @@ class UserInfosController extends Controller
                 $participeAucun = true;
             }
 
+        //Gestion des alertes
+
+        $evenements = array();
+
+        $alertes = $user_infos->getAlertes();
+        $nbAlertes = 0;
+
+        foreach ($alertes as $key => $alerte) {
+            $statut = $alerte->isStatut();
+            if ($statut == 1) {
+                $evenements[] = $alerte->getEvenement();
+                $nbAlertes++;
+            }
+        }
+
         return $this->render(
             'security/profil.html.twig',array(
                 'form' => $form->createView(), 
@@ -95,7 +111,10 @@ class UserInfosController extends Controller
                 'organiseNombre' => $organiseNombre,
                 'participants' => $participants, 
                 'participeAucun' => $participeAucun, 
-                'participeNombre' => $participeNombre
+                'participeNombre' => $participeNombre,
+                'alertes' => $alertes, 
+                'evenements' => $evenements, 
+                'nbAlertes' => $nbAlertes
             ));
     }
 
