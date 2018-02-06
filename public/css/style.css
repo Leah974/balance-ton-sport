@@ -197,10 +197,6 @@
 	
 
 	/* MENU DU PROFIL */
-	.form-plusun {
-		-webkit-box-shadow: 0 10px 10px 0 #cccccc;
-		box-shadow: 0 10px 10px 0 #cccccc;
-	}
 
 	.form-plusun .modal-header {
 		height : 120px;
@@ -246,6 +242,10 @@
 
 				font-weight: bold;
 			}
+
+	#toggle-profil-down, #toggle-profil-up {
+		cursor: pointer;
+	}
 
 
 /*------------------------ BLOCK PROFIL NAV --------------------------*/

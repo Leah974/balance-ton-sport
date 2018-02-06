@@ -8,7 +8,7 @@
 		<aside class="col-md-5 col-sm-12">
 
 			<!-- header profil -->
-			<div class="form-plusun">
+			<div class="card form-plusun">
 				<div style="position:relative">
 				{# Fond coloré #}
 	            <div class="modal-header gradient-yellow-plusun pt-0 pb-0"><div class="modal-header-decoration evenement-bg"></div></div>
@@ -32,17 +32,17 @@
 	                {# Contenu du menu #}
 					<div class="list-group collapse" id="profil-nav-item" role="tablist">
 						<h5 class="list-group-item h5-responsive"><i class="fa fa-id-card-o plusun-color" aria-hidden="true"></i> Mes informations</h5>
-					    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier <span class="badge badge-danger badge-pill">1</span></a>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-info-modifier-list" data-toggle="list" href="#list-info-modifier" role="tab" aria-controls="info-modifier">Modifier</a>
 
 					   <h5 class="list-group-item h5-responsive"><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> Mes énévements</h5>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-organisateur-list" data-toggle="list" href="#list-organisateur" role="tab" aria-controls="organisateur">J'organise</a>
-					    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe <span class="badge badge-danger badge-pill">1</span></a>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-participant-list" data-toggle="list" href="#list-participant" role="tab" aria-controls="participant">Je participe</a>
 
 					    <h5 class="list-group-item h5-responsive"><i class="fa fa-envelope-o plusun-color" aria-hidden="true"></i></i> Mes alertes</h5>
 					    	<a class="list-group-item list-group-item-action pl-5" id="list-alertes-list" data-toggle="list" href="#list-alertes" role="tab" aria-controls="alertes">Voir <span class="badge badge-danger badge-pill">1</span></a>
 
-					    <h5 class="list-group-item h5-responsive"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h5>
-					    	<a class="list-group-item list-group-item-action pl-5" id="list-historique-list" data-toggle="list" href="#list-historique" role="tab" aria-controls="historique">Consulter</a>
+					    {# <h5 class="list-group-item h5-responsive"><i class="fa fa-road plusun-color" aria-hidden="true"></i> Mon historique</h5>
+					    	<a class="list-group-item list-group-item-action pl-5" id="list-historique-list" data-toggle="list" href="#list-historique" role="tab" aria-controls="historique">Consulter</a> #}
 					</div>
 
 	            </div>
@@ -56,7 +56,7 @@
 		</aside>
 		
 		{# Contenu lié aux différents éléments du menu profil #}
-		<section id="profil-content" class="col-md-7 col-sm-12">
+		<section id="profil-content" class="col-md-7 col-sm-12 mt-sm-5 mt-md-0">
 
 			<div class="tab-content" id="nav-tabContent">
 
@@ -81,9 +81,9 @@
 		      	{{ include('sitepublic/listeParticipe.html.twig') }}
 		      </div>
 
-		      <div class="tab-pane fade" id="list-historique" role="tabpanel" aria-labelledby="list-historique-list">
+		      {# <div class="tab-pane fade" id="list-historique" role="tabpanel" aria-labelledby="list-historique-list">
 		      	{% block historique %}Listes des événemens passés (facultatif ?){% endblock %}
-		      </div>
+		      </div> #}
 
 		    </div>
 

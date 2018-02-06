@@ -1,9 +1,11 @@
+
+
 {% if participeAucun %}
 	<div class="">Vous ne participez à aucun événement pour le moment !</div>
 {% endif %}
 
 {% if not participeAucun %}
-	<div class="">Vous participez à : {{ participeNombre }} événements !</div>
+	<h3 class="h3-responsive">Je suis dispo pour {{ participeNombre }} événement(s) !</h3> 
 
 	<div class="table-reponsive">
 		
@@ -27,7 +29,11 @@
 					    </ul>
 					</td>
 					<td>
-						<a href="{{ asset('evenements/desinscription/') }}{{ participant.evenement.id }}"><span class="badge red px-1">SE DESINSCRIRE <i class="fa fa-times" aria-hidden="true"></i></span></a>
+						<div class="row">
+							<a class="btn btn-primary btn-sm mb-1" style="width:100%" href="">VOIR <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+
+							<a class="btn btn-danger btn-sm mt-1" style="width:100%" href="{{ asset('evenements/desinscription/') }}{{ participant.evenement.id }}">SE DESINSCRIRE <i class="fa fa-times" aria-hidden="true"></i></a>
+						</div>
 					</td>
 				</tr>
 			{% endfor %}
