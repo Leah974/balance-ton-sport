@@ -56,7 +56,9 @@ class EvenementType extends AbstractType
                     'class' => Sport::class,
                     'choice_label' => 'nom',
                 ))
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class, array(
+                    'required' => false
+            ))
         ;
     }
 
