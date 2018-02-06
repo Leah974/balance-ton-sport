@@ -144,22 +144,36 @@ class EvenementController extends Controller
             ->getRepository(Evenement::class)
             ->find($id);
 
+                // enregistrement d'un commentaire
          $comment->setUser($user);
          $comment->setEvenement($evenement);
          $em = $this->getDoctrine()->getManager();
          $em->persist($comment);
          $em->flush();
-            return $this->redirectToRoute('evenements');
-        }
 
+        }
+            // liste des commentaires de l'événement
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(
                ['evenement' => $id]
             );
+
+        $aucunCommentaire = false;
+
+            // nombre de commentaires
+        $nombreCommentaire = count($comments);
+
+            if($nombreCommentaire === 0)
+            {
+                $aucunCommentaire = true;
+            }
+
         return $this->render('sitepublic/details.html.twig', array(
             'form' => $form->createView(),
             'comments' => $comments,
+            'nombreCommentaire' => $nombreCommentaire,
+            'aucunCommentaire' => $aucunCommentaire,
             'evenement' => $evenement, 
             'participants' => $participants, 
             'nombre' => $nombre,
@@ -362,7 +376,7 @@ class EvenementController extends Controller
 
             $places = $evenement->getPlacesRestantes() + 1;
             $evenement->setPlacesRestantes($places);
-            
+
             $alerte = new Alerte();
             $alerte->setTypeAlerte('Désinscription');
             $alerte->setEvenement($evenement);
