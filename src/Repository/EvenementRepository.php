@@ -52,6 +52,29 @@ public function findEvenement($niveau, $sport, $categorie, $ville, $dateEvenemen
             ->getQuery();
 
         return $qb->getQuery()
+                  ->getResult();
+    }
+
+public function findEvenementAccueil($sport, $ville)
+    {
+        $qb = $this->createQueryBuilder('e');
+
+        if($sport != null)
+        {
+            $qb ->andWhere('e.sport = :sport')
+                ->setParameter('sport', $sport);
+        }
+        if($ville != null)
+        {
+            $qb ->andWhere('e.ville = :ville')
+                ->setParameter('ville', $ville);
+        }
+
+        $qb->andWhere('e.statut = false')
+            ->orderBy('e.dateEvenement', 'ASC')
+            ->getQuery();
+
+        return $qb->getQuery()
                   ->getResult()
                 ;
     }

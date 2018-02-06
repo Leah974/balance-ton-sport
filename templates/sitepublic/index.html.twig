@@ -33,4 +33,20 @@ Simple</h4>
 	</div>
 </section>
 
+<section>
+    <form action="{{ path('evenements') }}" method="post" class="header__form__search">
+
+        <select name="sport">
+        <option disabled selected>Trier par sport</option>
+            {% for sport in sports %}
+                <option value="{{ sport.nom }}"> {{ sport.nom }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="ville"/>
+
+        <button class="btn btn-plusun" type="submit">Rechercher</button>
+    </form>
+</section>
+
 {% endblock %}
