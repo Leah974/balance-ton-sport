@@ -156,7 +156,7 @@
 										{% if app.user.id == comment.user.id %}
 			                                <div id="commentactions-{{ comment.id }}" class="comment-actions">
 			                                    <div class="btn-group text-right" role="group" aria-label="...">
-			                                        <button type="button" class="btn btn-default btn-sm mr-1"><i class="fa fa-pencil"></i>Modifier</button>
+			                                        {# <button type="button" class="btn btn-default btn-sm mr-1"><i class="fa fa-pencil"></i>Modifier</button> #}
 			                                        <a role="button" class="btn btn-danger btn-sm" href="{{ asset('evenements/') }}{{ evenement.id }}{{('/supprimer/commentaire/')}}{{ comment.id }}">Effacer <i class="fa fa-trash"></i></a>
 			                                    </div>                                
 			                                </div>
