@@ -107,11 +107,6 @@ class EvenementController extends Controller
 
         $nombre = count($participants);
 
-        if($user === $evenement->getUser())
-        {
-            $dejaInscrit = true;
-        }
-
         foreach($participants as $participant)
             {
                 if($user === $participant->getUser())
