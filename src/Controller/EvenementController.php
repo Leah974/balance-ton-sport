@@ -409,6 +409,25 @@ public function signalerCommentaire($id)
             // à la suppresion retour vers la page ajouterCategorie
         return $this->redirectToRoute('evenements');
 }
+
+/** 
+* Suppression d'un commentaire 
+* @Route("/evenements/{evenement}/supprimer/commentaire/{id}", name="supprimerCommentaire") 
+*/
+ public function supprimerCommentaire($id) 
+ {
+ $comment = $this->getDoctrine()
+  ->getRepository(Comments::class)
+  ->find($id); 
+
+  $em = $this->getDoctrine()->getManager(); 
+  $em->remove($comment); 
+  $em->flush();
+
+return $this->redirectToRoute('evenements');
+
+}
+
 /**
 * Annuler un événement
 * @Route("/profil/annuler/{id}", name="annulerEvenement")

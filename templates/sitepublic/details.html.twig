@@ -142,15 +142,14 @@
 								<td></td>
 								<td>
 									<div id="comment-{{ comment.id }}" data-commentid="{{ comment.id }}" class="comment comment-step1">
-										<i class="fa fa-flag signal"><a href="{{ asset('sitepublic/evenements/') }} {{ evenement.id }}{{ ('/signaler/commentaire/') }}{{ comment.id }}"></a></i>
+										<a class="signal" href="{{ asset('evenements/') }}{{ evenement.id }}{{ ('/signaler/commentaire/') }}{{ comment.id }}"><i class="fa fa-flag"></i></a>
 										{{ comment.commentaire }}
 										
 										{% if app.user.id == comment.user.id %}
-			                                <div id="commentactions-{{ comment.id }}" class="comment-actions text-right">
-			                                    <div class="btn-group" role="group" aria-label="...">
-			                                       {#  <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Reply</button> #}
+			                                <div id="commentactions-{{ comment.id }}" class="comment-actions">
+			                                    <div class="btn-group text-right" role="group" aria-label="...">
 			                                        <button type="button" class="btn btn-default btn-sm mr-1"><i class="fa fa-pencil"></i>Modifier</button>
-			                                        <a role="button" class="btn btn-danger btn-sm" href="{{ asset('sitepublic/evenements/commentaire/supprimer/{id}') }}{{ comment.id }}">Effacer <i class="fa fa-trash"></i></a>
+			                                        <a role="button" class="btn btn-danger btn-sm" href="{{ asset('evenements/') }}{{ evenement.id }}{{('/supprimer/commentaire/')}}{{ comment.id }}">Effacer <i class="fa fa-trash"></i></a>
 			                                    </div>                                
 			                                </div>
 		                                {% endif %}
