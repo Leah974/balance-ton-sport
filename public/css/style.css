@@ -170,6 +170,11 @@
 		margin-top: 150px;
 	}
 
+	main {
+		/* La hateur minimale de la balise main et la hauteur de l'écran */
+		min-height: 100vh;
+	}
+
 
 /*---------------------------- BLOCK NAV ----------------------------*/
 

@@ -1,19 +1,42 @@
 {% if nbAlertes == 0 %}
-	Vous n'avez aucune alerte pour le moment 
+	<h3 class="h3-responsive">Vous n'avez aucune alerte pour le moment</h3>
 {% endif %}
 
+{% if nbAlertes > 0 %}
+	<h3 class="h3-responsive">Il y a du nouveau !</h3>
+{% endif %}
 
-{% for alerte in alertes %}		
-	{% if (alerte.typeAlerte == 'Inscription' and alerte.statut == 1) %} 
-		<div class="card" data-num="{{ alerte.id }}" data-url="{{ path("statut") }}">
-			Il y a un nouvel inscrit à votre événement <a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">"{{ alerte.evenement.titre }}"</a>
-			<button type="button" class="btn btn-danger">X</button>
-		</div>
-	{% endif %}
-	{% if (alerte.typeAlerte == 'Désinscription') and alerte.statut == 1 %} 
-		<div class="card" data-num="{{ alerte.id }}" data-url="{{ path("statut") }}">
-			Un participant s'est désinscrit de votre événement <a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">"{{ alerte.evenement.titre }}"</a>
-			<button type="button" class="btn btn-danger">X</button>
-		</div>
-	{% endif %}
-{% endfor %}
+<div class="table-reponsive">
+	<table class="table product-table">
+		<thead>
+			<th>Alerte</th>					
+			<th>Action</th>
+		</thead>
+
+		{% for alerte in alertes %}	
+
+			<tr>
+				<td>
+				{% if (alerte.typeAlerte == 'Inscription' and alerte.statut == 1) %} 
+					<div data-num="{{ alerte.id }}" data-url="{{ path("statut") }}">
+						<h5 class="h5-responsive"><a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">{{ alerte.evenement.titre }}</a></h5>
+						<p><i class="fa fa-user-plus mr-1 fa-2x plusun-color" aria-hidden="true"></i> Il y a un nouvel inscrit à votre événement !</p>
+					</div>
+				{% endif %}
+
+				{% if (alerte.typeAlerte == 'Désinscription') and alerte.statut == 1 %} 
+					<div data-num="{{ alerte.id }}" data-url="{{ path("statut") }}">
+						<h5 class="h5-responsive"><a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">{{ alerte.evenement.titre }}</a></h5>
+						<p><i class="fa fa-user-times mr-1 fa-2x plusun-color" aria-hidden="true"></i> Un participant s'est désinscrit de votre événement</p>
+					</div>
+				{% endif %}
+				</td>
+				<td>
+					<button type="button" class="btn btn-plusun">Vu <i class="fa fa-check" aria-hidden="true"></i></button>
+				</td>
+			</tr>
+
+		{% endfor %}
+
+	</table>
+</div>
