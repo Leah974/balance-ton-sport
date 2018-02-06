@@ -215,13 +215,10 @@ class EvenementController extends Controller
             $alerte = new Alerte();
             $alerte->setTypeAlerte('Inscription');
             $alerte->setEvenement($evenement);
-            $alerte->setStatut('false');
+            $alerte->setStatut(true);
             
             //récupération user organisateur
-            $pseudo_organisateur = $evenement->getOrganisateur();
-            $user_organisateur = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findOneBy(['username' => $pseudo_organisateur]);
+            $user_organisateur = $evenement->getUser();
             $user_organisateur->addAlerte($alerte);
             $am = $this->getDoctrine()->getManager();
             $am->persist($alerte);
@@ -260,13 +257,10 @@ class EvenementController extends Controller
             $alerte = new Alerte();
             $alerte->setTypeAlerte('Désinscription');
             $alerte->setEvenement($evenement);
-            $alerte->setStatut('false');
+            $alerte->setStatut(true);
             
             //récupération user organisateur
-            $pseudo_organisateur = $evenement->getOrganisateur();
-            $user_organisateur = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findOneBy(['username' => $pseudo_organisateur]);
+            $user_organisateur = $evenement->getUser();
             $user_organisateur->addAlerte($alerte);
             $am = $this->getDoctrine()->getManager();
             $am->persist($alerte);

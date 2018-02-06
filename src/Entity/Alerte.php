@@ -20,7 +20,7 @@ class Alerte
     private $typeAlerte;
     /**
      * @ORM\Column(type="boolean", nullable=false)
-     * @var boolean $statut Alerte lue (true) ou non lue (false)
+     * @var boolean $statut Alerte non lue (true) ou lue (false)
      */
     private $statut;
     
@@ -37,7 +37,7 @@ class Alerte
     
     public function __construct()
     {
-        $this->setStatut(false);
+       /* $this->setStatut(false); */
     }
     /**
      * @return mixed
