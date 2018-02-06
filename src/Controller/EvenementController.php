@@ -299,7 +299,7 @@ class EvenementController extends Controller
             $user = $this->getUser();
             if(!$user)
             {
-                return $this->render('security/login.html.twig');
+                return $this->redirectToRoute('inscription');
             }
             
             $participant = new Participant();
