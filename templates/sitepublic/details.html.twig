@@ -116,7 +116,7 @@
 <section class="container">
 
 	<div class="chatContainer">
-	    <div class="chatTitleContainer">nbre Commentaires</div>
+	    <div class="chatTitleContainer">{{ nombreCommentaire }} Commentaires</div>
 
 	    {% if is_granted('ROLE_USER') %}
 
@@ -125,18 +125,24 @@
 		<div class="chatHistoryContainer gradient-light">
 
 	        <ul class="formComments">
+	        	{% if aucunCommentaire %}
+					Soyez le premier à laisser un message !
+				{% endif %}
 	        	{% for comment in comments %}
 					<li class="commentLi commentstep-1" data-commentid="{{ comment.id }}">
 						<table class="form-comments-table">
 							<tr>
 								<td></td>
-								<td>
-									<div class="comment-user">{{ comment.user.username }}</div>
-								</td>
+								<td class="text-center">
+                            <div class="comment-avatar">
+                            	<img src="{{ asset('img/uploads/user/')}}{{ comment.user.photo }}">
+                            </div>
+                            <div class="comment-user">{{ comment.user.username|title }}</div>
+							</td>
 								<td></td>
 								<td>
 									<div id="comment-{{ comment.id }}" data-commentid="{{ comment.id }}" class="comment comment-step1">
-										<i class="fa fa-flag signal"><a href="{{ asset('sitepublic/evenements/{evenement}/signaler/commentaire/{id}') }}{{ comment.id }}"></a></i>
+										<i class="fa fa-flag signal"><a href="{{ asset('sitepublic/evenements/') }} {{ evenement.id }}{{ ('/signaler/commentaire/') }}{{ comment.id }}"></a></i>
 										{{ comment.commentaire }}
 										
 										{% if app.user.id == comment.user.id %}
