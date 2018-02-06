@@ -783,3 +783,43 @@ font-weight: bold;
 
 /*-------------------------- BLOCK INSCRIPTION -----------------------*/
 /**********************************************************************/
+
+
+@media screen and (max-width: 930px) {
+
+	.banner-detail-evenement {
+		height : 250px;
+	}
+
+	.banner-detail-evenement img {
+		width : 100%;
+
+		bottom : 50%;
+	}
+}
+
+@media screen and (max-width: 575px) {
+
+	.banner-detail-evenement {
+		height : 200px;
+	}
+
+	.banner-detail-evenement img {
+		width : 100%;
+
+		bottom : 25%;
+	}
+}
+
+@media screen and (max-width: 320px) {
+
+	.banner-detail-evenement {
+		height : 200px;
+	}
+
+	.banner-detail-evenement img {
+		width : 100%;
+
+		bottom : 0;
+	}
+}
