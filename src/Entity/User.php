@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 // Entity User.php est le modèle qui s'occupe des requêtes avec la base de données pour les infor utilisateur
 // Les annotations commençant par @ORM sont importantes car elles permettent de spéficier des informations sur les propriétés et méthodes en bdd
