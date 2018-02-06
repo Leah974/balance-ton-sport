@@ -6,36 +6,56 @@
 
 	<div class="row">
 
-		<aside class="col-md-4">
+		<aside class="col-md-4 mb-5">
+
+			<h2 class="responsive mb-4">Filtrer les recherches</h2>
 
 			<form action="{{ path('evenements') }}" method="post" class="header__form__search">
 
-			        <select name="niveau">
-			       	<option disabled selected>Trier par niveau</option>
-			        	{% for niveau in niveaux %}
-			        		<option value="{{ niveau.nom }}"> {{ niveau.nom }}</option>
-			        	{% endfor %}
-			        </select>
-
-			        <select name="sport">
-			        <option disabled selected>Trier par sport</option>
-			        	{% for sport in sports %}
-			        		<option value="{{ sport.nom }}"> {{ sport.nom }}</option>
-			        	{% endfor %}
-			        </select>
-
-			        <select name="categorie">
+			    <div class="">
+			    	<label>Catégorie</label>
+			        <select name="categorie" class="form-control">
 			        <option disabled selected value="">Trier par catégorie</option>
 			        	{% for categorie in categories %}
 			        		<option value="{{ categorie.nom }}"> {{ categorie.nom }}</option>
 			        	{% endfor %}
 			        </select>
+			    </div>
+			    
+			    <div class="">
+			    	<label>Sport</label>
+			        <select name="sport" class="form-control">
+			        <option disabled selected>Trier par sport</option>
+			        	{% for sport in sports %}
+			        		<option value="{{ sport.nom }}"> {{ sport.nom }}</option>
+			        	{% endfor %}
+			        </select>
+			    </div>
 
-			        <input type="text" name="ville"/>
+				<div class="">
+					<label>Niveau</label>
+			        <select name="niveau" class="form-control">
+			       	<option disabled selected>Trier par niveau</option>
+			        	{% for niveau in niveaux %}
+			        		<option value="{{ niveau.nom }}"> {{ niveau.nom }}</option>
+			        	{% endfor %}
+			        </select>
+			    </div>
 
+			    <div class="">
+			    	<label class="mb-0">Ville</label>
+			        <input class="form-control" type="text" name="ville"/>
+			    </div>
+
+			    <div class="form-group">
+			    	<label>Date</label>
 					<input type="date" name="dateRecherche"/>
+				</div>
 
+				<div class="text-center">
 			        <button class="btn btn-plusun" type="submit">Rechercher</button>
+			    </div>
+
 			</form>
 
 		</aside>

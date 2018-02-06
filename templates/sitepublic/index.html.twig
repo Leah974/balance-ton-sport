@@ -13,40 +13,61 @@
     </div>
 </div>
 
-<section class="container">
+<section class="container pb-5 pt-5">
 	
-		<h3 class="title p-3">Partagez, ou rejoignez des événements sportifs proche de chez vous.</h3>
-		<div class="row">
+	<h3 class="title pb-5 text-center">Partagez, ou rejoignez des événements sportifs proche de chez vous.</h3>
+
+	<div class="row">
 		<div class="col-md-4">
-			<h4><i class="fa fa-search"></i>
-Simple</h4>
+			<h4 class="h4-responsive"><i class="fa fa-search"></i>Simple</h4>
 			<p>Accedez en quelques clics à tous les événements sportifs autour de chez vous. N'hésitez plus à vous initiet à de nouvelles activités ou partagez les votres.</p>
 		</div>
 		<div class="col-md-4">
-			<h4><i class="fa fa-commenting"></i>Organisé</h4>
+			<h4 class="h4-responsive"><i class="fa fa-commenting"></i>Organisé</h4>
 			<p>Echangez avec vos parternaires et coéquipiers pour convenir de votre lieu de rendez-vous ainsi que tous les détails pour être prêts le jour J!</p>
 		</div>
 		<div class="col-md-4">
-			<h4><i class="fa fa-handshake-o"></i>Sécurisé</h4>
+			<h4 class="h4-responsive"><i class="fa fa-handshake-o"></i>Sécurisé</h4>
 			<p>Nos équipes sont présentes quotidiennement pour vérifier le respect des règles de bonne conduite ainsi que le bon traitement de vos donnés. N'hésitez pas à nous contacter</p>
 		</div>
 	</div>
+
 </section>
 
-<section>
-    <form action="{{ path('evenements') }}" method="post" class="header__form__search">
+<section class="grey lighten-4">
+	<div class="container pb-5 pt-5">
+		<div class="offset-md-3 col-md-6">
+			<div class="card">
+				<div class="card-body">
+					<h3 class="h3-responsive text-center">Lancez-vous !</h3>
 
-        <select name="sport">
-        <option disabled selected>Trier par sport</option>
-            {% for sport in sports %}
-                <option value="{{ sport.nom }}"> {{ sport.nom }}</option>
-            {% endfor %}
-        </select>
+				    <form action="{{ path('evenements') }}" method="post" class="header__form__search">
 
-        <input type="text" name="ville"/>
+				    	<div class="">
+				    		<i class="fa fa-futbol-o plusun-color prefix" aria-hidden="true"></i>
+						    <label>Sport</label>
+						        <select name="sport" class="form-control">
+							        <option disabled selected>Choisir un sport</option>
+							            {% for sport in sports %}
+							                <option value="{{ sport.nom }}"> {{ sport.nom }}</option>
+							            {% endfor %}
+						        </select>
+						</div>
 
-        <button class="btn btn-plusun" type="submit">Rechercher</button>
-    </form>
+				        <div class="">
+					    	<i class="fa fa-map-marker plusun-color prefix" aria-hidden="true"></i><label class="mb-0">Ville</label>
+					        <input class="form-control" type="text" name="ville"/>
+					    </div>
+
+					    <div class="text-center">
+				        	<button class="btn btn-rounded gradient-yellow-plusun" type="submit">Trouvez votre événement</button>			    	
+				        </div>
+				    </form>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </section>
 
 {% endblock %}
