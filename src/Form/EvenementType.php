@@ -46,7 +46,7 @@ class EvenementType extends AbstractType
                 ))
             ->add('participantMax', ChoiceType::class,
                     array(
-                    'choices' => range(1,50),
+                    'choices' => range(0,50),
                     'label' => ' ',
                 ))
             ->add('adresse', TextType::class)
@@ -56,7 +56,9 @@ class EvenementType extends AbstractType
                     'class' => Sport::class,
                     'choice_label' => 'nom',
                 ))
-            ->add('photo', FileType::class)
+            ->add('photo', FileType::class, array(
+                    'required' => false
+            ))
         ;
     }
 
