@@ -6,9 +6,46 @@
 
 	<div class="row">
 
-		<aside class="col-md-4">Emplacement des filtres</aside>
+		<aside class="col-md-4">
+
+			<form action="{{ path('evenements') }}" method="post" class="header__form__search">
+
+			        <select name="niveau">
+			       	<option disabled selected>Trier par niveau</option>
+			        	{% for niveau in niveaux %}
+			        		<option value="{{ niveau.nom }}"> {{ niveau.nom }}</option>
+			        	{% endfor %}
+			        </select>
+
+			        <select name="sport">
+			        <option disabled selected>Trier par sport</option>
+			        	{% for sport in sports %}
+			        		<option value="{{ sport.nom }}"> {{ sport.nom }}</option>
+			        	{% endfor %}
+			        </select>
+
+			        <select name="categorie">
+			        <option disabled selected value="">Trier par catégorie</option>
+			        	{% for categorie in categories %}
+			        		<option value="{{ categorie.nom }}"> {{ categorie.nom }}</option>
+			        	{% endfor %}
+			        </select>
+
+			        <input type="text" name="ville"/>
+
+					<input type="date" name="dateRecherche"/>
+
+			        <button class="btn btn-plusun" type="submit">Rechercher</button>
+			</form>
+
+		</aside>
 
 		<section class="col-md-8">
+			{% if aucunResultat %}
+				Aucun résultat pour votre recherche
+			{% endif %}
+
+			{% if not aucunResultat %}
 			{% for evenement in evenements %}
 
 				{# EVENEMENT #}
@@ -83,7 +120,7 @@
 				{# FIN EVENEMENT #}
 
 			{% endfor %}
-
+			{% endif %}
 		</section>
 	</div>
 
