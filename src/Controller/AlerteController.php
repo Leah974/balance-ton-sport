@@ -24,7 +24,7 @@ class AlerteController extends Controller
         		->getRepository(Alerte::class)
         		->find($id);
 
-        	$alerte->setStatut('true');
+        	$alerte->setStatut(false);
 
         	$em = $this->getDoctrine()->getManager();
         	$em->persist($alerte);

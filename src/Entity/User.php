@@ -126,7 +126,12 @@ class User implements UserInterface, \Serializable
     /**
     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user")
     */
-    private $participant; 
+    private $participant;
+
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Evenement", mappedBy="user")
+    */
+    private $evenement; 
 
     /**
      * @ORM\ManyToMany(targetEntity="Alerte", inversedBy="users")

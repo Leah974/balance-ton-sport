@@ -5,6 +5,7 @@ use App\Entity\Evenement;
 use App\Entity\Sport;
 use App\Entity\Participant;
 use App\Entity\User;
+use App\Entity\Categorie;
 use App\Entity\Niveau;
 use App\Form\CommentType;
 use App\Entity\Comments;
@@ -46,14 +47,22 @@ class EvenementController extends Controller
                 }
                     // on renomme la photo en 'photoevenement(chiffre entre 1 et 99999).extension'
                 $nomPhoto = 'photoevenement'.rand(1, 99999).'.'.$extension;
+
                     // on deplace la photo dans le dossier
                 $file->move($dir, $nomPhoto);
+
                     // on enregistre le nom de la photo en bdd
                 $evenement->setPhoto($nomPhoto);
-                    //récupération du nom utilisateur
-                $username = $user->getUsername();
+
                     // on enregistre le nom utilisateur comme organisateur de l'événement
-                $evenement->setOrganisateur($username);
+                $evenement->setUser($user);
+
+                $sport = $form['sport']->getData();
+
+                $categorie = $sport->getCategorie();
+
+                $evenement->setCategorie($categorie);
+
                     // enregistrement des infos en bdd
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($evenement);
@@ -99,29 +108,33 @@ class EvenementController extends Controller
                     $dejaInscrit = true;
                 }
             }
-            // nombre d' inscrits à l'événement
-        $nombre = count($participants);
+
             // événement complet ou non
         $nombreMax = $evenement->getParticipantMax();
+        $nombreRestant = $evenement->getPlacesRestantes();
         $complet = false;
         $vide = false;
-            if($nombre === $nombreMax)
+
+            if($nombreRestant === 0)
                 {
                     $complet = true;
                 }
-            elseif($nombre === 0)
+            elseif($nombreMax === $nombreRestant)
                 {
                     $vide = true;
                 }
+
         $comment = new Comments();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+
          $user = $this->getUser();
          $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
+
          $comment->setUser($user);
          $comment->setEvenement($evenement);
          $em = $this->getDoctrine()->getManager();
@@ -129,6 +142,7 @@ class EvenementController extends Controller
          $em->flush();
             return $this->redirectToRoute('evenements');
         }
+
         $comments = $this->getDoctrine()
             ->getRepository(Comments::class)
             ->findBy(
@@ -153,37 +167,24 @@ class EvenementController extends Controller
      */
         public function showEvenement()
         {
+                $aucunEvenement = false;
+
                 $evenements = $this->getDoctrine()
                 ->getRepository(Evenement::class)
                 ->findBy(
                     ['statut' => false],
                     ['dateEvenement' => 'ASC']
                 );
-                    // recuperation du nombre de places restantes $placesRestantes
-                foreach($evenements as $evenement)
+
+                if(count($evenements) == 0)
                 {
-                    $placesDispos = $evenement->getParticipantMax();
-                    $participants = $this->getDoctrine()
-                        ->getRepository(Participant::class)
-                        ->findBy(
-                    ['evenement' => $evenement]
-                    );
-                    $placesPrises = count($participants);
-                    $placesRestantes = $placesDispos - $placesPrises;
-                        // récupération du pseudo de l'organisateur pour affichage de la photo
-                    $pseudo = $evenement->getOrganisateur();
-                    $users = $this->getDoctrine()
-                        ->getRepository(User::class)
-                        ->findBy(
-                            ['username' => $pseudo]
-                    );
-                    foreach($users as $user)
-                    {
-                        $photo = $user->getPhoto();
-                    }
+                    $aucunEvenement = true;
                 }
-        return $this->render('sitepublic/evenements.html.twig', ['photo' => $photo, 'evenements' => $evenements, 'placesRestantes' => $placesRestantes]);
+
+
+        return $this->render('sitepublic/evenements.html.twig', ['aucunEvenement' => $aucunEvenement, 'evenements' => $evenements]);
         }
+
     /**
      * Inscription à un événement
      * @Route("/evenements/inscription/{id}", name="inscriptionEvenement")
@@ -202,6 +203,10 @@ class EvenementController extends Controller
             $participant = new Participant();
             $participant->setUser($user);
             $participant->setEvenement($evenement);
+
+            $places = $evenement->getPlacesRestantes() - 1;
+            $evenement->setPlacesRestantes($places);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($participant);
             $em->flush();
@@ -210,13 +215,10 @@ class EvenementController extends Controller
             $alerte = new Alerte();
             $alerte->setTypeAlerte('Inscription');
             $alerte->setEvenement($evenement);
-            $alerte->setStatut('false');
+            $alerte->setStatut(true);
             
             //récupération user organisateur
-            $pseudo_organisateur = $evenement->getOrganisateur();
-            $user_organisateur = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findOneBy(['username' => $pseudo_organisateur]);
+            $user_organisateur = $evenement->getUser();
             $user_organisateur->addAlerte($alerte);
             $am = $this->getDoctrine()->getManager();
             $am->persist($alerte);
@@ -255,13 +257,10 @@ class EvenementController extends Controller
             $alerte = new Alerte();
             $alerte->setTypeAlerte('Désinscription');
             $alerte->setEvenement($evenement);
-            $alerte->setStatut('false');
+            $alerte->setStatut(true);
             
             //récupération user organisateur
-            $pseudo_organisateur = $evenement->getOrganisateur();
-            $user_organisateur = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findOneBy(['username' => $pseudo_organisateur]);
+            $user_organisateur = $evenement->getUser();
             $user_organisateur->addAlerte($alerte);
             $am = $this->getDoctrine()->getManager();
             $am->persist($alerte);

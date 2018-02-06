@@ -57,12 +57,10 @@ class UserInfosController extends Controller
            return $this->redirectToRoute('profil'); 
         }
 
-        $username = $user_infos->getUsername();
-
         $organiseEvenements = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->findBy(
-                ['organisateur' => $username],
+                ['user' => $user_infos],
                 ['dateEvenement' => 'ASC']
             );
 

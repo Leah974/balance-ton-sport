@@ -27,17 +27,17 @@
 						    	<div class="d-flex flex-column align-items-center">
 							    	{# PHOTO PROFIL #}
 							        <div class="avatar avatar-90 d-block z-depth-1">
-							        	<img class="img-avatar" src="{{ asset('img/uploads/user/')}}{{ photo }}">
+							        	<img class="img-avatar" src="{{ asset('img/uploads/user/')}}{{ evenement.user.photo }}">
 							        </div>
 							        {# PSEUDO UTILISATEUR #}
-							        <h5 class="h5-responsive mt-2">{{ evenement.organisateur }}</h5>
+							        <h5 class="h5-responsive mt-2">{{ evenement.user.username }}</h5>
 						    	</div>
 						    </div>
 
 						    
 					    	<div class="col d-flex flex-column justify-content-md-end">
 						        {# TITRE #}
-						        <a href="{{ asset('evenements/') }}{{ evenement.id }}" alt="{{ evenement.titre }} par l'utilisateur {{ evenement.organisateur }}" class="dark-grey-text">
+						        <a href="{{ asset('evenements/') }}{{ evenement.id }}" alt="{{ evenement.titre }} par l'utilisateur {{ evenement.user.username }}" class="dark-grey-text">
 						        	<h4 class="h4-responsive">{{ evenement.titre }}</h4>
 						    	</a>
 
@@ -73,7 +73,7 @@
 			        <div class="card-footer pt-0 pb-0 gradient-yellow-plusun">
 
 				    	<div class="d-flex justify-content-end align-items-center evenement-bg">
-				    		<span class="text-center text-white mr-2">X places restantes </span>
+				    		<span class="text-center text-white mr-2">{{ evenement.placesRestantes }} places restantes </span>
 				        	<a href="{{ asset('evenements/') }}{{ evenement.id }}" class="btn btn-plusun btn-rond waves-effect btn-small btn-list-evenement" role="button"><span class="font-weight-bold h5">+ 1</span></a>
 				    	</div>
 
