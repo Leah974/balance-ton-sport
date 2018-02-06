@@ -88,11 +88,11 @@ class EvenementController extends Controller
         $evenement = $this->getDoctrine()
             ->getRepository(Evenement::class)
             ->find($id);
+
             // si il n'y a pas d'événement ou si l'événement id = $id n'existe pas
         if (!$evenement || !$id)
-        {
-                // renvoie vers une page d'erreur
-            return $this->render('sitepublic/erreurEvenements.html.twig');
+        {    
+            return $this->render('sitepublic/evenements.html.twig');
         }
             // recuperation des inscrits à l'événement
         $participants = $this->getDoctrine()
@@ -100,11 +100,14 @@ class EvenementController extends Controller
             ->findBy(
                 ['evenement' => $id]
             );
+
             // recuperation de l'utilisateur
         $user = $this->getUser();
+
             // utilisateur déjà inscrit ou non 
         $dejaInscrit = false;
 
+            // nombre de participants
         $nombre = count($participants);
 
         foreach($participants as $participant)
@@ -356,6 +359,10 @@ class EvenementController extends Controller
             ->getRepository(Evenement::class)
             ->find($id);
 
+
+            $places = $evenement->getPlacesRestantes() + 1;
+            $evenement->setPlacesRestantes($places);
+            
             $alerte = new Alerte();
             $alerte->setTypeAlerte('Désinscription');
             $alerte->setEvenement($evenement);
