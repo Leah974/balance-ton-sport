@@ -35,25 +35,34 @@ class EvenementController extends Controller
         else{
                 // si le formulaire est rempli et valide
             if ($form->isSubmitted() && $form->isValid()) {
-                    // dossier d'enregistrement de la photo evenement
-                $dir = 'img/uploads/evenement';
-                    // recuperation de la photo uploadé et recuperation de l'extension
-                $file = $form['photo']->getData();
-                $extension = $file->guessExtension();
-                    // si l'extension n'est pas reconnu on affecte une extension jpeg
-                if (!$extension) {
-                    // extension cannot be guessed
-                    $extension = 'jpeg';
+
+                if($form['photo']->getData() != null)
+                {
+                        // dossier d'enregistrement de la photo evenement
+                
+                    $dir = 'img/uploads/evenement';
+                        // recuperation de la photo uploadé et recuperation de l'extension
+                    $file = $form['photo']->getData();
+                    $extension = $file->guessExtension();
+                        // si l'extension n'est pas reconnu on affecte une extension jpeg
+                    if (!$extension) {
+                        // extension cannot be guessed
+                        $extension = 'jpeg';
+                    }
+                        // on renomme la photo en 'photoevenement(chiffre entre 1 et 99999).extension'
+                    $nomPhoto = 'photoevenement'.rand(1, 99999).'.'.$extension;
+
+                        // on deplace la photo dans le dossier
+                    $file->move($dir, $nomPhoto);
+
+                        // on enregistre le nom de la photo en bdd
+                    $evenement->setPhoto($nomPhoto);
                 }
-                    // on renomme la photo en 'photoevenement(chiffre entre 1 et 99999).extension'
-                $nomPhoto = 'photoevenement'.rand(1, 99999).'.'.$extension;
 
-                    // on deplace la photo dans le dossier
-                $file->move($dir, $nomPhoto);
+                else{
 
-                    // on enregistre le nom de la photo en bdd
-                $evenement->setPhoto($nomPhoto);
-
+                    $evenement->setPhoto('evenement.jpg');
+                }
                     // on enregistre le nom utilisateur comme organisateur de l'événement
                 $evenement->setUser($user);
 
