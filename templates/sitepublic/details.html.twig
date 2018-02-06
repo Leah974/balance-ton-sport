@@ -19,7 +19,7 @@
 		        	<img class="img-avatar" src="http://static4.businessinsider.com/image/56c640526e97c625048b822a-480/donald-trump.jpg">
 		        </div>
 		        {# PSEUDO UTILISATEUR #}
-		        <h5 class="h5-responsive mt-2">{{ evenement.organisateur }}</h5>
+		        <h5 class="h5-responsive mt-2">{{ evenement.user.username }}</h5>
 		        <h4 class="h4-responsive"><span class="badge plusun-bg">ORGANISATEUR</span></h4>
 	    	</div>
 		</div>
@@ -65,9 +65,8 @@
 		<div class='col-md-6'>
 
 			<ul class="list-group">
-
-				{% if dejaInscrit %}
 					<h4 class="h4-responsive mb-3"><i class="fa fa-child  plusun-color" aria-hidden="true"></i> Participants : {{ nombre }} / {{ evenement.participantMax }}</i></h4>
+				{% if dejaInscrit %}
 					<a class="btn btn-plusun btn-lg btn-block" type="button" href="{{ asset('evenements/desinscription/') }}{{ evenement.id }}"> Ne plus participer </a></i>
 				{% endif %}
 
