@@ -65,21 +65,16 @@
 		<div class='col-md-6'>
 
 			<ul class="list-group">
-					<h4 class="h4-responsive mb-3"><i class="fa fa-child  plusun-color" aria-hidden="true"></i> Participants : {{ nombre }} / {{ evenement.participantMax }}</i></h4>
+
+				<h4 class="h4-responsive mb-3"><i class="fa fa-child  plusun-color" aria-hidden="true"></i> Participants : {{ nombre }} / {{ evenement.participantMax }}</i></h4>
 				{% if dejaInscrit %}
 					<a class="btn btn-plusun btn-lg btn-block" type="button" href="{{ asset('evenements/desinscription/') }}{{ evenement.id }}"> Ne plus participer </a></i>
 				{% endif %}
 
 				{% if not dejaInscrit %}
-
-					{% if not vide %}
-							<p class="mt-2"><i class="fa fa-child  plusun-color" aria-hidden="true"></i> Participants : {{ nombre }} / {{ evenement.participantMax }}</i></p>
-						{% endif %}
-
 					{% if not complet %}
 						<a class="btn btn-plusun btn-lg btn-block" type="button" href="{{ asset('evenements/inscription/') }}{{ evenement.id }}"> Participer !</a></i>
 					{% endif %}
-
 				{% endif %}
 
 				{% if complet %}
