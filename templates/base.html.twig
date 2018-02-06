@@ -84,9 +84,47 @@
     {% block main %}{% endblock %}
 </main>
 
-<footer class="page-footer">
-    Copyright Balance ton sport
+<footer class="page-footer bg-dark mt-5 pt-0 center-on-small-only">
+    {% if app.request.attributes.get('_route') == 'accueil' %}
+        <div class="container-fluid">
+        <div class="row">
+
+            <!--First column-->
+            <div class="col-md-6 text-center p-2">
+             <h5>À propos</h5>
+                <ul>
+                    <li><a href="#!">Qui sommes-nous ?</a></li>
+                    <li><a href="#!">Foire aux questions</a></li>
+                    <li><a href="#!">Espace partenaires</a></li>
+                    <li><a href="#!">Contact</a></li>
+                </ul>
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-6 text-center p-2">
+                <h5>Mentions légales</h5>
+                <ul>
+                    <li><a href="#!">Conditions générales</a></li>
+                    <li><a href="#!">Politique de Confidentialité</a></li>
+                    <li><a href="#!">Utilisation des cookies</a></li>
+                </ul>
+            </div>
+            <!--/.Second column-->
+        </div>
+    </div>
+    <!--Copyright-->
+    {% endif %}
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © 2018 Copyright: <a href="{{ path('accueil') }}"> plusun.com </a>
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
 </footer>
+<!--/.Footer-->
 
     <!-- JQuery -->
     <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
