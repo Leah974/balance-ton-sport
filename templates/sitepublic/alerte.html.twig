@@ -6,47 +6,34 @@
 	<h3 class="h3-responsive">Il y a du nouveau !</h3>
 {% endif %}
 
-<div class="table-reponsive">
-	<table class="table product-table">
-		<thead>
-			<th>Alerte</th>					
-			<th>Action</th>
-		</thead>
+<div class="row">
 
-		{% for alerte in alertes %}	
+	{% for alerte in alertes %}	
 
-			<tr>
-				
-				{% if (alerte.typeAlerte == 'Inscription' and alerte.statut == 1) %}
-					<td> 
-						<div data-num="{{ alerte.id }}" data-url="{{ path("statut") }}" class="d-flex flex-row justify-content-between">
-							<div>
-								<h5 class="h5-responsive"><a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">{{ alerte.evenement.titre }}</a></h5>
-								<p><i class="fa fa-user-plus mr-1 fa-2x plusun-color" aria-hidden="true"></i> Il y a un nouvel inscrit à votre événement !</p>
-							</div>
-							<button type="button" class="btn btn-plusun">Vu <i class="fa fa-check" aria-hidden="true"></i></button>
-						</div>
-					</td>
-				
-				{% endif %}
-			</tr>
+		{% if (alerte.typeAlerte == 'Inscription' and alerte.statut == 1) %}
+			<div data-num="{{ alerte.id }}" data-url="{{ path("statut") }}" class="d-flex flex-row justify-content-between">
+				<div class="col-md-8 d-flex flex-column mb-2 mt-2">
+					<h5 class="h5-responsive"><a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">{{ alerte.evenement.titre }}</a></h5>
+					<p><i class="fa fa-user-plus mr-1 fa-2x plusun-color" aria-hidden="true"></i> Il y a un nouvel inscrit à votre événement !</p>
+				</div>
+				<button type="button" class="btn btn-sm col-auto btn-plusun">Vu <i class="fa fa-check" aria-hidden="true"></i></button>
+			</div>
+		
+		{% endif %}
 
-			<tr>
-				{% if (alerte.typeAlerte == 'Désinscription') and alerte.statut == 1 %}
-				
-					<div data-num="{{ alerte.id }}" data-url="{{ path("statut") }}" class="d-flex flex-row justify-content-between">
-						<div>
-							<h5 class="h5-responsive"><a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">{{ alerte.evenement.titre }}</a></h5>
-							<p><i class="fa fa-user-times mr-1 fa-2x plusun-color" aria-hidden="true"></i> Un participant s'est désinscrit de votre événement</p>
-						</div>
-						<button type="button" class="btn btn-plusun">Vu <i class="fa fa-check" aria-hidden="true"></i></button>
-					</div>
+		{% if (alerte.typeAlerte == 'Désinscription') and alerte.statut == 1 %}
+		
+			<div data-num="{{ alerte.id }}" data-url="{{ path("statut") }}" class="d-flex flex-row justify-content-between">
+				<div>
+					<h5 class="h5-responsive"><a href="{{ asset('evenements/') }}{{ alerte.evenement.id }}">{{ alerte.evenement.titre }}</a></h5>
+					<p><i class="fa fa-user-times mr-1 fa-2x plusun-color" aria-hidden="true"></i> Un participant s'est désinscrit de votre événement</p>
+				</div>
+				<button type="button" class="btn btn-sm btn-plusun">Vu <i class="fa fa-check" aria-hidden="true"></i></button>
+			</div>
 
-				{% endif %}
-			</tr>
-			
+		{% endif %}
 
-		{% endfor %}
+	{% endfor %}
 
-	</table>
 </div>
+
