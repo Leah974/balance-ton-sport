@@ -146,7 +146,7 @@ class User implements UserInterface, \Serializable
         // $this->salt = md5(uniqid('', true));
         $this->setPhoto('avatar.png');
 
-        $this->setRoles(array ('ROLE_SUPER_ADMIN'));
+        $this->setRoles(array ('ROLE_USER'));
         //relation avec la table alerte
         $this->alertes = new ArrayCollection();
     }

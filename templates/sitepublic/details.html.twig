@@ -54,7 +54,7 @@
 		    		<ul class="list-unstyled d-flex flex-column align-items-baseline">
 			        	<li><i class="fa fa-calendar plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("d/m/Y") }}</li>
 			        	<li><i class="fa fa-clock-o plusun-color" aria-hidden="true"></i> {{ evenement.dateEvenement|date("H:i") }}</li>
-			        	<li><i class="fa fa-map-marker plusun-color" aria-hidden="true"></i> {{ evenement.ville }}</li>
+			        	<li><i class="fa fa-map-marker plusun-color" aria-hidden="true"></i>{{ evenement.adresse }}</li>
 			        </ul>
 		    	</div>
 
@@ -150,7 +150,7 @@
 								<td></td>
 								<td>
 									<div id="comment-{{ comment.id }}" data-commentid="{{ comment.id }}" class="comment comment-step1">
-										<a class="signal" href="{{ asset('evenements/') }}{{ evenement.id }}{{ ('/signaler/commentaire/') }}{{ comment.id }}"><i class="fa fa-flag"></i></a>
+										<a class="signal" href="{{ asset('evenements/') }}{{ evenement.id }}{{ ('/signaler/commentaire/') }}{{ comment.id }}" title="Signaler"><i class="fa fa-flag"></i></a>
 										{{ comment.commentaire }}
 										
 										{% if app.user.id == comment.user.id %}
